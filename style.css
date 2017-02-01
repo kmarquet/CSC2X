@@ -1,0 +1,140 @@
+.indent {
+    padding-left: 1.8em;
+}
+
+.areatitle {
+    background-color: LightSkyBlue;
+    width: 100px;
+    word-wrap: break-word;
+    border-style: solid;
+    border-width: 2px;
+    border-color: Gray;
+    border-radius: 5px;
+}
+
+.areacontent {
+    word-wrap: break-word;
+    display: block;
+}
+
+.unittitle {
+    background-color: LightYellow;
+    width: 300px;
+    word-wrap: break-word;
+    border-style: solid;
+    border-width: 2px;
+    border-color: Gray;
+    border-radius: 5px;
+}
+
+.unitcontent {
+    display: inline;
+}
+
+.topics {
+    word-wrap: break-word;
+    border-width: 2px;
+    border-color: Gray;
+    border-style: solid;
+    background-color: lightblue;
+}
+
+.topic {
+    width: 500px;
+    /* background-color: pink; */
+    word-wrap: break-word;
+    /* text-decoration: underline; */
+    margin-bottom: 0.2em;
+    font-family: "arial", Georgia, Serif;
+    font-weight: 550;
+}
+
+.topic::before {
+    content: "- ";
+}
+
+.subtopic {
+    width: 400px;
+    word-wrap: break-all;
+    margin-left: 2em;
+    list-style-type: square;
+    display: list-item;
+    list-style-type: disc;
+    font-weight: 500;
+}
+.skill {
+    width: 500px;
+    word-wrap: break-word;
+    /* text-decoration: underline; */
+    margin-bottom: 0.2em;
+    font-family: "arial", Georgia, Serif;
+    font-weight: 550;
+}
+
+.skill::before {
+    content: "- ";
+}
+
+.skills {
+    word-wrap: break-word;
+    border-width: 2px;
+    border-color: Gray;
+    border-style: solid;
+    background-color: Lavender;
+}
+
+.not {
+    text-color: black;
+    background-color: IndianRed;
+}
+
+.addressed {
+    background-color: LightGreen;
+    text-color: black;
+}
+
+.notsub {
+    text-color: black;
+    background-color: LightCoral;
+    font-size: 75%;
+}
+
+.addressedsub {
+    background-color: PaleGreen;
+    text-color: black;
+    font-size: 80%;
+}
+
+.familiarity {
+    text-color: black;
+    background-color: LightGray;
+}
+
+.usage {
+    text-color: black;
+    background-color: LightSteelBlue;
+}
+
+.assessment {
+    text-color: black;
+    background-color: MediumSlateBlue;
+}
+
+select {
+    border-style: solid;
+    border-width: 2px;
+    border-color: Gray;
+    border-radius: 8px;
+    background: transparent;
+    width: 150px;
+    font-size: 16px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(./br_down.png)  no-repeat right #ddd;
+    background-size: 9%;
+    /* background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #eee; */
+    cursor:pointer;
+}
+
+
