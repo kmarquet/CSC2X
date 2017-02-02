@@ -77,6 +77,7 @@ for (var area in curricula) {
                     txt += " selected";
                 }
                 txt += " value=\"" + level + "\" class=\"" + level.toLowerCase() + "\">";
+                txt += level;
                 txt += "</option>";
             }
             txt += "</select>";
