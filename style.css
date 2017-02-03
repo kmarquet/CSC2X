@@ -28,7 +28,7 @@
 }
 
 .unitcontent {
-    display: inline;
+    display: block;
 }
 
 .topics {
@@ -41,16 +41,17 @@
 
 .topic {
     width: 500px;
-    /* background-color: pink; */
     word-wrap: break-word;
-    /* text-decoration: underline; */
     margin-bottom: 0.2em;
-    font-family: "arial", Georgia, Serif;
-    font-weight: 550;
+    font-family: Serif, bold;
 }
 
 .topic::before {
     content: "- ";
+}
+
+tr {
+    height: 8px;
 }
 
 .subtopic {
@@ -60,15 +61,13 @@
     list-style-type: square;
     display: list-item;
     list-style-type: disc;
-    font-weight: 500;
+    font-weight: 400;
 }
 .skill {
     width: 500px;
     word-wrap: break-word;
-    /* text-decoration: underline; */
     margin-bottom: 0.2em;
-    font-family: "arial", Georgia, Serif;
-    font-weight: 550;
+    font-weight: 500;
 }
 
 .skill::before {
