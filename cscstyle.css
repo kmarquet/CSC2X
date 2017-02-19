@@ -40,14 +40,22 @@
 }
 
 .topic {
-    width: 500px;
+    width: 600px;
     word-wrap: break-word;
     margin-bottom: 0.2em;
     font-family: Serif, bold;
 }
 
 .topic::before {
-    content: "- ";
+   content: '';
+   display: inline-block;
+   width: 7px;
+   height: 7px;
+   -moz-border-radius: 3.5px;
+   -webkit-border-radius: 3.5px;
+   border-radius: 3.5px;
+   background-color: black;
+    /* content: "- "; */
 }
 
 tr {
@@ -55,23 +63,40 @@ tr {
 }
 
 .subtopic {
-    width: 400px;
+    width: 500px;
     word-wrap: break-all;
     margin-left: 2em;
-    list-style-type: square;
-    display: list-item;
-    list-style-type: disc;
     font-weight: 400;
 }
+
+.subtopic::before {
+   content: '';
+   display: inline-block;
+   width: 5px;
+   height: 5px;
+   -moz-border-radius: 3.5px;
+   -webkit-border-radius: 3.5px;
+   border-radius: 3.5px;
+   background-color: Gray;
+    /* content: "- "; */
+}
+
 .skill {
-    width: 500px;
+    width: 650px;
     word-wrap: break-word;
     margin-bottom: 0.2em;
     font-weight: 500;
 }
 
 .skill::before {
-    content: "- ";
+   content: '';
+   display: inline-block;
+   width: 6px;
+   height: 6px;
+   -moz-border-radius: 3.5px;
+   -webkit-border-radius: 3.5px;
+   border-radius: 3.5px;
+   background-color: black;
 }
 
 .skills {
@@ -119,13 +144,17 @@ tr {
     background-color: MediumSlateBlue;
 }
 
+.crossref {
+    font-size:85%;
+}
+
 select {
     border-style: solid;
     border-width: 2px;
     border-color: Gray;
     border-radius: 8px;
     background: transparent;
-    width: 120px;
+    width: 110px;
     font-size: 16px;
     -webkit-appearance: none;
     -moz-appearance: none;
