@@ -107,45 +107,66 @@ tr {
     background-color: SkyBlue;
 }
 
+
+.crossref {
+    font-size:85%;
+}
+
+
 .not {
     text-color: black;
     background-color: IndianRed;
+    background-size: 17%;
+    value: "no";
+    content: "no";
+    padding-right: 1.0em;
 }
 
 .addressed {
     background-color: LightGreen;
     text-color: black;
+    background-size: 17%;
+    content: 'yes';
+    value: 'yes';
+    padding-right: 1.0em;
 }
 
 .notsub {
     text-color: black;
     background-color: LightCoral;
     font-size: 75%;
+    background-size: 15%;
+    content: 'no';
+    value: 'no';
+    padding-right: 0.5em;
 }
 
 .addressedsub {
     background-color: PaleGreen;
     text-color: black;
     font-size: 80%;
+    background-size: 15%;
+    content: 'yes';
+    value: 'yes';
+    padding-right: 0.5em;
 }
 
 .familiarity {
     text-color: black;
     background-color: LightGray;
+    background-size: 9%;
 }
 
 .usage {
     text-color: black;
     background-color: LightSteelBlue;
+    background-size: 9%;
 }
 
 .assessment {
     text-color: black;
     background-color: MediumSlateBlue;
-}
-
-.crossref {
-    font-size:85%;
+    background-size: 9%;
 }
 
 select {
@@ -153,14 +174,13 @@ select {
     border-width: 2px;
     border-color: Gray;
     border-radius: 8px;
-    background: transparent;
-    width: 110px;
+    /* background: transparent; */
     font-size: 16px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     background: url(./br_down.png)  no-repeat right #ddd;
-    background-size: 9%;
+    /* background-size: 15%; */
     /* background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #eee; */
     cursor:pointer;
 }

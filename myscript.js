@@ -35,7 +35,7 @@ window.printCSC = function()
             txt += "<div class=\"unittitle\" id=\"" + unitId + "\">\n";
             txt += unitName_woB + "<br>\n";
             txt += "</div>\n";
-            txt += "<div class=\"unitcontent\" id=\"contentof" + unitName + "\">\n";
+            txt += "<div class=\"unitcontent\" id=\"contentof" + unitId + "\">\n";
             var nb = 0;
             txt += "<table>\n";
             txt += "<th valign=\"top\" align=\"left\">\n"; 
@@ -65,13 +65,18 @@ window.printCSC = function()
                     var levels = ["Not", "Addressed"];
                     for (var i = 0 ; i < levels.length ; i++) {
                         var level = levels[i];
+                        var levelAppearance;
+                        if (level == "Not")
+                            levelAppearance = "No";
+                        else
+                            levelAppearance = "Yes";
                         txt += "<option";
                         var level_read = curricula[area].units[unit].topics[topic].subtopics[subtopic].addressed;
                         if (level_read.search(level) >= 0) {
                             txt += " selected";
                         }
-                        txt += " value=\"" + level + "\" class=\"" + level.toLowerCase() + "sub\">";
-                        txt += level;
+                        txt += " class=\"" + level.toLowerCase() + "sub\">";
+                        txt += levelAppearance;
                         txt += "</option>";
                         txt += level_read.search(level);
                     }
@@ -81,16 +86,21 @@ window.printCSC = function()
                 txt += "</table>\n";
                 txt += "</th>\n"; 
                 txt += "<th align=\"left\" valign=\"top\">\n"; 
-                txt += "<select onchange=\"this.className=this.options[this.selectedIndex].className\">";
+                txt += "<select class=\"topicselect\" onchange=\"this.className=this.options[this.selectedIndex].className\">";
                 var levels = ["Not", "Addressed"];
                 for (var i = 0 ; i < levels.length ; i++) {
                     var level = levels[i];
+                    var levelAppearance;
+                    if (level == "Not")
+                        levelAppearance = "No";
+                    else
+                        levelAppearance = "Yes";
                     txt += "<option";
                     if (curricula[area].units[unit].topics[topic].addressed.search(level) >= 0) {
                         txt += " selected";
                     }
-                    txt += " value=\"" + level + "\" class=\"" + level.toLowerCase() + "\">";
-                    txt += level;
+                    txt += " class=\"" + level.toLowerCase() + "\">";
+                    txt += levelAppearance;
                     txt += "</option>";
                 }
                 txt += "</select>";
@@ -109,8 +119,8 @@ window.printCSC = function()
                 txt += curricula[area].units[unit].skills[skill].skill + "\n";
                 txt += "</div>";
                 txt += "</th>\n"; 
-                txt += "<th align=\"left\" valign=\"top\">\n"; 
-                txt += "<select onchange=\"this.className=this.options[this.selectedIndex].className\">";
+                txt += "<th align=\"left\" valign=\"top\">\n";
+                txt += "<select class=\"skillselect\" onchange=\"this.className=this.options[this.selectedIndex].className\">";
                 var levels = ["Familiarity", "Usage", "Assessment"];
                 for (var i = 0 ; i < levels.length ; i++) {
                     var level = levels[i];
@@ -118,7 +128,7 @@ window.printCSC = function()
                     if (curricula[area].units[unit].topics[topic].addressed.search(level) >= 0) {
                         txt += " selected";
                     }
-                    txt += " value=\"" + level + "\" class=\"" + level.toLowerCase() + "\">";
+                    txt += " class=\"" + level.toLowerCase() + "\">";
                     txt += level;
                     txt += "</option>";
                 }
