@@ -1,10 +1,22 @@
+
+table th {
+    padding: 2px;
+}
+
 .indent {
     padding-left: 1.8em;
+    background-color: white;
+}
+
+.areatitlecol {
+    background-color: white;
+    vertical-align: top;
+    text-align: left; 
 }
 
 .areatitle {
     background-color: LightSkyBlue;
-    width: 100px;
+    width: 70px;
     word-wrap: break-word;
     border-style: solid;
     border-width: 2px;
@@ -12,14 +24,25 @@
     border-radius: 5px;
 }
 
-.areacontent {
+.areacontentcol {
     word-wrap: break-word;
     display: block;
+    vertical-align: top;
+    text-align: left; 
+    background-color: white;
+}
+
+
+.unittitlecol {
+    background-color: white;
+    vertical-align: top;
+    text-align: left; 
 }
 
 .unittitle {
     background-color: LightYellow;
-    width: 300px;
+    width: 500px;
+    line-height: 25px;
     word-wrap: break-word;
     border-style: solid;
     border-width: 2px;
@@ -31,19 +54,30 @@
     display: block;
 }
 
-.topics {
+.unitcolor {
+    background-color: white;
+}
+
+.topicscol {
     word-wrap: break-word;
     border-width: 2px;
     border-color: Gray;
     border-style: solid;
     background-color: lightblue;
+    vertical-align: top;
+    text-align: left; 
 }
 
-.topic {
-    width: 600px;
+
+.topiccol {
+    background-color: lightblue;
+    width: 400px;
     word-wrap: break-word;
     margin-bottom: 0.2em;
-    font-family: Serif, bold;
+    font-family: Serif;
+    font-weight: 400;
+    vertical-align: top;
+    text-align: left; 
 }
 
 .topic::before {
@@ -58,16 +92,37 @@
     /* content: "- "; */
 }
 
-tr {
-    height: 8px;
-}
 
-.subtopic {
-    width: 500px;
+.subtopiccol {
+    background-color: lightblue;
+    width: 420px;
     word-wrap: break-all;
     margin-left: 2em;
+    font-size: 80%;
     font-weight: 400;
+    vertical-align: top;
+    text-align: left; 
 }
+
+.subtopicscol {
+    background-color: lightblue;
+    vertical-align: top;
+    text-align: left; 
+}
+
+.topicselectcol {
+    background-color: lightblue;
+    vertical-align: center;
+    text-align: center; 
+    width: 20px;
+}
+
+.skillselectcol {
+    background-color: SkyBlue;
+    vertical-align: center;
+    text-align: center; 
+}
+
 
 .subtopic::before {
    content: '';
@@ -81,11 +136,31 @@ tr {
     /* content: "- "; */
 }
 
-.skill {
-    width: 650px;
+.subtopicselectcol {
+    background-color: lightblue;
+    vertical-align: center;
+    text-align: center; 
+    width: 15px;
+}
+
+.subtopicpad {
+    width: 40px;
+    background-color: lightblue;
+}
+
+.skillcol {
+    width: 500px;
     word-wrap: break-word;
     margin-bottom: 0.2em;
     font-weight: 500;
+    font-size: 90%;
+    vertical-align: top;
+    text-align: left; 
+    background-color: SkyBlue;
+}
+
+.skill {
+    background-color: SkyBlue;
 }
 
 .skill::before {
@@ -99,17 +174,25 @@ tr {
    background-color: black;
 }
 
-.skills {
+.skillscol {
+    width: 630px;
     word-wrap: break-word;
     border-width: 2px;
     border-color: Gray;
     border-style: solid;
     background-color: SkyBlue;
+    vertical-align: top;
+    text-align: left; 
 }
 
 
 .crossref {
-    font-size:85%;
+    font-size:80%;
+    background: lightblue;
+    border: lightblue;
+    font-family: Serif;
+    padding: 0 0 0;
+    margin: 0 0 0;
 }
 
 
@@ -120,6 +203,7 @@ tr {
     value: "no";
     content: "no";
     padding-right: 1.0em;
+    font-size:90%;    
 }
 
 .addressed {
@@ -129,6 +213,7 @@ tr {
     content: 'yes';
     value: 'yes';
     padding-right: 1.0em;
+    font-size:90%;
 }
 
 .notsub {
@@ -139,6 +224,7 @@ tr {
     content: 'no';
     value: 'no';
     padding-right: 0.5em;
+    font-size:90%;    
 }
 
 .addressedsub {
@@ -149,24 +235,28 @@ tr {
     content: 'yes';
     value: 'yes';
     padding-right: 0.5em;
+    font-size:90%;
 }
 
 .familiarity {
     text-color: black;
     background-color: LightGray;
     background-size: 9%;
+    font-size:90%;    
 }
 
 .usage {
     text-color: black;
     background-color: LightSteelBlue;
     background-size: 9%;
+    font-size:90%;    
 }
 
 .assessment {
     text-color: black;
     background-color: MediumSlateBlue;
     background-size: 9%;
+    font-size:90%;
 }
 
 select {
@@ -184,5 +274,3 @@ select {
     /* background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #eee; */
     cursor:pointer;
 }
-
-

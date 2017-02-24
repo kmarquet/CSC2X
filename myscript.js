@@ -17,51 +17,51 @@ window.printCSC = function()
     txt += "<table>\n";
     for (var area in curricula) {
         areaName = curricula[area].area_name;
-        txt += "<tr>\n"; 
-        txt += "<th valign=\"top\" align=\"left\">\n"; 
+        txt += "<tr>\n";
+        txt += "<th class=\"areatitlecol\">\n"; 
         txt += "<div class=\"areatitle\" id=\"" + areaName + "\">\n";
         txt += areaName + "<br>\n";
         txt += "</div>";
         txt += "</th>\n"; 
-        txt += "<th valign=\"top\" align=\"left\">\n"; 
-        txt += "<div class=\"areacontent\" id=\"contentof" + areaName + "\">\n";
+        txt += "<th class=\"areacontentcol\">\n"; 
+        txt += "<div id=\"contentof" + areaName + "\">\n";
         txt += "<table>\n";
         for (var unit in curricula[area].units) {
             unitName = curricula[area].units[unit].unit_name;
             unitId = areaName + "_" + unitName.replaceAll(" ", "_"); 
             unitName_woB = unitId.replaceAll("_", " "); 
             txt += "<tr>\n"; 
-            txt += "<th valign=\"top\" align=\"left\">\n"; 
+            txt += "<th class=\"unittitlecol\">\n"; 
             txt += "<div class=\"unittitle\" id=\"" + unitId + "\">\n";
             txt += unitName_woB + "<br>\n";
             txt += "</div>\n";
             txt += "<div class=\"unitcontent\" id=\"contentof" + unitId + "\">\n";
             var nb = 0;
             txt += "<table>\n";
-            txt += "<th valign=\"top\" align=\"left\">\n"; 
-            txt += "<p class=\"indent\"></p>";
+            txt += "<th class=\"indent\">\n"; 
             txt += "</th>\n"; 
-            txt += "<th valign=\"top\" align=\"left\" class=\"topics\">\n"; 
+            txt += "<th class=\"topicscol\">\n"; 
             // txt += "<div class=\"topics\">\n";        
             txt += "<table>\n";
             for (var topic in curricula[area].units[unit].topics) {
                 var topicContent = curricula[area].units[unit].topics[topic].topic_content;
                 txt += "<tr>\n"; 
-                txt += "<th valign=\"top\" align=\"left\">\n"; 
+                txt += "<th class=\"topiccol\">\n"; 
                 txt += "<div class=\"topic\">\n";
                 txt += handleTopicContent(topicContent) + "\n";
                 txt += "</div>";
                 txt += "<table>\n";
-                txt += "<th valign=\"top\" align=\"left\">\n";
+                txt += "<th class=\"subtopicscol\">\n";
                 for (var subtopic in curricula[area].units[unit].topics[topic].subtopics) {
                     txt += "<tr>\n"; 
-                    txt += "<th valign=\"top\" align=\"left\">\n"; 
-                    txt += "<div class=\"subtopic\"\>\n";            
+                    txt += "<th class=\"subtopicpad\"></th>\n"; 
+                    txt += "<th class=\"subtopiccol\">\n"; 
+                    txt += "<div class=\"subtopic\">\n";            
                     txt += curricula[area].units[unit].topics[topic].subtopics[subtopic].topic_content;
                     txt += "</div>\n";                
                     txt += "</th>\n"; 
-                    txt += "<th align=\"left\">\n"; 
-                    txt += "<select class=\"subtopicselect\" onchange=\"this.className=this.options[this.selectedIndex].className\">";
+                    txt += "<th class=\"subtopicselectcol\" align=\"left\">\n"; 
+                    txt += "<select onchange=\"this.className=this.options[this.selectedIndex].className\">";
                     var levels = ["Not", "Addressed"];
                     for (var i = 0 ; i < levels.length ; i++) {
                         var level = levels[i];
@@ -77,16 +77,16 @@ window.printCSC = function()
                         }
                         txt += " class=\"" + level.toLowerCase() + "sub\">";
                         txt += levelAppearance;
+                        // txt += level_read.search(level);
                         txt += "</option>";
-                        txt += level_read.search(level);
                     }
                     txt += "</select>";
                     txt += "</th>\n";
                 }
                 txt += "</table>\n";
-                txt += "</th>\n"; 
-                txt += "<th align=\"left\" valign=\"top\">\n"; 
-                txt += "<select class=\"topicselect\" onchange=\"this.className=this.options[this.selectedIndex].className\">";
+                txt += "</th>\n";
+                txt += "<th class=\"topicselectcol\">\n"; 
+                txt += "<select onchange=\"this.className=this.options[this.selectedIndex].className\">";
                 var levels = ["Not", "Addressed"];
                 for (var i = 0 ; i < levels.length ; i++) {
                     var level = levels[i];
@@ -96,11 +96,13 @@ window.printCSC = function()
                     else
                         levelAppearance = "Yes";
                     txt += "<option";
-                    if (curricula[area].units[unit].topics[topic].addressed.search(level) >= 0) {
+                    var level_read = curricula[area].units[unit].topics[topic].addressed;
+                    if (level_read.search(level) >= 0) {
                         txt += " selected";
                     }
                     txt += " class=\"" + level.toLowerCase() + "\">";
                     txt += levelAppearance;
+                    // txt += level_read.search(level);
                     txt += "</option>";
                 }
                 txt += "</select>";
@@ -109,23 +111,24 @@ window.printCSC = function()
             txt += "</table>\n";
             // txt += "</div>";
             txt += "</th>\n"; 
-            txt += "<th class=\"skills\" align=\"left\" valign=\"top\">\n"; 
+            txt += "<th class=\"paddingtopskill\"></th>\n"; 
+            txt += "<th class=\"skillscol\">\n"; 
             // txt += "<div class=\"skills\">\n";      
             txt += "<table>\n";
             for (var skill in curricula[area].units[unit].skills) {
                 txt += "<tr>\n"; 
-                txt += "<th valign=\"top\" align=\"left\">\n"; 
+                txt += "<th class=\"skillcol\">\n"; 
                 txt += "<div class=\"skill\">\n";
                 txt += curricula[area].units[unit].skills[skill].skill + "\n";
                 txt += "</div>";
                 txt += "</th>\n"; 
-                txt += "<th align=\"left\" valign=\"top\">\n";
-                txt += "<select class=\"skillselect\" onchange=\"this.className=this.options[this.selectedIndex].className\">";
+                txt += "<th class=\"skillselectcol\">\n";
+                txt += "<select align=\"right\" class=\"skillselect\" onchange=\"this.className=this.options[this.selectedIndex].className\">";
                 var levels = ["Familiarity", "Usage", "Assessment"];
                 for (var i = 0 ; i < levels.length ; i++) {
                     var level = levels[i];
                     txt += "<option";
-                    if (curricula[area].units[unit].topics[topic].addressed.search(level) >= 0) {
+                    if (curricula[area].units[unit].topics[topic].addressed.search("/"+level+"/i") >= 0) {
                         txt += " selected";
                     }
                     txt += " class=\"" + level.toLowerCase() + "\">";
@@ -238,7 +241,7 @@ function handleTopicContent(topicContent)
     if (match != null) {
         var res = "";
         var i;
-        res += match[1] + " <pre class=crossref>(cross-ref ";
+        res += match[1] + " <pre class=\"crossref\">(cross-ref ";
         res += handleXrefs(match[2]);
         res += ")</pre>";
         return res;
@@ -248,14 +251,12 @@ function handleTopicContent(topicContent)
 }
 
 // TODO:
-// - bug: tout est indiqué "non addressed"
 // - Modification du json
 //       fs.writeFile('people.json', JSON.stringify(m));
 // - Ajouter support pour nombre d'heures ??
-// - Support pour :Xref:
 // - Un joli format json:
 //   - indenter
 //   - compléter la recopie depuis le pdf(arg...)
 //       - essayer de copier directement dans le .json
 //       - si c'est trop compliqué => passer par du csv
-//   - les cross-ref sont un peu pénibles à gérer quand il y a des 'and' dans le topic cross-referencé. M'enfin ça se fait.
+// - 
