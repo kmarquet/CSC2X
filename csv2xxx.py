@@ -39,12 +39,13 @@ class SkillLevel(Enum):
             return SkillLevel.Assessment
 
 class Topic:
-    def __init__(self, content, unit, addressed):
+    def __init__(self, content, unit, addressed, num):
         self.content = content
         self.unit = unit
-        self.addressed = addressed
+        self.addressed = "No"
         self.subtopics = []
-
+        self.num = num
+        
     def toJson(self, ):
         outlist = []
         # outlist.append("{ \"area\": \"");
@@ -52,7 +53,7 @@ class Topic:
         # outlist.append("\", \n\"unit\" : \"");
         # outlist.append(self.unit.name);
         # outlist.append("\",\n\"concept\": ");
-        outlist.append("{ \"topic_content\": ");
+        outlist.append("         { \"topic_content\": ");
         if self.content.startswith("\""):
             outlist.append(self.content);
         else:
@@ -60,8 +61,12 @@ class Topic:
             outlist.append(self.content);
             outlist.append("\"");
 
+        outlist.append(",\n           \"topic_num\": \"");
+        outlist.append(str(self.num));
+        outlist.append("\"");
+
         if len(self.subtopics) > 0:
-            outlist.append(",\n\"subtopics\": [");
+            outlist.append(",\n           \"subtopics\": [");
             for i, subtopic in enumerate(self.subtopics):
                 if i > 0:
                     outlist.append(", \n")
@@ -70,14 +75,15 @@ class Topic:
                     outlist = outlist + subtopic.toJson()
             outlist.append("]");
 
-        outlist.append(",\n\"addressed\": \"");
+        outlist.append(",\n           \"addressed\": \"");
         outlist.append(str(self.addressed));
         outlist.append("\"\n");
-        outlist.append("}");
+
+        outlist.append("         }");
         return outlist
     
     def addSubTopic(self, content, addressed):
-        newSubTopic = Topic(content, self.unit, addressed)
+        newSubTopic = Topic(content, self.unit, addressed, self.num *10 + len(self.subtopics))
         self.subtopics.append(newSubTopic)
         return newSubTopic
         
@@ -85,7 +91,7 @@ class Skill:
     def __init__(self, content, unit, num, mastery):
         self.content = content
         self.unit = unit
-        self.mastery = mastery
+        self.mastery = "-"
         self.num = num
         
     def toJson(self, ):
@@ -98,7 +104,7 @@ class Skill:
         # outlist.append(self.num);
         #        outlist.append("\", \n\"skill\": ");
         
-        outlist.append("{\"skill\": ");
+        outlist.append("         {\"skill\": ");
         if self.content.startswith("\""):
             outlist.append(self.content);
         else:
@@ -106,11 +112,15 @@ class Skill:
             outlist.append(self.content);
             outlist.append("\"");
 
-        outlist.append(",\n\"mastery\": \"");
+        outlist.append(",\n           \"mastery\": \"");
         outlist.append(self.mastery);
+        outlist.append("\",\n");
+
+        outlist.append("           \"skill_num\": \"");
+        outlist.append(str(self.num));
         outlist.append("\"\n");
-    
-        outlist.append("}")
+
+        outlist.append("         }")
         return outlist
         
 class Unit:
@@ -138,7 +148,7 @@ class Unit:
         for topic in self.topics:
             if topic.content == content:
                 return topic
-        newTopic = Topic(content, self, addressed)
+        newTopic = Topic(content, self, addressed, len(self.topics))
         self.topics.append(newTopic)
         return newTopic
 
@@ -149,16 +159,16 @@ class Unit:
 
     def toJson(self):
         outlist = []
-        outlist += "{\"unit_name\": \"" + self.name + "\",\n";
-        outlist += "\"topics\": [\n"
+        outlist += "      {\"unit_name\": \"" + self.name + "\",\n";
+        outlist += "       \"topics\": [\n"
         for i, topic in enumerate(self.topics):
             if i > 0:
                 outlist += ",\n"
                 outlist += topic.toJson()
             else:
                 outlist += topic.toJson()
-        outlist += "],\n"
-        outlist += "\"skills\": [\n"
+        outlist += "\n      ],\n"
+        outlist += "      \"skills\": [\n"
         for i, skill in enumerate(self.skills):
             if i > 0:
                 outlist += ",\n"
@@ -166,7 +176,7 @@ class Unit:
             else:
                 outlist += skill.toJson()
                 
-        outlist += "]}\n"
+        outlist += "\n      ]}\n"
         
         return outlist
     
@@ -186,10 +196,10 @@ class Area:
     def toJson(self):
         outlist = []
         outlist += "{\"area_name\": \"" + self.abbrev + "\",\n"
-        outlist += "\"units\": [\n"
+        outlist += "  \"units\": [\n"
         for i, unit in enumerate(self.units):
             if i > 0:
-                outlist += ",\n"
+                outlist += "      ,\n"
                 outlist += unit.toJson()
             else:
                 outlist += unit.toJson()
@@ -311,11 +321,12 @@ for csvfilename in os.listdir(options.csvpath):
         unitName = namesplitted[1]
         currentArea = theCurricula.addAreaIfNeeded(areaAbbrev)
         currentUnit = currentArea.addUnitIfNeeded(unitName)
-
+        
         for row in csvreader:
             if isConcept:
                 topicContent = row[0].strip()
                 addressed = row[1].strip()
+
                 if topicContent.startswith('<'):
                     splitted = topicContent.split('>:')
                     parentTopicContent = splitted[0][1:].strip()
@@ -324,6 +335,7 @@ for csvfilename in os.listdir(options.csvpath):
                     topic.addSubTopic(subTopicContent, addressed)
                 else:
                     currentUnit.addTopicIfNeeded(topicContent, addressed)
+
             else:
                 skillNum = row[0].strip()
                 if not skillNum.isdigit():

@@ -1,22 +1,27 @@
+var curricula = null;
+
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
 }
 
-window.printCSC = function()
-{
-    
-    var curricula;
-    
-    var fs = require('fs');  
+window.printCSC = function(printNotAdressed = true)
+{    
+    var fs = require('fs');
     
     var txt = "";
-    
-    curricula = JSON.parse(fs.readFileSync('CSC-content.json').toString());
+
+    if (curricula == null)
+        curricula = JSON.parse(fs.readFileSync('CSC-content.json').toString());
     
     txt += "<table>\n";
     for (var area in curricula) {
+        var areaObj = curricula[area];
+        if (isUseful(areaObj)) {
+            txt += getArea(areaObj);
+        }
         areaName = curricula[area].area_name;
+        
         txt += "<tr>\n";
         txt += "<th class=\"areatitlecol\">\n"; 
         txt += "<div class=\"areatitle\" id=\"" + areaName + "\">\n";
@@ -28,12 +33,12 @@ window.printCSC = function()
         txt += "<table>\n";
         for (var unit in curricula[area].units) {
             unitName = curricula[area].units[unit].unit_name;
-            unitId = areaName + "_" + unitName.replaceAll(" ", "_"); 
-            unitName_woB = unitId.replaceAll("_", " "); 
+            unitId = areaName + "__" + unitName.replaceAll(" ", "_"); 
+            unitName_wB = unitId.replaceAll("_", " "); 
             txt += "<tr>\n"; 
             txt += "<th class=\"unittitlecol\">\n"; 
             txt += "<div class=\"unittitle\" id=\"" + unitId + "\">\n";
-            txt += unitName_woB + "<br>\n";
+            txt += unitName_wB + "<br>\n";
             txt += "</div>\n";
             txt += "<div class=\"unitcontent\" id=\"contentof" + unitId + "\">\n";
             var nb = 0;
@@ -45,6 +50,8 @@ window.printCSC = function()
             txt += "<table>\n";
             for (var topic in curricula[area].units[unit].topics) {
                 var topicContent = curricula[area].units[unit].topics[topic].topic_content;
+                var topicNum = curricula[area].units[unit].topics[topic].topic_num;
+                
                 txt += "<tr>\n"; 
                 txt += "<th class=\"topiccol\">\n"; 
                 txt += "<div class=\"topic\">\n";
@@ -53,6 +60,7 @@ window.printCSC = function()
                 txt += "<table>\n";
                 txt += "<th class=\"subtopicscol\">\n";
                 for (var subtopic in curricula[area].units[unit].topics[topic].subtopics) {
+                    var subtopicNum = curricula[area].units[unit].topics[topic].subtopics[subtopic].topic_num;
                     txt += "<tr>\n"; 
                     txt += "<th class=\"subtopicpad\"></th>\n"; 
                     txt += "<th class=\"subtopiccol\">\n"; 
@@ -61,22 +69,18 @@ window.printCSC = function()
                     txt += "</div>\n";                
                     txt += "</th>\n"; 
                     txt += "<th class=\"subtopicselectcol\" align=\"left\">\n"; 
-                    txt += "<select onchange=\"this.className=this.options[this.selectedIndex].className\">";
-                    var levels = ["Not", "Addressed"];
+                    txt += "<select id=\"subtopic__" + unitId + "__" + topicNum + "__" + subtopicNum + "\">";
+                    var levels = ["No", "Yes"];
                     for (var i = 0 ; i < levels.length ; i++) {
                         var level = levels[i];
-                        var levelAppearance;
-                        if (level == "Not")
-                            levelAppearance = "No";
-                        else
-                            levelAppearance = "Yes";
+                        var levelAppearance = level;
                         txt += "<option";
                         var level_read = curricula[area].units[unit].topics[topic].subtopics[subtopic].addressed;
                         if (level_read.search(level) >= 0) {
                             txt += " selected";
                         }
-                        txt += " class=\"" + level.toLowerCase() + "sub\">";
-                        txt += levelAppearance;
+                        txt += " class=\"subtopic" + level.toLowerCase() + "\">";
+                        txt += level;
                         // txt += level_read.search(level);
                         txt += "</option>";
                     }
@@ -86,22 +90,17 @@ window.printCSC = function()
                 txt += "</table>\n";
                 txt += "</th>\n";
                 txt += "<th class=\"topicselectcol\">\n"; 
-                txt += "<select onchange=\"this.className=this.options[this.selectedIndex].className\">";
-                var levels = ["Not", "Addressed"];
+                txt += "<select id=\"topic__"  + unitId + "__" + topicNum + "\">";
+                var levels = ["No", "Yes"];
                 for (var i = 0 ; i < levels.length ; i++) {
                     var level = levels[i];
-                    var levelAppearance;
-                    if (level == "Not")
-                        levelAppearance = "No";
-                    else
-                        levelAppearance = "Yes";
                     txt += "<option";
                     var level_read = curricula[area].units[unit].topics[topic].addressed;
                     if (level_read.search(level) >= 0) {
                         txt += " selected";
                     }
-                    txt += " class=\"" + level.toLowerCase() + "\">";
-                    txt += levelAppearance;
+                    txt += " class=\"topic" + level.toLowerCase() + "\">";
+                    txt += level;
                     // txt += level_read.search(level);
                     txt += "</option>";
                 }
@@ -116,22 +115,23 @@ window.printCSC = function()
             // txt += "<div class=\"skills\">\n";      
             txt += "<table>\n";
             for (var skill in curricula[area].units[unit].skills) {
+                var skillNum = curricula[area].units[unit].skills[skill].skill_num;
                 txt += "<tr>\n"; 
                 txt += "<th class=\"skillcol\">\n"; 
                 txt += "<div class=\"skill\">\n";
                 txt += curricula[area].units[unit].skills[skill].skill + "\n";
                 txt += "</div>";
                 txt += "</th>\n"; 
-                txt += "<th class=\"skillselectcol\">\n";
-                txt += "<select align=\"right\" class=\"skillselect\" onchange=\"this.className=this.options[this.selectedIndex].className\">";
-                var levels = ["Familiarity", "Usage", "Assessment"];
+                txt += "<th class=\"skillselectcol \">\n";
+                txt += "<select align=\"right\" class=\"skillselect\" id=\"skill__" + unitId + "__" + skillNum + "\">";
+                var levels = ["No", "Familiarity", "Usage", "Assessment"];
                 for (var i = 0 ; i < levels.length ; i++) {
                     var level = levels[i];
                     txt += "<option";
                     if (curricula[area].units[unit].topics[topic].addressed.search("/"+level+"/i") >= 0) {
                         txt += " selected";
                     }
-                    txt += " class=\"" + level.toLowerCase() + "\">";
+                    txt += " class=\"skill" + level.toLowerCase() + "\">";
                     txt += level;
                     txt += "</option>";
                 }
@@ -153,25 +153,109 @@ window.printCSC = function()
     txt += "</table>\n";
     
     document.getElementById("theCSCPage").innerHTML = txt;
-    
+   
     var allSelects = document.getElementsByTagName("select");
     for (var i=0; i < allSelects.length; i++)
     {
         allSelects[i].className = allSelects[i].options[allSelects[i].selectedIndex].className;
+        allSelects[i].addEventListener("change", function() {selectChanged(this)});
     }
     
     for (var area in curricula) {
         var areaName = curricula[area].area_name;
         
-        document.getElementById(areaName).addEventListener("click", function(){displayArea(this.id)});
+        document.getElementById(areaName).addEventListener("click", function(){displayArea(this)});
         for (var unit in curricula[area].units) {
             unitName = curricula[area].units[unit].unit_name;
-            document.getElementById(areaName + "_" + unitName).addEventListener("click", function(){displayUnit(this.id)});
+            document.getElementById(areaName + "__" + unitName).addEventListener("click", function(){displayUnit(this.id)});
+        }
+    }
+
+    document.getElementById("newCSC").addEventListener("change", function(){loadCSC(this.id)});
+    document.getElementById("saveCSC").addEventListener("click", function(){saveCSC(this.id)});
+    document.getElementById("GCCSC").addEventListener("click", function(){GCCSC(this.id)});
+    document.getElementById("resetCSC").addEventListener("click", function(){resetCSC(this.id)});
+}
+
+function selectChanged(elt) {
+    elt.className = elt.options[elt.selectedIndex].className;
+    var splitted = elt.id.split("__");
+    var selectType = splitted[0];
+    var areaName = splitted[1];
+    var unitName = splitted[2];
+
+    for (area in curricula) {
+        var areaObj = curricula[area];
+        if (areaObj.area_name == areaName) {
+            for (unit in areaObj.units) {
+                var unitObj = areaObj.units[unit];
+                if (unitObj.unit_name == unitName) {
+                    if (selectType == "skill") {
+                        var skNum = splitted[3];
+                        for (skill in unitObj.skills) {
+                            var skillObj = unitObj.skills[skill]
+                            if (skillObj.skill_num == skNum) {
+                                skillObj.addressed = value;
+                                return;
+                            }
+                        }
+                    } else {
+                        var topNum = splitted[3];
+                        for (topic in unitObj.topics) {
+                            topicObj = unitObj.topics[topic];
+                            if (topicObj.topic_num == topNum) {
+                                if (selectType == "subtopic") {
+                                    var subtopicNum = splitted[4];
+                                    for (subtopic in topicObj.subtopics) {
+                                        var subtopicObj = topicObj.subtopics[subtopic];
+                                        if (subtopicObj.topic_num == subtopicNum) {
+                                            subtopicObj.addressed = elt.value;
+                                            return;
+                                        }
+                                    }
+                                } else {
+                                    topicObj.addressed = elt.value;
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
-window.displayArea = function(areaName) {
+function saveCSC(id) {
+    var dlElem = document.getElementById(id);
+    var data = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(curricula));
+    dlElem.setAttribute("href", "data:" + data);
+    dlElem.setAttribute("download", "savedCSC.json");
+    // dlElem.click();
+}
+
+function loadCSC() {
+    var file = document.getElementById("newCSC").files[0];
+    var fr = new FileReader();
+    fr.onloadend = function(e) {
+        curricula = JSON.parse(e.target.result);
+        printCSC();
+    }
+    var blob = file.slice(0, file.size-1);
+    fr.readAsText(blob);
+}
+
+function resetCSC() {
+    printCSC(0);
+}
+
+function resetCSC() {
+    curricula = null;
+    printCSC();
+}
+
+window.displayArea = function(area) {
+    areaName = area.id;
     var element = document.getElementById("contentof" + areaName);
     var eStyle = element.currentStyle ?
         element.currentStyle.display :

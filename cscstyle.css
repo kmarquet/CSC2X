@@ -1,3 +1,43 @@
+.cscbutton {
+    background-color: #4CAF50; /* Green */
+    border-style: solid;
+    border-color: Gray;
+    border-width: 1px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 250px;
+    border-radius: 8px;
+}
+
+
+.file-input-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+.file-input-wrapper > input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+
+
+.cscbutton:hover {background-color: #3e8e41}
+
+/* .button:active { */
+/*   background-color: #3e8e41; */
+/*   box-shadow: 0 5px #666; */
+/*   transform: translateY(4px); */
+/* } */
+
 
 table th {
     padding: 2px;
@@ -196,7 +236,7 @@ table th {
 }
 
 
-.not {
+.topicno {
     text-color: black;
     background-color: IndianRed;
     background-size: 17%;
@@ -206,7 +246,7 @@ table th {
     font-size:90%;    
 }
 
-.addressed {
+.topicyes {
     background-color: LightGreen;
     text-color: black;
     background-size: 17%;
@@ -216,7 +256,7 @@ table th {
     font-size:90%;
 }
 
-.notsub {
+.subtopicno {
     text-color: black;
     background-color: LightCoral;
     font-size: 75%;
@@ -227,7 +267,7 @@ table th {
     font-size:90%;    
 }
 
-.addressedsub {
+.subtopicyes {
     background-color: PaleGreen;
     text-color: black;
     font-size: 80%;
@@ -238,21 +278,28 @@ table th {
     font-size:90%;
 }
 
-.familiarity {
+.skillno {
+    text-color: black;
+    background-color: White;
+    background-size: 9%;
+    font-size:90%;    
+}
+
+.skillfamiliarity {
     text-color: black;
     background-color: LightGray;
     background-size: 9%;
     font-size:90%;    
 }
 
-.usage {
+.skillusage {
     text-color: black;
     background-color: LightSteelBlue;
     background-size: 9%;
     font-size:90%;    
 }
 
-.assessment {
+.skillassessment {
     text-color: black;
     background-color: MediumSlateBlue;
     background-size: 9%;
