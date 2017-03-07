@@ -5,10 +5,155 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.split(search).join(replacement);
 }
 
+function getTopic(areaName, unitName, topicObj)
+{
+    var topicNum = topicObj.topic_num;
+    txt += "<div class=\"topic\">\n";
+    txt += handleTopicContent(topicContent) + "\n";
+    txt += "</div>";
+    txt += "<table>\n";
+    txt += "<th class=\"subtopicscol\">\n";
+    for (var subtopic in curricula[area].units[unit].topics[topic].subtopics) {
+        var subtopicNum = curricula[area].units[unit].topics[topic].subtopics[subtopic].topic_num;
+        txt += "<tr>\n"; 
+        txt += "<th class=\"subtopicpad\"></th>\n"; 
+        txt += "<th class=\"subtopiccol\">\n"; 
+        txt += "<div class=\"subtopic\">\n";            
+        txt += curricula[area].units[unit].topics[topic].subtopics[subtopic].topic_content;
+        txt += "</div>\n";                
+        txt += "</th>\n"; 
+        txt += "<th class=\"subtopicselectcol\" align=\"left\">\n"; 
+        txt += "<select id=\"subtopic__" + unitId + "__" + topicNum + "__" + subtopicNum + "\">";
+        var levels = ["No", "Yes"];
+        for (var i = 0 ; i < levels.length ; i++) {
+            var level = levels[i];
+            var levelAppearance = level;
+            txt += "<option";
+            var level_read = curricula[area].units[unit].topics[topic].subtopics[subtopic].addressed;
+            if (level_read.search(level) >= 0) {
+                txt += " selected";
+            }
+            txt += " class=\"subtopic" + level.toLowerCase() + "\">";
+            txt += level;
+            // txt += level_read.search(level);
+            txt += "</option>";
+        }
+        txt += "</select>";
+        txt += "</th>\n";
+    }
+    txt += "</table>\n";
+    txt += "</th>\n";
+    txt += "<th class=\"topicselectcol\">\n"; 
+    txt += "<select id=\"topic__"  + unitId + "__" + topicNum + "\">";
+    var levels = ["No", "Yes"];
+    for (var i = 0 ; i < levels.length ; i++) {
+        var level = levels[i];
+        txt += "<option";
+        var level_read = curricula[area].units[unit].topics[topic].addressed;
+        if (level_read.search(level) >= 0) {
+            txt += " selected";
+        }
+        txt += " class=\"topic" + level.toLowerCase() + "\">";
+        txt += level;
+        // txt += level_read.search(level);
+        txt += "</option>";
+    }
+    txt += "</select>";
+    txt += "</th>\n"; 
+}
+
+function getUnit(areaName, unitObj)
+{
+    unitName = unitObj.unit_name;
+    unitId = areaName + "__" + unitName.replaceAll(" ", "_"); 
+    unitName_wB = unitId.replaceAll("_", " "); 
+    txt += "<th class=\"unittitlecol\">\n"; 
+    txt += "<div class=\"unittitle\" id=\"" + unitId + "\">\n";
+    txt += unitName_wB + "<br>\n";
+    txt += "</div>\n";
+    txt += "<div class=\"unitcontent\" id=\"contentof" + unitId + "\">\n";
+    var nb = 0;
+    txt += "<table>\n";
+    txt += "<th class=\"indent\">\n"; 
+    txt += "</th>\n"; 
+    txt += "<th class=\"topicscol\">\n"; 
+    txt += "<table>\n";
+    for (var topic in unitObj.topics) {
+        var topicObj = unitObj.topics[topic];
+        var topicContent = topicObj.topic_content;
+        if (topicObj.addressed == "Yes") {
+            txt += "<th class=\"topiccol\">\n"; 
+            txt += getUnit();
+            txt += "</th>\n"; 
+        }
+        
+        txt += "<th class=\"paddingtopskill\"></th>\n"; 
+        txt += "<th class=\"skillscol\">\n"; 
+        txt += "<table>\n";
+        for (var skill in curricula[area].units[unit].skills) {
+            var skillNum = curricula[area].units[unit].skills[skill].skill_num;
+            txt += "<tr>\n"; 
+            txt += "<th class=\"skillcol\">\n"; 
+            txt += "<div class=\"skill\">\n";
+            txt += curricula[area].units[unit].skills[skill].skill + "\n";
+            txt += "</div>";
+            txt += "</th>\n"; 
+            txt += "<th class=\"skillselectcol \">\n";
+            txt += "<select align=\"right\" class=\"skillselect\" id=\"skill__" + unitId + "__" + skillNum + "\">";
+            var levels = ["No", "Familiarity", "Usage", "Assessment"];
+            for (var i = 0 ; i < levels.length ; i++) {
+                var level = levels[i];
+                txt += "<option";
+                if (curricula[area].units[unit].topics[topic].addressed.search("/"+level+"/i") >= 0) {
+                    txt += " selected";
+                }
+                txt += " class=\"skill" + level.toLowerCase() + "\">";
+                txt += level;
+                txt += "</option>";
+            }
+                txt += "</select>";
+            txt += "</th>\n"; 
+        }
+        txt += "</table>\n";
+        // txt += "</div>";
+        txt += "</th>\n"; 
+        txt += "</table>\n";
+        txt += "</div>";
+        
+        // txt += "</th>\n"; 
+    }
+    txt += "</table>\n";
+    txt += "</div>";
+}
+txt += "</table>\n";
+}
+
+function getArea(areaObj)
+{
+    var areaName = areaObj.area_name;
+ 
+    txt += "<th class=\"areatitlecol\">\n"; 
+    txt += "<div class=\"areatitle\" id=\"" + areaName + "\">\n";
+    txt += areaName + "<br>\n";
+    txt += "</div>";
+    txt += "</th>\n"; 
+    txt += "<th class=\"areacontentcol\">\n"; 
+    txt += "<div id=\"contentof" + areaName + "\">\n";
+    txt += "<table>\n";
+    for (var unit in curricula[area].units) {
+        unitObj = areaObj.units[unit];
+        if (isUnitConcerned(unitObj)) {
+            txt += "<tr>\n"; 
+            txt += getUnit(areaName, unitObj);
+            txt += "</th>\n"; 
+        }
+    }
+    return txt;
+}
+
 window.printCSC = function(printNotAdressed = true)
 {    
     var fs = require('fs');
-    
     var txt = "";
 
     if (curricula == null)
@@ -18,137 +163,10 @@ window.printCSC = function(printNotAdressed = true)
     for (var area in curricula) {
         var areaObj = curricula[area];
         if (isUseful(areaObj)) {
+            txt += "<tr>\n";
             txt += getArea(areaObj);
+            txt += "</th>\n"; 
         }
-        areaName = curricula[area].area_name;
-        
-        txt += "<tr>\n";
-        txt += "<th class=\"areatitlecol\">\n"; 
-        txt += "<div class=\"areatitle\" id=\"" + areaName + "\">\n";
-        txt += areaName + "<br>\n";
-        txt += "</div>";
-        txt += "</th>\n"; 
-        txt += "<th class=\"areacontentcol\">\n"; 
-        txt += "<div id=\"contentof" + areaName + "\">\n";
-        txt += "<table>\n";
-        for (var unit in curricula[area].units) {
-            unitName = curricula[area].units[unit].unit_name;
-            unitId = areaName + "__" + unitName.replaceAll(" ", "_"); 
-            unitName_wB = unitId.replaceAll("_", " "); 
-            txt += "<tr>\n"; 
-            txt += "<th class=\"unittitlecol\">\n"; 
-            txt += "<div class=\"unittitle\" id=\"" + unitId + "\">\n";
-            txt += unitName_wB + "<br>\n";
-            txt += "</div>\n";
-            txt += "<div class=\"unitcontent\" id=\"contentof" + unitId + "\">\n";
-            var nb = 0;
-            txt += "<table>\n";
-            txt += "<th class=\"indent\">\n"; 
-            txt += "</th>\n"; 
-            txt += "<th class=\"topicscol\">\n"; 
-            // txt += "<div class=\"topics\">\n";        
-            txt += "<table>\n";
-            for (var topic in curricula[area].units[unit].topics) {
-                var topicContent = curricula[area].units[unit].topics[topic].topic_content;
-                var topicNum = curricula[area].units[unit].topics[topic].topic_num;
-                
-                txt += "<tr>\n"; 
-                txt += "<th class=\"topiccol\">\n"; 
-                txt += "<div class=\"topic\">\n";
-                txt += handleTopicContent(topicContent) + "\n";
-                txt += "</div>";
-                txt += "<table>\n";
-                txt += "<th class=\"subtopicscol\">\n";
-                for (var subtopic in curricula[area].units[unit].topics[topic].subtopics) {
-                    var subtopicNum = curricula[area].units[unit].topics[topic].subtopics[subtopic].topic_num;
-                    txt += "<tr>\n"; 
-                    txt += "<th class=\"subtopicpad\"></th>\n"; 
-                    txt += "<th class=\"subtopiccol\">\n"; 
-                    txt += "<div class=\"subtopic\">\n";            
-                    txt += curricula[area].units[unit].topics[topic].subtopics[subtopic].topic_content;
-                    txt += "</div>\n";                
-                    txt += "</th>\n"; 
-                    txt += "<th class=\"subtopicselectcol\" align=\"left\">\n"; 
-                    txt += "<select id=\"subtopic__" + unitId + "__" + topicNum + "__" + subtopicNum + "\">";
-                    var levels = ["No", "Yes"];
-                    for (var i = 0 ; i < levels.length ; i++) {
-                        var level = levels[i];
-                        var levelAppearance = level;
-                        txt += "<option";
-                        var level_read = curricula[area].units[unit].topics[topic].subtopics[subtopic].addressed;
-                        if (level_read.search(level) >= 0) {
-                            txt += " selected";
-                        }
-                        txt += " class=\"subtopic" + level.toLowerCase() + "\">";
-                        txt += level;
-                        // txt += level_read.search(level);
-                        txt += "</option>";
-                    }
-                    txt += "</select>";
-                    txt += "</th>\n";
-                }
-                txt += "</table>\n";
-                txt += "</th>\n";
-                txt += "<th class=\"topicselectcol\">\n"; 
-                txt += "<select id=\"topic__"  + unitId + "__" + topicNum + "\">";
-                var levels = ["No", "Yes"];
-                for (var i = 0 ; i < levels.length ; i++) {
-                    var level = levels[i];
-                    txt += "<option";
-                    var level_read = curricula[area].units[unit].topics[topic].addressed;
-                    if (level_read.search(level) >= 0) {
-                        txt += " selected";
-                    }
-                    txt += " class=\"topic" + level.toLowerCase() + "\">";
-                    txt += level;
-                    // txt += level_read.search(level);
-                    txt += "</option>";
-                }
-                txt += "</select>";
-                txt += "</th>\n"; 
-            }
-            txt += "</table>\n";
-            // txt += "</div>";
-            txt += "</th>\n"; 
-            txt += "<th class=\"paddingtopskill\"></th>\n"; 
-            txt += "<th class=\"skillscol\">\n"; 
-            // txt += "<div class=\"skills\">\n";      
-            txt += "<table>\n";
-            for (var skill in curricula[area].units[unit].skills) {
-                var skillNum = curricula[area].units[unit].skills[skill].skill_num;
-                txt += "<tr>\n"; 
-                txt += "<th class=\"skillcol\">\n"; 
-                txt += "<div class=\"skill\">\n";
-                txt += curricula[area].units[unit].skills[skill].skill + "\n";
-                txt += "</div>";
-                txt += "</th>\n"; 
-                txt += "<th class=\"skillselectcol \">\n";
-                txt += "<select align=\"right\" class=\"skillselect\" id=\"skill__" + unitId + "__" + skillNum + "\">";
-                var levels = ["No", "Familiarity", "Usage", "Assessment"];
-                for (var i = 0 ; i < levels.length ; i++) {
-                    var level = levels[i];
-                    txt += "<option";
-                    if (curricula[area].units[unit].topics[topic].addressed.search("/"+level+"/i") >= 0) {
-                        txt += " selected";
-                    }
-                    txt += " class=\"skill" + level.toLowerCase() + "\">";
-                    txt += level;
-                    txt += "</option>";
-                }
-                txt += "</select>";
-                txt += "</th>\n"; 
-            }
-            txt += "</table>\n";
-            // txt += "</div>";
-            txt += "</th>\n"; 
-            txt += "</table>\n";
-            txt += "</div>";
-            
-            // txt += "</th>\n"; 
-        }
-        txt += "</table>\n";
-        txt += "</div>";
-        txt += "</th>\n"; 
     }
     txt += "</table>\n";
     
