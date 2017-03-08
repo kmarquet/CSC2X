@@ -1,175 +1,393 @@
 var curricula = null;
 
+class JSSkill {
+
+    constructor(jsonSkill, unit) {
+        this.theJSONSkill = jsonSkill;
+        this.content = jsonSkill.content;
+        this.theJSUnit = unit;
+        this.skillNum = jsonSkill.num;
+        this.id = this.theJSUnit.getId() + "__skill" + this.skillNum;
+        this.mastery = jsonSkill.mastery;
+        this.levels = ["No", "Familiarity", "Usage", "Assessment"];
+    }
+
+    toHTML()
+    {
+        var txt = "";
+        //=== One column for the content
+        txt += "<td class=\"skillcol\">\n"; 
+        txt += "<div class=\"skill\">\n";
+        txt += this.content + "\n";
+        txt += "</div>";
+        txt += "</td>\n";
+        
+        //=== One column for the select
+        txt += "<td class=\"skillselectcol \">\n";
+        txt += "<select align=\"right\" class=\"skillselect\" id=\"" + this.id + "\">";
+
+        for (var i = 0 ; i < this.levels.length ; i++) {
+            var level = this.levels[i];
+            txt += "<option";
+            if (level == this.mastery) {
+                txt += " selected";
+            }
+            txt += " class=\"skill" + level.toLowerCase() + "\">";
+            txt += level;
+            txt += "</option>";
+        }
+        txt += "</select>";
+        txt += "</td>\n"; 
+        return txt;
+    }
+}
+
+class JSTopic {
+    
+    constructor(jsonTopic, unit) {
+        this.theJSONTopic = jsonTopic;
+        this.content = jsonTopic.content;
+        this.theJSUnit = unit;
+        this.topicNum = jsonTopic.num;
+        this.id = this.theJSUnit.getId() + "__topic" + this.theJSONTopic.num;
+        this.theJSSubTopics = [];
+        this.levels = ["No", "Yes"];
+        this.addressed = this.theJSONTopic.addressed;
+        
+        for (var subTopicRef in this.theJSONTopic.subtopics) {
+            var jsonSubTopic = this.theJSONTopic.subtopics[subTopicRef];
+            var jsst = new JSSubTopic(jsonSubTopic, this);
+            this.theJSSubTopics.push(jsst);
+        }
+    }
+    
+    getContent() {
+        return this.content;
+    }
+    
+    getId() {
+        return this.id;
+    }
+
+    handleTopicContent()
+    {
+        var regex = /(.*)\(cross[-\s]reference(.*)\)(.*)/i;
+        var match = regex.exec(this.content);
+        if (match != null) {
+            var res = "";
+            var i;
+            res += match[1] + " <pre class=\"crossref\">(cross-ref ";
+            res += handleXrefs(match[2]);
+            res += ")</pre>";
+            return res;
+        } else {
+            return this.content;
+        }
+    }
+
+    isSub()
+    {
+        return false;
+    }
+    
+    getSelect()
+    {
+        var txt = "";
+        txt += "<select id=\"select__" + this.id + "\">";
+        for (var i = 0 ; i < this.levels.length ; i++) {
+            var aLevel = this.levels[i];
+            txt += "<option";
+            if (this.addressed == aLevel) {
+                txt += " selected";
+            }
+            txt += " class=\"topic" + aLevel.toLowerCase() + "\">";
+            txt += aLevel;
+            txt += "</option>";
+        }
+        txt += "</select>";
+        return txt;
+    }
+
+    toHTML()
+    {
+        var txt = "";
+
+        //=== One col for the content
+        txt += "<td>";
+        txt += "<div class=\"topic\">\n";
+        txt += this.handleTopicContent() + "\n";
+        txt += "</div>";
+        txt += "<table>\n";
+        for (var subtopicRef in this.theJSSubTopics) {
+            var subtopic = this.theJSSubTopics[subtopicRef];
+            txt += "<tr class=\"subtopicscol\">\n";
+            txt += subtopic.toHTML();
+            txt += "</tr>";
+            txt += "<tr>\n"; 
+        }
+        txt += "</table>\n";
+        txt += "</td\n>";
+        
+        //=== One col for the select
+        txt += "<td class=\"topicselectcol\">\n"; 
+        txt += this.getSelect();
+        txt += "</td>\n"; 
+        
+        return txt;
+    }
+}
+
+class JSSubTopic {
+    
+    constructor(jsonSubTopic, topic) {
+        this.parentTopic = topic;
+        this.theJSONTopic = jsonSubTopic;
+        this.content = jsonSubTopic.content;
+        this.theJSUnit = null;
+        this.topicNum = jsonSubTopic.num;
+        this.id = this.parentTopic.getId() + "__subtopic" + this.theJSONTopic.num;
+        this.levels = ["No", "Yes"];
+        this.addressed
+    }
+
+    isSub()
+    {
+        return true;
+    }
+
+    getSelect()
+    {
+        var txt = "";
+        txt += "<select id=\"select__" + this.id + "\">";
+        for (var i = 0 ; i < this.levels.length ; i++) {
+            var aLevel = this.levels[i];
+            txt += "<option";
+            if (this.addressed == aLevel) {
+                txt += " selected";
+            }
+            txt += " class=\"subtopic" + aLevel.toLowerCase() + "\">";                
+            txt += aLevel;
+            txt += "</option>";
+        }
+        txt += "</select>";
+        return txt;
+    }
+
+    toHTML()
+    {
+        var txt = "";
+        txt += "<td class=\"subtopicpad\"></td>\n"; 
+
+        //=== One column for the topic
+        txt += "<td class=\"subtopiccol\">\n"; 
+        txt += "<div class=\"subtopic\">\n";            
+        txt += this.content;
+        txt += "</div>\n";          
+        txt += "</td>\n"; 
+
+        //=== One column for the select
+        txt += "<td class=\"subtopicselectcol\" align=\"left\">\n"; 
+        txt += this.getSelect();
+        txt += "</td>\n";
+        return txt;
+    }
+}
+
+Object.setPrototypeOf(JSSubTopic.prototype, JSTopic);
+
+class JSUnit {
+    
+    constructor(jsonUnit, area) {
+        this.title = jsonUnit.unit_name;
+        this.theJSArea = area;
+        this.id = this.theJSArea.getId() + "__" + this.title.replaceAll(" ", "_"); 
+        this.title = this.id.replaceAll("_", " "); 
+        this.theJSONUnit = jsonUnit;
+        this.theJSTopics = [];
+        this.theJSSkills = [];
+
+        
+        for (var topicRef in this.theJSONUnit.topics) {
+            var jsonTopic = this.theJSONUnit.topics[topicRef];
+            var jst = new JSTopic(jsonTopic, this);
+            this.theJSTopics.push(jst);
+        }
+        for (var skillRef in this.theJSONUnit.skills) {
+            var jsonSkill = this.theJSONUnit.skills[skillRef];
+            var jss = new JSSkill(jsonSkill, this);
+            this.theJSSkills.push(jss);
+        }
+    }
+    
+    getTitle() {
+        return this.title;
+    }
+    
+    getId() {
+        return this.id;
+    }
+    
+    toHTML()
+    {
+        var txt = "";
+
+        txt += "<table>\n";
+        
+        //=== One line for the unit title
+        txt += "<tr>\n";
+        txt += "<div class=\"unittitle\" id=\"" + this.id + "\">";
+        txt += this.title + "<br>\n";
+        txt += "</div>";
+        txt += "</tr>\n";
+
+        //=== One line for the content
+        txt += "<tr class=\"unitcontent\" id=contentof\"" + this.id + "\">\n";
+        
+        // one column empty
+        txt += "<td class=\"indent\">\n"; 
+        txt += "</td>\n";
+
+        //------------ one column for the topics in a table -------
+        txt += "<td class=\"topicscol\">\n"; 
+        txt += "<table>\n";
+        for (var topicRef in this.theJSTopics) {
+            var topic = this.theJSTopics[topicRef];
+            txt += "<tr class=\"topiccol\">\n"; 
+            txt += topic.toHTML();
+            txt += "</tr>\n"; 
+        }
+        txt += "</table>\n";
+        txt += "</td>\n";
+        //------------------- End of topics -------------------
+
+        //--------- empty column ----------
+        txt += "<td class=\"paddingtopskill\"></td>\n"; 
+
+        //-------- one column for the skills ---------------
+        txt += "<td class=\"skillscol\">\n"; 
+
+        // Skills in a table, one row for each skill
+        txt += "<table>\n";
+        for (var skillRef in this.theJSSkills) {
+            var skill = this.theJSSkills[skillRef];
+            txt += "<tr>\n"; 
+            txt += skill.toHTML();
+            txt += "</tr>\n"; 
+        }
+        txt += "</table>\n";
+        txt += "</td>\n"; 
+
+        //---------------- end of skills --------------
+
+        txt += "</table>\n"; // End of content
+        
+        return txt;
+    }
+}
+
+class JSArea {
+    
+    constructor(jsonArea, curricula) {
+        this.theJSONArea = jsonArea;
+        this.jsUnits = [];
+        this.title = this.theJSONArea.area_name;
+        this.id = this.theJSONArea.area_name;
+        this.theJSCurricula = curricula;
+        
+        for (var unitRef in this.theJSONArea.units) {
+            var jsonUnit = this.theJSONArea.units[unitRef];
+            var jsu = new JSUnit(jsonUnit, this);
+            this.jsUnits.push(jsu);
+        }
+    }
+
+    getTitle() {
+        return this.title;
+    }
+
+    getId() {
+        return this.id;
+    }
+
+    toHTML()
+    {
+        var txt = "";
+        //=== One column for the area title
+        txt += "<td class=\"areatitlecol\">\n"; 
+        txt += "<div class=\"areatitle\" id=\"" + this.id + "\">\n";
+        txt += this.title + "<br>\n";
+        txt += "</div>";
+        txt += "</td>\n"; 
+
+        //=== One column for the area content
+        txt += "<td class=\"areacontentcol\">\n"; 
+        txt += "<div id=\"contentof" + this.id + "\">\n";
+        txt += "<table>\n";
+
+        //-- one row for each unit
+        for (var unitRef in this.jsUnits) {
+            var unit = this.jsUnits[unitRef];
+            txt += "<tr>";
+            txt += unit.toHTML();
+            txt += "</tr>";
+        }
+        txt += "</table>\n";
+        txt += "</div>\n";                
+        txt += "</td>\n";        
+        return txt;
+    }
+}
+
+class JSCurricula {
+    
+    constructor(jsonCurricula)
+    {
+        this.jsonCur = jsonCurricula;
+        this.jsAreas = [];
+        
+        for (var areaRef in this.jsonCur) {
+            var jsonArea = this.jsonCur[areaRef];
+            var jsa = new JSArea(jsonArea, this);
+            this.jsAreas.push(jsa);
+        }
+    }
+    
+    toHTML()
+    {
+        var txt = "";
+
+        //=== One row for each area
+        txt += "<table>\n";
+        for (var areaRef in this.jsAreas) {
+            var jsa = this.jsAreas[areaRef];
+            txt += "<tr>\n";
+            txt += jsa.toHTML();
+            txt += "</tr>\n"; 
+        }
+        txt += "</table>\n";       
+
+        return txt;
+    }
+}
+
 String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
 }
 
-function getTopic(areaName, unitName, topicObj)
-{
-    var topicNum = topicObj.topic_num;
-    txt += "<div class=\"topic\">\n";
-    txt += handleTopicContent(topicContent) + "\n";
-    txt += "</div>";
-    txt += "<table>\n";
-    txt += "<th class=\"subtopicscol\">\n";
-    for (var subtopic in curricula[area].units[unit].topics[topic].subtopics) {
-        var subtopicNum = curricula[area].units[unit].topics[topic].subtopics[subtopic].topic_num;
-        txt += "<tr>\n"; 
-        txt += "<th class=\"subtopicpad\"></th>\n"; 
-        txt += "<th class=\"subtopiccol\">\n"; 
-        txt += "<div class=\"subtopic\">\n";            
-        txt += curricula[area].units[unit].topics[topic].subtopics[subtopic].topic_content;
-        txt += "</div>\n";                
-        txt += "</th>\n"; 
-        txt += "<th class=\"subtopicselectcol\" align=\"left\">\n"; 
-        txt += "<select id=\"subtopic__" + unitId + "__" + topicNum + "__" + subtopicNum + "\">";
-        var levels = ["No", "Yes"];
-        for (var i = 0 ; i < levels.length ; i++) {
-            var level = levels[i];
-            var levelAppearance = level;
-            txt += "<option";
-            var level_read = curricula[area].units[unit].topics[topic].subtopics[subtopic].addressed;
-            if (level_read.search(level) >= 0) {
-                txt += " selected";
-            }
-            txt += " class=\"subtopic" + level.toLowerCase() + "\">";
-            txt += level;
-            // txt += level_read.search(level);
-            txt += "</option>";
-        }
-        txt += "</select>";
-        txt += "</th>\n";
-    }
-    txt += "</table>\n";
-    txt += "</th>\n";
-    txt += "<th class=\"topicselectcol\">\n"; 
-    txt += "<select id=\"topic__"  + unitId + "__" + topicNum + "\">";
-    var levels = ["No", "Yes"];
-    for (var i = 0 ; i < levels.length ; i++) {
-        var level = levels[i];
-        txt += "<option";
-        var level_read = curricula[area].units[unit].topics[topic].addressed;
-        if (level_read.search(level) >= 0) {
-            txt += " selected";
-        }
-        txt += " class=\"topic" + level.toLowerCase() + "\">";
-        txt += level;
-        // txt += level_read.search(level);
-        txt += "</option>";
-    }
-    txt += "</select>";
-    txt += "</th>\n"; 
-}
-
-function getUnit(areaName, unitObj)
-{
-    unitName = unitObj.unit_name;
-    unitId = areaName + "__" + unitName.replaceAll(" ", "_"); 
-    unitName_wB = unitId.replaceAll("_", " "); 
-    txt += "<th class=\"unittitlecol\">\n"; 
-    txt += "<div class=\"unittitle\" id=\"" + unitId + "\">\n";
-    txt += unitName_wB + "<br>\n";
-    txt += "</div>\n";
-    txt += "<div class=\"unitcontent\" id=\"contentof" + unitId + "\">\n";
-    var nb = 0;
-    txt += "<table>\n";
-    txt += "<th class=\"indent\">\n"; 
-    txt += "</th>\n"; 
-    txt += "<th class=\"topicscol\">\n"; 
-    txt += "<table>\n";
-    for (var topic in unitObj.topics) {
-        var topicObj = unitObj.topics[topic];
-        var topicContent = topicObj.topic_content;
-        if (topicObj.addressed == "Yes") {
-            txt += "<th class=\"topiccol\">\n"; 
-            txt += getUnit();
-            txt += "</th>\n"; 
-        }
-        
-        txt += "<th class=\"paddingtopskill\"></th>\n"; 
-        txt += "<th class=\"skillscol\">\n"; 
-        txt += "<table>\n";
-        for (var skill in curricula[area].units[unit].skills) {
-            var skillNum = curricula[area].units[unit].skills[skill].skill_num;
-            txt += "<tr>\n"; 
-            txt += "<th class=\"skillcol\">\n"; 
-            txt += "<div class=\"skill\">\n";
-            txt += curricula[area].units[unit].skills[skill].skill + "\n";
-            txt += "</div>";
-            txt += "</th>\n"; 
-            txt += "<th class=\"skillselectcol \">\n";
-            txt += "<select align=\"right\" class=\"skillselect\" id=\"skill__" + unitId + "__" + skillNum + "\">";
-            var levels = ["No", "Familiarity", "Usage", "Assessment"];
-            for (var i = 0 ; i < levels.length ; i++) {
-                var level = levels[i];
-                txt += "<option";
-                if (curricula[area].units[unit].topics[topic].addressed.search("/"+level+"/i") >= 0) {
-                    txt += " selected";
-                }
-                txt += " class=\"skill" + level.toLowerCase() + "\">";
-                txt += level;
-                txt += "</option>";
-            }
-                txt += "</select>";
-            txt += "</th>\n"; 
-        }
-        txt += "</table>\n";
-        // txt += "</div>";
-        txt += "</th>\n"; 
-        txt += "</table>\n";
-        txt += "</div>";
-        
-        // txt += "</th>\n"; 
-    }
-    txt += "</table>\n";
-    txt += "</div>";
-}
-txt += "</table>\n";
-}
-
-function getArea(areaObj)
-{
-    var areaName = areaObj.area_name;
- 
-    txt += "<th class=\"areatitlecol\">\n"; 
-    txt += "<div class=\"areatitle\" id=\"" + areaName + "\">\n";
-    txt += areaName + "<br>\n";
-    txt += "</div>";
-    txt += "</th>\n"; 
-    txt += "<th class=\"areacontentcol\">\n"; 
-    txt += "<div id=\"contentof" + areaName + "\">\n";
-    txt += "<table>\n";
-    for (var unit in curricula[area].units) {
-        unitObj = areaObj.units[unit];
-        if (isUnitConcerned(unitObj)) {
-            txt += "<tr>\n"; 
-            txt += getUnit(areaName, unitObj);
-            txt += "</th>\n"; 
-        }
-    }
-    return txt;
-}
 
 window.printCSC = function(printNotAdressed = true)
 {    
     var fs = require('fs');
     var txt = "";
 
-    if (curricula == null)
-        curricula = JSON.parse(fs.readFileSync('CSC-content.json').toString());
-    
-    txt += "<table>\n";
-    for (var area in curricula) {
-        var areaObj = curricula[area];
-        if (isUseful(areaObj)) {
-            txt += "<tr>\n";
-            txt += getArea(areaObj);
-            txt += "</th>\n"; 
-        }
+    if (curricula == null) {
+        JSONCurricula = JSON.parse(fs.readFileSync('CSC-content.json').toString());
+        JSCurricula = new JSCurricula(JSONCurricula);
     }
-    txt += "</table>\n";
-    
+
+    txt = JSCurricula.toHTML();
+        
     document.getElementById("theCSCPage").innerHTML = txt;
    
     var allSelects = document.getElementsByTagName("select");
@@ -212,7 +430,7 @@ function selectChanged(elt) {
                         var skNum = splitted[3];
                         for (skill in unitObj.skills) {
                             var skillObj = unitObj.skills[skill]
-                            if (skillObj.skill_num == skNum) {
+                            if (skillObj.num == skNum) {
                                 skillObj.addressed = value;
                                 return;
                             }
@@ -221,12 +439,12 @@ function selectChanged(elt) {
                         var topNum = splitted[3];
                         for (topic in unitObj.topics) {
                             topicObj = unitObj.topics[topic];
-                            if (topicObj.topic_num == topNum) {
+                            if (topicObj.num == topNum) {
                                 if (selectType == "subtopic") {
                                     var subtopicNum = splitted[4];
                                     for (subtopic in topicObj.subtopics) {
                                         var subtopicObj = topicObj.subtopics[subtopic];
-                                        if (subtopicObj.topic_num == subtopicNum) {
+                                        if (subtopicObj.num == subtopicNum) {
                                             subtopicObj.addressed = elt.value;
                                             return;
                                         }
@@ -335,30 +553,3 @@ function handleXrefs(theRefs)
     }
     return res;
 }
-
-function handleTopicContent(topicContent)
-{
-    var regex = /(.*)\(cross[-\s]reference(.*)\)(.*)/i;
-    var match = regex.exec(topicContent);
-    if (match != null) {
-        var res = "";
-        var i;
-        res += match[1] + " <pre class=\"crossref\">(cross-ref ";
-        res += handleXrefs(match[2]);
-        res += ")</pre>";
-        return res;
-    } else {
-        return topicContent;
-    }
-}
-
-// TODO:
-// - Modification du json
-//       fs.writeFile('people.json', JSON.stringify(m));
-// - Ajouter support pour nombre d'heures ??
-// - Un joli format json:
-//   - indenter
-//   - compléter la recopie depuis le pdf(arg...)
-//       - essayer de copier directement dans le .json
-//       - si c'est trop compliqué => passer par du csv
-// - 

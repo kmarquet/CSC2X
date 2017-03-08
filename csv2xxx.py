@@ -53,7 +53,7 @@ class Topic:
         # outlist.append("\", \n\"unit\" : \"");
         # outlist.append(self.unit.name);
         # outlist.append("\",\n\"concept\": ");
-        outlist.append("         { \"topic_content\": ");
+        outlist.append("         { \"content\": ");
         if self.content.startswith("\""):
             outlist.append(self.content);
         else:
@@ -61,7 +61,7 @@ class Topic:
             outlist.append(self.content);
             outlist.append("\"");
 
-        outlist.append(",\n           \"topic_num\": \"");
+        outlist.append(",\n           \"num\": \"");
         outlist.append(str(self.num));
         outlist.append("\"");
 
@@ -104,7 +104,7 @@ class Skill:
         # outlist.append(self.num);
         #        outlist.append("\", \n\"skill\": ");
         
-        outlist.append("         {\"skill\": ");
+        outlist.append("         {\"content\": ");
         if self.content.startswith("\""):
             outlist.append(self.content);
         else:
@@ -116,7 +116,7 @@ class Skill:
         outlist.append(self.mastery);
         outlist.append("\",\n");
 
-        outlist.append("           \"skill_num\": \"");
+        outlist.append("           \"num\": \"");
         outlist.append(str(self.num));
         outlist.append("\"\n");
 

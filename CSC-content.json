@@ -2,715 +2,715 @@
   "units": [
       {"unit_name": "Parallel_Architecture",
        "topics": [
-         { "topic_content": "Multicore processors",
-           "topic_num": "0",
+         { "content": "Multicore processors",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Shared vs. distributed memory",
-           "topic_num": "1",
+         { "content": "Shared vs. distributed memory",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Symmetric multiprocessing (SMP)",
-           "topic_num": "2",
+         { "content": "Symmetric multiprocessing (SMP)",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "SIMD, vector processing",
-           "topic_num": "3",
+         { "content": "SIMD, vector processing",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "GPU, co-processing",
-           "topic_num": "4",
+         { "content": "GPU, co-processing",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Flynn's taxonomy",
-           "topic_num": "5",
+         { "content": "Flynn's taxonomy",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "Instruction level support for parallel programming",
-           "topic_num": "6",
-           "subtopics": [         { "topic_content": "Atomic instructions such as Compare and Set",
-           "topic_num": "60",
+         { "content": "Instruction level support for parallel programming",
+           "num": "6",
+           "subtopics": [         { "content": "Atomic instructions such as Compare and Set",
+           "num": "60",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Memory issues",
-           "topic_num": "7",
-           "subtopics": [         { "topic_content": "Multiprocessor caches and cache coherence o",
-           "topic_num": "70",
+         { "content": "Memory issues",
+           "num": "7",
+           "subtopics": [         { "content": "Multiprocessor caches and cache coherence o",
+           "num": "70",
            "addressed": "No"
          }, 
-         { "topic_content": "Non-uniform memory access (NUMA)",
-           "topic_num": "71",
+         { "content": "Non-uniform memory access (NUMA)",
+           "num": "71",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Topologie",
-           "topic_num": "8",
-           "subtopics": [         { "topic_content": "Interconnects",
-           "topic_num": "80",
+         { "content": "Topologie",
+           "num": "8",
+           "subtopics": [         { "content": "Interconnects",
+           "num": "80",
            "addressed": "No"
          }, 
-         { "topic_content": "Clusters",
-           "topic_num": "81",
+         { "content": "Clusters",
+           "num": "81",
            "addressed": "No"
          }, 
-         { "topic_content": "Resource sharing (e.g., buses and interconnects)",
-           "topic_num": "82",
+         { "content": "Resource sharing (e.g., buses and interconnects)",
+           "num": "82",
            "addressed": "No"
          }],
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain the differences between shared and distributed memory",
+         {"content": "Explain the differences between shared and distributed memory",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Describe the SMP architecture and note its key features",
+         {"content": "Describe the SMP architecture and note its key features",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Characterize the kinds of tasks that are a natural match for SIMD machines",
+         {"content": "Characterize the kinds of tasks that are a natural match for SIMD machines",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Describe the advantages and limitations of GPUs vs. CPUs",
+         {"content": "Describe the advantages and limitations of GPUs vs. CPUs",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Explain the features of each classification in Flynn's taxonomy",
+         {"content": "Explain the features of each classification in Flynn's taxonomy",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Describe assembly-level support for atomic operations.",
+         {"content": "Describe assembly-level support for atomic operations.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Describe the challenges in maintaining cache coherence",
+         {"content": "Describe the challenges in maintaining cache coherence",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          },
-         {"skill": "Describe the key performance challenges in different memory and distributed system topologies.",
+         {"content": "Describe the key performance challenges in different memory and distributed system topologies.",
            "mastery": "-",
-           "skill_num": "8"
+           "num": "8"
          }
       ]}
       ,
       {"unit_name": "Parallel_Performance",
        "topics": [
-         { "topic_content": "Load balancing",
-           "topic_num": "0",
+         { "content": "Load balancing",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Performance measurement",
-           "topic_num": "1",
+         { "content": "Performance measurement",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Scheduling and contention (cross-reference OS/Scheduling and Dispatch)",
-           "topic_num": "2",
+         { "content": "Scheduling and contention (cross-reference OS/Scheduling and Dispatch)",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Evaluating communication overhead",
-           "topic_num": "3",
+         { "content": "Evaluating communication overhead",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Data management",
-           "topic_num": "4",
-           "subtopics": [         { "topic_content": "Non-uniform communication costs due to proximity (cross-reference SF/Proximity)",
-           "topic_num": "40",
+         { "content": "Data management",
+           "num": "4",
+           "subtopics": [         { "content": "Non-uniform communication costs due to proximity (cross-reference SF/Proximity)",
+           "num": "40",
            "addressed": "No"
          }, 
-         { "topic_content": "Cache effects (e.g., false sharing)",
-           "topic_num": "41",
+         { "content": "Cache effects (e.g., false sharing)",
+           "num": "41",
            "addressed": "No"
          }, 
-         { "topic_content": "Maintaining spatial locality",
-           "topic_num": "42",
+         { "content": "Maintaining spatial locality",
+           "num": "42",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Power usage and management",
-           "topic_num": "5",
+         { "content": "Power usage and management",
+           "num": "5",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Detect and correct a load imbalance",
+         {"content": "Detect and correct a load imbalance",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Calculate the implications of Amdahl's law for a particular parallel algorithm (cross-reference",
+         {"content": "Calculate the implications of Amdahl's law for a particular parallel algorithm (cross-reference",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "SF/Evaluation for Amdahl’s Law).",
+         {"content": "SF/Evaluation for Amdahl’s Law).",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Describe how data distribution/layout can affect an algorithm’s communication costs.",
+         {"content": "Describe how data distribution/layout can affect an algorithm’s communication costs.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Detect and correct an instance of false sharing.",
+         {"content": "Detect and correct an instance of false sharing.",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Explain the impact of scheduling on parallel performance.",
+         {"content": "Explain the impact of scheduling on parallel performance.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Explain performance impacts of data locality.",
+         {"content": "Explain performance impacts of data locality.",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          },
-         {"skill": "Explain the impact and trade-off related to power usage on parallel performance.",
+         {"content": "Explain the impact and trade-off related to power usage on parallel performance.",
            "mastery": "-",
-           "skill_num": "8"
+           "num": "8"
          }
       ]}
       ,
       {"unit_name": "Parallel_Fundamentals",
        "topics": [
-         { "topic_content": "Multiple simultaneous computations",
-           "topic_num": "0",
+         { "content": "Multiple simultaneous computations",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Goals of parallelism (e.g., throughput) versus concurrency (e.g., controlling access to shared resources)",
-           "topic_num": "1",
+         { "content": "Goals of parallelism (e.g., throughput) versus concurrency (e.g., controlling access to shared resources)",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Parallelism, communication, and coordination",
-           "topic_num": "2",
-           "subtopics": [         { "topic_content": "Programming constructs for coordinating multiple simultaneous computations",
-           "topic_num": "20",
+         { "content": "Parallelism, communication, and coordination",
+           "num": "2",
+           "subtopics": [         { "content": "Programming constructs for coordinating multiple simultaneous computations",
+           "num": "20",
            "addressed": "No"
          }, 
-         { "topic_content": "Need for synchronization",
-           "topic_num": "21",
+         { "content": "Need for synchronization",
+           "num": "21",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Programming errors not found in sequential programming",
-           "topic_num": "3",
-           "subtopics": [         { "topic_content": "Data races (simultaneous read/write or write/write of shared state)",
-           "topic_num": "30",
+         { "content": "Programming errors not found in sequential programming",
+           "num": "3",
+           "subtopics": [         { "content": "Data races (simultaneous read/write or write/write of shared state)",
+           "num": "30",
            "addressed": "No"
          }, 
-         { "topic_content": "Higher-level races (interleavings violating program intention, undesired non-determinism)",
-           "topic_num": "31",
+         { "content": "Higher-level races (interleavings violating program intention, undesired non-determinism)",
+           "num": "31",
            "addressed": "No"
          }, 
-         { "topic_content": "Lack of liveness/progress (deadlock, starvation)",
-           "topic_num": "32",
+         { "content": "Lack of liveness/progress (deadlock, starvation)",
+           "num": "32",
            "addressed": "No"
          }],
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Distinguish using computational resources for a faster answer from managing efficient access to a shared resource. (Cross-reference GV/Fundamental Concepts, outcome 5.)",
+         {"content": "Distinguish using computational resources for a faster answer from managing efficient access to a shared resource. (Cross-reference GV/Fundamental Concepts, outcome 5.)",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Distinguish multiple sufficient programming constructs for synchronization that may be inter- implementable but have complementary advantages.",
+         {"content": "Distinguish multiple sufficient programming constructs for synchronization that may be inter- implementable but have complementary advantages.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Distinguish data races from higher level races.",
+         {"content": "Distinguish data races from higher level races.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          }
       ]}
       ,
       {"unit_name": "Cloud_Computing",
        "topics": [
-         { "topic_content": "Internet-Scale computing",
-           "topic_num": "0",
-           "subtopics": [         { "topic_content": "Task partitioning (cross-reference PD/Parallel Algorithms, Analysis, and Programming)",
-           "topic_num": "0",
+         { "content": "Internet-Scale computing",
+           "num": "0",
+           "subtopics": [         { "content": "Task partitioning (cross-reference PD/Parallel Algorithms, Analysis, and Programming)",
+           "num": "0",
            "addressed": "No"
          }, 
-         { "topic_content": "Data access",
-           "topic_num": "1",
+         { "content": "Data access",
+           "num": "1",
            "addressed": "No"
          }, 
-         { "topic_content": "Clusters, grids, and meshes",
-           "topic_num": "2",
+         { "content": "Clusters, grids, and meshes",
+           "num": "2",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Cloud services",
-           "topic_num": "1",
-           "subtopics": [         { "topic_content": "Infrastructure as a service - Elasticity of resources, Platform APIs",
-           "topic_num": "10",
+         { "content": "Cloud services",
+           "num": "1",
+           "subtopics": [         { "content": "Infrastructure as a service - Elasticity of resources, Platform APIs",
+           "num": "10",
            "addressed": "No"
          }, 
-         { "topic_content": "Software as a service",
-           "topic_num": "11",
+         { "content": "Software as a service",
+           "num": "11",
            "addressed": "No"
          }, 
-         { "topic_content": "Security",
-           "topic_num": "12",
+         { "content": "Security",
+           "num": "12",
            "addressed": "No"
          }, 
-         { "topic_content": "Cost management",
-           "topic_num": "13",
+         { "content": "Cost management",
+           "num": "13",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Virtualization (cross-reference SF/Virtualization and Isolation and OS/Virtual Machines)",
-           "topic_num": "2",
-           "subtopics": [         { "topic_content": "Shared resource management",
-           "topic_num": "20",
+         { "content": "Virtualization (cross-reference SF/Virtualization and Isolation and OS/Virtual Machines)",
+           "num": "2",
+           "subtopics": [         { "content": "Shared resource management",
+           "num": "20",
            "addressed": "No"
          }, 
-         { "topic_content": "Migration of processes",
-           "topic_num": "21",
+         { "content": "Migration of processes",
+           "num": "21",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Cloud-based data storage",
-           "topic_num": "3",
-           "subtopics": [         { "topic_content": "Shared access to weakly consistent data stores",
-           "topic_num": "30",
+         { "content": "Cloud-based data storage",
+           "num": "3",
+           "subtopics": [         { "content": "Shared access to weakly consistent data stores",
+           "num": "30",
            "addressed": "No"
          }, 
-         { "topic_content": "Data synchronization",
-           "topic_num": "31",
+         { "content": "Data synchronization",
+           "num": "31",
            "addressed": "No"
          }, 
-         { "topic_content": "Data partitioning",
-           "topic_num": "32",
+         { "content": "Data partitioning",
+           "num": "32",
            "addressed": "No"
          }, 
-         { "topic_content": "Distributed file systems (cross-reference IM/Distributed Databases)",
-           "topic_num": "33",
+         { "content": "Distributed file systems (cross-reference IM/Distributed Databases)",
+           "num": "33",
            "addressed": "No"
          }, 
-         { "topic_content": "Replication",
-           "topic_num": "34",
+         { "content": "Replication",
+           "num": "34",
            "addressed": "No"
          }],
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Discuss the importance of elasticity and resource management in cloud computing.",
+         {"content": "Discuss the importance of elasticity and resource management in cloud computing.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Explain strategies to synchronize a common view of shared data across a collection of devices.",
+         {"content": "Explain strategies to synchronize a common view of shared data across a collection of devices.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Explain the advantages and disadvantages of using virtualized infrastructure.",
+         {"content": "Explain the advantages and disadvantages of using virtualized infrastructure.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Deploy an application that uses cloud infrastructure for computing and/or data resources.",
+         {"content": "Deploy an application that uses cloud infrastructure for computing and/or data resources.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Appropriately partition an application between a client and resources.",
+         {"content": "Appropriately partition an application between a client and resources.",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          }
       ]}
       ,
       {"unit_name": "Formal_Models_and_Semantics",
        "topics": [
-         { "topic_content": "Formal models of processes and message passing, including algebras such as Communicating Sequential Processes (CSP) and pi-calculus",
-           "topic_num": "0",
+         { "content": "Formal models of processes and message passing, including algebras such as Communicating Sequential Processes (CSP) and pi-calculus",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Formal models of parallel computation, including the Parallel Random Access Machine (PRAM) and alternatives such as Bulk Synchronous Parallel (BSP)",
-           "topic_num": "1",
+         { "content": "Formal models of parallel computation, including the Parallel Random Access Machine (PRAM) and alternatives such as Bulk Synchronous Parallel (BSP)",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Formal models of computational dependencies",
-           "topic_num": "2",
+         { "content": "Formal models of computational dependencies",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Models of (relaxed) shared memory consistency and their relation to programming language specifications",
-           "topic_num": "3",
+         { "content": "Models of (relaxed) shared memory consistency and their relation to programming language specifications",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Algorithmic correctness criteria including linearizability",
-           "topic_num": "4",
+         { "content": "Algorithmic correctness criteria including linearizability",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Models of algorithmic progress, including non-blocking guarantees and fairness",
-           "topic_num": "5",
+         { "content": "Models of algorithmic progress, including non-blocking guarantees and fairness",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "Techniques for specifying and checking correctness properties such as atomicity and freedom from data race",
-           "topic_num": "6",
+         { "content": "Techniques for specifying and checking correctness properties such as atomicity and freedom from data race",
+           "num": "6",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Model a concurrent process using a formal model, such as pi-calculus.",
+         {"content": "Model a concurrent process using a formal model, such as pi-calculus.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Explain the characteristics of a particular formal parallel model.",
+         {"content": "Explain the characteristics of a particular formal parallel model.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Formally model a shared memory system to show if it is consistent.",
+         {"content": "Formally model a shared memory system to show if it is consistent.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Use a model to show progress guarantees in a parallel algorithm.",
+         {"content": "Use a model to show progress guarantees in a parallel algorithm.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Use formal techniques to show that a parallel algorithm is correct with respect to a safety or liveness property.",
+         {"content": "Use formal techniques to show that a parallel algorithm is correct with respect to a safety or liveness property.",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Decide if a specific execution is linearizable or not.",
+         {"content": "Decide if a specific execution is linearizable or not.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          }
       ]}
       ,
       {"unit_name": "Communication_and_Coordination",
        "topics": [
-         { "topic_content": "Shared Memory",
-           "topic_num": "0",
+         { "content": "Shared Memory",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Consistency in shared memory models",
-           "topic_num": "1",
+         { "content": "Consistency in shared memory models",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Message passing - Blocking versus non-blocking styles for sending and receiving messages",
-           "topic_num": "2",
+         { "content": "Message passing - Blocking versus non-blocking styles for sending and receiving messages",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Message passing - Message buffering (cross-reference PF/Fundamental Data Structures/Queues)",
-           "topic_num": "3",
+         { "content": "Message passing - Message buffering (cross-reference PF/Fundamental Data Structures/Queues)",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Atomicity",
-           "topic_num": "4",
-           "subtopics": [         { "topic_content": "Granularity of atomic accesses and updates, and the use of constructs such as critical sections or transactions to describe them",
-           "topic_num": "40",
+         { "content": "Atomicity",
+           "num": "4",
+           "subtopics": [         { "content": "Granularity of atomic accesses and updates, and the use of constructs such as critical sections or transactions to describe them",
+           "num": "40",
            "addressed": "No"
          }, 
-         { "topic_content": "Mutual Exclusion using locks, semaphores, monitors, or related constructs",
-           "topic_num": "41",
+         { "content": "Mutual Exclusion using locks, semaphores, monitors, or related constructs",
+           "num": "41",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Potential for liveness failures and deadlock (causes, conditions, prevention)",
-           "topic_num": "5",
+         { "content": "Potential for liveness failures and deadlock (causes, conditions, prevention)",
+           "num": "5",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Use mutual exclusion to avoid a given race condition",
+         {"content": "Use mutual exclusion to avoid a given race condition",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Give an example of an ordering of accesses among concurrent activities that is not sequentially consistent",
+         {"content": "Give an example of an ordering of accesses among concurrent activities that is not sequentially consistent",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Give an example of a scenario in which blocking message sends can deadlock",
+         {"content": "Give an example of a scenario in which blocking message sends can deadlock",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Explain when and why multicast or event-based messaging can be preferable to alternatives",
+         {"content": "Explain when and why multicast or event-based messaging can be preferable to alternatives",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Write a program that correctly terminates when all of a set of concurrent tasks have completed",
+         {"content": "Write a program that correctly terminates when all of a set of concurrent tasks have completed",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Use a properly synchronized queue to buffer data passed among activities",
+         {"content": "Use a properly synchronized queue to buffer data passed among activities",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Explain why checks for preconditions, and actions based on these checks, must share the same unit of atomicity to be effective",
+         {"content": "Explain why checks for preconditions, and actions based on these checks, must share the same unit of atomicity to be effective",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          },
-         {"skill": "Write a test program that can reveal a concurrent programming error; for example, missing an update when two activities both try to increment a variable",
+         {"content": "Write a test program that can reveal a concurrent programming error; for example, missing an update when two activities both try to increment a variable",
            "mastery": "-",
-           "skill_num": "8"
+           "num": "8"
          },
-         {"skill": "Describe at least one design technique for avoiding liveness failures in programs using multiple locks or semaphores",
+         {"content": "Describe at least one design technique for avoiding liveness failures in programs using multiple locks or semaphores",
            "mastery": "-",
-           "skill_num": "9"
+           "num": "9"
          },
-         {"skill": "Describe the relative merits of optimistic versus conservative concurrency control under different rates of contention among updates",
+         {"content": "Describe the relative merits of optimistic versus conservative concurrency control under different rates of contention among updates",
            "mastery": "-",
-           "skill_num": "10"
+           "num": "10"
          },
-         {"skill": "Give an example of a scenario in which an attempted optimistic update may never complete",
+         {"content": "Give an example of a scenario in which an attempted optimistic update may never complete",
            "mastery": "-",
-           "skill_num": "11"
+           "num": "11"
          }
       ]}
       ,
       {"unit_name": "Distributed_Systems",
        "topics": [
-         { "topic_content": "Faults (cross-reference OS/Fault Tolerance)",
-           "topic_num": "0",
-           "subtopics": [         { "topic_content": "Network-based (including partitions) and node-based failures",
-           "topic_num": "0",
+         { "content": "Faults (cross-reference OS/Fault Tolerance)",
+           "num": "0",
+           "subtopics": [         { "content": "Network-based (including partitions) and node-based failures",
+           "num": "0",
            "addressed": "No"
          }, 
-         { "topic_content": "Impact on system-wide guarantees (e.g., availability)",
-           "topic_num": "1",
+         { "content": "Impact on system-wide guarantees (e.g., availability)",
+           "num": "1",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Distributed message sending",
-           "topic_num": "1",
-           "subtopics": [         { "topic_content": "Data conversion and transmission",
-           "topic_num": "10",
+         { "content": "Distributed message sending",
+           "num": "1",
+           "subtopics": [         { "content": "Data conversion and transmission",
+           "num": "10",
            "addressed": "No"
          }, 
-         { "topic_content": "Sockets",
-           "topic_num": "11",
+         { "content": "Sockets",
+           "num": "11",
            "addressed": "No"
          }, 
-         { "topic_content": "Message sequencing",
-           "topic_num": "12",
+         { "content": "Message sequencing",
+           "num": "12",
            "addressed": "No"
          }, 
-         { "topic_content": "Buffering, retrying, and dropping messages",
-           "topic_num": "13",
+         { "content": "Buffering, retrying, and dropping messages",
+           "num": "13",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Distributed system design tradeoffs",
-           "topic_num": "2",
-           "subtopics": [         { "topic_content": "Latency versus throughput",
-           "topic_num": "20",
+         { "content": "Distributed system design tradeoffs",
+           "num": "2",
+           "subtopics": [         { "content": "Latency versus throughput",
+           "num": "20",
            "addressed": "No"
          }, 
-         { "topic_content": "Consistency, availability, partition tolerance",
-           "topic_num": "21",
+         { "content": "Consistency, availability, partition tolerance",
+           "num": "21",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Distributed service design",
-           "topic_num": "3",
-           "subtopics": [         { "topic_content": "Stateful versus stateless protocols and services",
-           "topic_num": "30",
+         { "content": "Distributed service design",
+           "num": "3",
+           "subtopics": [         { "content": "Stateful versus stateless protocols and services",
+           "num": "30",
            "addressed": "No"
          }, 
-         { "topic_content": "Session (connection-based) designs",
-           "topic_num": "31",
+         { "content": "Session (connection-based) designs",
+           "num": "31",
            "addressed": "No"
          }, 
-         { "topic_content": "Reactive (IO-triggered) and multithreaded designs",
-           "topic_num": "32",
+         { "content": "Reactive (IO-triggered) and multithreaded designs",
+           "num": "32",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Core distributed algorithms",
-           "topic_num": "4",
-           "subtopics": [         { "topic_content": "Election, discovery",
-           "topic_num": "40",
+         { "content": "Core distributed algorithms",
+           "num": "4",
+           "subtopics": [         { "content": "Election, discovery",
+           "num": "40",
            "addressed": "No"
          }],
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Distinguish network faults from other kinds of failures.",
+         {"content": "Distinguish network faults from other kinds of failures.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Explain why synchronization constructs such as simple locks are not useful in the presence of distributed faults.",
+         {"content": "Explain why synchronization constructs such as simple locks are not useful in the presence of distributed faults.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Write a program that performs any required marshaling and conversion into message units, such as packets, to communicate interesting data between two hosts.",
+         {"content": "Write a program that performs any required marshaling and conversion into message units, such as packets, to communicate interesting data between two hosts.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Measure the observed throughput and response latency across hosts in a given network.",
+         {"content": "Measure the observed throughput and response latency across hosts in a given network.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Explain why no distributed system can be simultaneously consistent, available, and partition tolerant.",
+         {"content": "Explain why no distributed system can be simultaneously consistent, available, and partition tolerant.",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Implement a simple server -- for example, a spell checking service.",
+         {"content": "Implement a simple server -- for example, a spell checking service.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Explain the tradeoffs among overhead, scalability, and fault tolerance when choosing a stateful v. stateless design for a given service.",
+         {"content": "Explain the tradeoffs among overhead, scalability, and fault tolerance when choosing a stateful v. stateless design for a given service.",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          },
-         {"skill": "Describe the scalability challenges associated with a service growing to accommodate many clients, as well as those associated with a service only transiently having many clients.",
+         {"content": "Describe the scalability challenges associated with a service growing to accommodate many clients, as well as those associated with a service only transiently having many clients.",
            "mastery": "-",
-           "skill_num": "8"
+           "num": "8"
          },
-         {"skill": "Give examples of problems for which consensus algorithms such as leader election are required.",
+         {"content": "Give examples of problems for which consensus algorithms such as leader election are required.",
            "mastery": "-",
-           "skill_num": "9"
+           "num": "9"
          }
       ]}
       ,
       {"unit_name": "Parallel_Algorithms_Analysis_and_Programming",
        "topics": [
-         { "topic_content": "Critical paths, work and span, and the relation to Amdahl's law (cross-reference SF/Performance)",
-           "topic_num": "0",
+         { "content": "Critical paths, work and span, and the relation to Amdahl's law (cross-reference SF/Performance)",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Speed-up and scalability",
-           "topic_num": "1",
+         { "content": "Speed-up and scalability",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Naturally (embarrassingly) parallel algorithms",
-           "topic_num": "2",
+         { "content": "Naturally (embarrassingly) parallel algorithms",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Parallel algorithmic patterns (divide-and-conquer, map and reduce, master-workers, others)",
-           "topic_num": "3",
+         { "content": "Parallel algorithmic patterns (divide-and-conquer, map and reduce, master-workers, others)",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Specific algorithms (e.g., parallel MergeSort)",
-           "topic_num": "4",
+         { "content": "Specific algorithms (e.g., parallel MergeSort)",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Parallel graph algorithms (e.g., parallel shortest path, parallel spanning tree) (cross-reference AL/Algorithmic Strategies/Divide-and-conquer)",
-           "topic_num": "5",
+         { "content": "Parallel graph algorithms (e.g., parallel shortest path, parallel spanning tree) (cross-reference AL/Algorithmic Strategies/Divide-and-conquer)",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "Parallel matrix computations",
-           "topic_num": "6",
+         { "content": "Parallel matrix computations",
+           "num": "6",
            "addressed": "No"
          },
-         { "topic_content": "Producer-consumer and pipelined algorithms",
-           "topic_num": "7",
+         { "content": "Producer-consumer and pipelined algorithms",
+           "num": "7",
            "addressed": "No"
          },
-         { "topic_content": "Examples of non-scalable parallel algorithms",
-           "topic_num": "8",
+         { "content": "Examples of non-scalable parallel algorithms",
+           "num": "8",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Define 'critical path', 'work', and 'span'.",
+         {"content": "Define 'critical path', 'work', and 'span'.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Compute the work and span, and determine the critical path with respect to a parallel execution diagram.",
+         {"content": "Compute the work and span, and determine the critical path with respect to a parallel execution diagram.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Define 'speed-up' and explain the notion of an algorithm’s scalability in this regard.",
+         {"content": "Define 'speed-up' and explain the notion of an algorithm’s scalability in this regard.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Identify independent tasks in a program that may be parallelized.",
+         {"content": "Identify independent tasks in a program that may be parallelized.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Characterize features of a workload that allow or prevent it from being naturally parallelized.",
+         {"content": "Characterize features of a workload that allow or prevent it from being naturally parallelized.",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Implement a parallel divide-and-conquer (and/or graph algorithm) and empirically measure its performance relative to its sequential analog.",
+         {"content": "Implement a parallel divide-and-conquer (and/or graph algorithm) and empirically measure its performance relative to its sequential analog.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Decompose a problem (e.g., counting the number of occurrences of some word in a document) via map and reduce operations.",
+         {"content": "Decompose a problem (e.g., counting the number of occurrences of some word in a document) via map and reduce operations.",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          },
-         {"skill": "Provide an example of a problem that fits the producer-consumer paradigm",
+         {"content": "Provide an example of a problem that fits the producer-consumer paradigm",
            "mastery": "-",
-           "skill_num": "8"
+           "num": "8"
          },
-         {"skill": "Give examples of problems where pipelining would be an effective means of parallelization",
+         {"content": "Give examples of problems where pipelining would be an effective means of parallelization",
            "mastery": "-",
-           "skill_num": "9"
+           "num": "9"
          },
-         {"skill": "Implement a parallel matrix algorithm",
+         {"content": "Implement a parallel matrix algorithm",
            "mastery": "-",
-           "skill_num": "10"
+           "num": "10"
          },
-         {"skill": "Identify issues that arise in producer-consumer algorithms and mechanisms that may be used for addressing them",
+         {"content": "Identify issues that arise in producer-consumer algorithms and mechanisms that may be used for addressing them",
            "mastery": "-",
-           "skill_num": "11"
+           "num": "11"
          }
       ]}
       ,
       {"unit_name": "Parallel_Decomposition",
        "topics": [
-         { "topic_content": "Need for communication and coordination/synchronization",
-           "topic_num": "0",
+         { "content": "Need for communication and coordination/synchronization",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Independence and partitioning",
-           "topic_num": "1",
+         { "content": "Independence and partitioning",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Basic knowledge of parallel decomposition concepts (cross-reference SF/System Support for Parallelism)",
-           "topic_num": "2",
+         { "content": "Basic knowledge of parallel decomposition concepts (cross-reference SF/System Support for Parallelism)",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Task-based decomposition: Implementation strategies such as threads",
-           "topic_num": "3",
+         { "content": "Task-based decomposition: Implementation strategies such as threads",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Data-parallel decomposition: Strategies such as SIMD and MapReduce",
-           "topic_num": "4",
+         { "content": "Data-parallel decomposition: Strategies such as SIMD and MapReduce",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Actors and reactive processes (e.g., request handlers)",
-           "topic_num": "5",
+         { "content": "Actors and reactive processes (e.g., request handlers)",
+           "num": "5",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain why synchronization is necessary in a specific parallel program",
+         {"content": "Explain why synchronization is necessary in a specific parallel program",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Identify opportunities to partition a serial program into independent parallel modules.",
+         {"content": "Identify opportunities to partition a serial program into independent parallel modules.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Write a correct and scalable parallel algorithm. [Usage]",
+         {"content": "Write a correct and scalable parallel algorithm. [Usage]",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Parallelize an algorithm by applying task-based decomposition",
+         {"content": "Parallelize an algorithm by applying task-based decomposition",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Parallelize an algorithm by applying data-parallel decomposition",
+         {"content": "Parallelize an algorithm by applying data-parallel decomposition",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Write a program using actors and/or reactive processes",
+         {"content": "Write a program using actors and/or reactive processes",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          }
       ]}
 ]},
@@ -718,115 +718,115 @@
   "units": [
       {"unit_name": "Development_Methods",
        "topics": [
-         { "topic_content": "Program comprehension",
-           "topic_num": "0",
+         { "content": "Program comprehension",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Program correctness",
-           "topic_num": "1",
-           "subtopics": [         { "topic_content": "Types of errors (syntax, logic, run-time)",
-           "topic_num": "10",
+         { "content": "Program correctness",
+           "num": "1",
+           "subtopics": [         { "content": "Types of errors (syntax, logic, run-time)",
+           "num": "10",
            "addressed": "No"
          }, 
-         { "topic_content": "The concept of a specification",
-           "topic_num": "11",
+         { "content": "The concept of a specification",
+           "num": "11",
            "addressed": "No"
          }, 
-         { "topic_content": "Defensive programming (e.g. secure coding, exception handling)",
-           "topic_num": "12",
+         { "content": "Defensive programming (e.g. secure coding, exception handling)",
+           "num": "12",
            "addressed": "No"
          }, 
-         { "topic_content": "Code reviews",
-           "topic_num": "13",
+         { "content": "Code reviews",
+           "num": "13",
            "addressed": "No"
          }, 
-         { "topic_content": "Testing fundamentals and test-case generation",
-           "topic_num": "14",
+         { "content": "Testing fundamentals and test-case generation",
+           "num": "14",
            "addressed": "No"
          }, 
-         { "topic_content": "The role and the use of contracts, including pre- and post-conditions",
-           "topic_num": "15",
+         { "content": "The role and the use of contracts, including pre- and post-conditions",
+           "num": "15",
            "addressed": "No"
          }, 
-         { "topic_content": "Unit testing",
-           "topic_num": "16",
+         { "content": "Unit testing",
+           "num": "16",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Simple refactoring",
-           "topic_num": "2",
+         { "content": "Simple refactoring",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Modern programming environments",
-           "topic_num": "3",
-           "subtopics": [         { "topic_content": "Code search",
-           "topic_num": "30",
+         { "content": "Modern programming environments",
+           "num": "3",
+           "subtopics": [         { "content": "Code search",
+           "num": "30",
            "addressed": "No"
          }, 
-         { "topic_content": "Programming using library components and their APIs",
-           "topic_num": "31",
+         { "content": "Programming using library components and their APIs",
+           "num": "31",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Debugging strategies",
-           "topic_num": "4",
+         { "content": "Debugging strategies",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Documentation and program style",
-           "topic_num": "5",
+         { "content": "Documentation and program style",
+           "num": "5",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Trace the execution of a variety of code segments and write summaries of their computations.",
+         {"content": "Trace the execution of a variety of code segments and write summaries of their computations.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Explain why the creation of correct program components is important in the production of high-quality software",
+         {"content": "Explain why the creation of correct program components is important in the production of high-quality software",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Identify common coding errors that lead to insecure programs (e.g., buffer overflows, memory leaks, malicious code) and apply strategies for avoiding such error",
+         {"content": "Identify common coding errors that lead to insecure programs (e.g., buffer overflows, memory leaks, malicious code) and apply strategies for avoiding such error",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Conduct a personal code review (focused on common coding errors) on a program component using a provided checklist",
+         {"content": "Conduct a personal code review (focused on common coding errors) on a program component using a provided checklist",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Contribute to a small-team code review focused on component correctness.",
+         {"content": "Contribute to a small-team code review focused on component correctness.",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Describe how a contract can be used to specify the behavior of a program component.",
+         {"content": "Describe how a contract can be used to specify the behavior of a program component.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Refactor a program by identifying opportunities to apply procedural abstraction.",
+         {"content": "Refactor a program by identifying opportunities to apply procedural abstraction.",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          },
-         {"skill": "Apply a variety of strategies to the testing and debugging of simple programs.",
+         {"content": "Apply a variety of strategies to the testing and debugging of simple programs.",
            "mastery": "-",
-           "skill_num": "8"
+           "num": "8"
          },
-         {"skill": "Construct, execute and debug programs using a modern IDE and associated tools such as unit testing tools and visual debuggers",
+         {"content": "Construct, execute and debug programs using a modern IDE and associated tools such as unit testing tools and visual debuggers",
            "mastery": "-",
-           "skill_num": "9"
+           "num": "9"
          },
-         {"skill": "Construct and debug programs using the standard libraries available with a chosen programming language.",
+         {"content": "Construct and debug programs using the standard libraries available with a chosen programming language.",
            "mastery": "-",
-           "skill_num": "10"
+           "num": "10"
          },
-         {"skill": "Analyze the extent to which another programmer’s code meets documentation and programming style standards.",
+         {"content": "Analyze the extent to which another programmer’s code meets documentation and programming style standards.",
            "mastery": "-",
-           "skill_num": "11"
+           "num": "11"
          },
-         {"skill": "Apply consistent documentation and program style standards that contribute to the readability and maintainability of software",
+         {"content": "Apply consistent documentation and program style standards that contribute to the readability and maintainability of software",
            "mastery": "-",
-           "skill_num": "12"
+           "num": "12"
          }
       ]}
 ]},
@@ -834,349 +834,349 @@
   "units": [
       {"unit_name": "Proximity",
        "topics": [
-         { "topic_content": "Speed of light and computers (one foot per nanosecond vs. one GHz clocks)",
-           "topic_num": "0",
+         { "content": "Speed of light and computers (one foot per nanosecond vs. one GHz clocks)",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Latencies in computer systems : memory vs. disk latencies vs. across the network memory",
-           "topic_num": "1",
+         { "content": "Latencies in computer systems : memory vs. disk latencies vs. across the network memory",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Caches, spatial and temporal locality, in processors and systems",
-           "topic_num": "2",
+         { "content": "Caches, spatial and temporal locality, in processors and systems",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Caches, cache coherency in database, operating systems, distributed systems, and computer architecture",
-           "topic_num": "3",
+         { "content": "Caches, cache coherency in database, operating systems, distributed systems, and computer architecture",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Introduction into the processor memory hierarchy : registers and multi-level caches, and the formula for average memory access time",
-           "topic_num": "4",
+         { "content": "Introduction into the processor memory hierarchy : registers and multi-level caches, and the formula for average memory access time",
+           "num": "4",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain the importance of locality in determining performance.",
+         {"content": "Explain the importance of locality in determining performance.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Describe why things that are close in space take less time to access.",
+         {"content": "Describe why things that are close in space take less time to access.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Calculate average memory access time and describe the tradeoffs in memory hierarchy performance in terms of capacity, miss/hit rate, and access time.",
+         {"content": "Calculate average memory access time and describe the tradeoffs in memory hierarchy performance in terms of capacity, miss/hit rate, and access time.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          }
       ]}
       ,
       {"unit_name": "Resource_Allocation_and_Scheduling",
        "topics": [
-         { "topic_content": "Kinds of resources : processor share, memory, disk, net bandwidth",
-           "topic_num": "0",
+         { "content": "Kinds of resources : processor share, memory, disk, net bandwidth",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Kinds of scheduling : first-come, priority",
-           "topic_num": "1",
+         { "content": "Kinds of scheduling : first-come, priority",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Advantages of fair scheduling, preemptive scheduling",
-           "topic_num": "2",
+         { "content": "Advantages of fair scheduling, preemptive scheduling",
+           "num": "2",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Define how finite computer resources (e.g., processor share, memory, storage and network bandwidth) are managed by their careful allocation to existing entities",
+         {"content": "Define how finite computer resources (e.g., processor share, memory, storage and network bandwidth) are managed by their careful allocation to existing entities",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Describe the scheduling algorithms by which resources are allocated to competing entities, and the figures of merit by which these algorithms are evaluated, such as fairness",
+         {"content": "Describe the scheduling algorithms by which resources are allocated to competing entities, and the figures of merit by which these algorithms are evaluated, such as fairness",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Implement simple schedule algorithms",
+         {"content": "Implement simple schedule algorithms",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Measure figures of merit of alternative scheduler implementations",
+         {"content": "Measure figures of merit of alternative scheduler implementations",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          }
       ]}
       ,
       {"unit_name": "Computational_Paradigms",
        "topics": [
-         { "topic_content": "Basic building blocks and components of a computer (gates, flip-flops, registers, interconnections; Datapath + Control + Memory)",
-           "topic_num": "0",
+         { "content": "Basic building blocks and components of a computer (gates, flip-flops, registers, interconnections; Datapath + Control + Memory)",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Hardware as a computational paradigm: Fundamental logic building blocks (logic gates, flip-flops, counters, registers, PL); Logic expressions, minimization, sum of product forms",
-           "topic_num": "1",
+         { "content": "Hardware as a computational paradigm: Fundamental logic building blocks (logic gates, flip-flops, counters, registers, PL); Logic expressions, minimization, sum of product forms",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Application-level sequential processing: single thread",
-           "topic_num": "2",
+         { "content": "Application-level sequential processing: single thread",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Simple application-level parallel processing: request level (web services/client-server/distributed), single thread per server, multiple threads with multiple servers",
-           "topic_num": "3",
+         { "content": "Simple application-level parallel processing: request level (web services/client-server/distributed), single thread per server, multiple threads with multiple servers",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Basic concept of pipelining, overlapped processing stages",
-           "topic_num": "4",
+         { "content": "Basic concept of pipelining, overlapped processing stages",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Basic concept of scaling: going faster vs. handling larger problems",
-           "topic_num": "5",
+         { "content": "Basic concept of scaling: going faster vs. handling larger problems",
+           "num": "5",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "List commonly encountered patterns of how computations are organized.",
+         {"content": "List commonly encountered patterns of how computations are organized.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Describe the basic building blocks of computers and their role in the historical development of computer architecture.",
+         {"content": "Describe the basic building blocks of computers and their role in the historical development of computer architecture.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Articulate the differences between single thread vs. multiple thread, single server vs. multiple server models, motivated by real world examples (e.g., cooking recipes, lines for multiple teller machines, couple shopping for food, wash-dry-fold, etc.).",
+         {"content": "Articulate the differences between single thread vs. multiple thread, single server vs. multiple server models, motivated by real world examples (e.g., cooking recipes, lines for multiple teller machines, couple shopping for food, wash-dry-fold, etc.).",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Articulate the concept of strong vs. weak scaling, i.e., how performance is affected by scale of problem vs. scale of resources to solve the problem. This can be motivated by the simple, real-world examples.",
+         {"content": "Articulate the concept of strong vs. weak scaling, i.e., how performance is affected by scale of problem vs. scale of resources to solve the problem. This can be motivated by the simple, real-world examples.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Design a simple logic circuit using the fundamental building blocks of logic design.",
+         {"content": "Design a simple logic circuit using the fundamental building blocks of logic design.",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Use tools for capture, synthesis, and simulation to evaluate a logic design.",
+         {"content": "Use tools for capture, synthesis, and simulation to evaluate a logic design.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Write a simple sequential problem and a simple parallel version of the same program.",
+         {"content": "Write a simple sequential problem and a simple parallel version of the same program.",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          },
-         {"skill": "Evaluate performance of simple sequential and parallel versions of a program with different problem sizes, and be able to describe the speed-ups achieved.",
+         {"content": "Evaluate performance of simple sequential and parallel versions of a program with different problem sizes, and be able to describe the speed-ups achieved.",
            "mastery": "-",
-           "skill_num": "8"
+           "num": "8"
          }
       ]}
       ,
       {"unit_name": "State_and_State_Machines",
        "topics": [
-         { "topic_content": "Digital vs. Analog/Discrete vs. Continuous Systems",
-           "topic_num": "0",
+         { "content": "Digital vs. Analog/Discrete vs. Continuous Systems",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Simple logic gates, logical expressions, Boolean logic simplification",
-           "topic_num": "1",
+         { "content": "Simple logic gates, logical expressions, Boolean logic simplification",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Clocks, State, Sequencing",
-           "topic_num": "2",
+         { "content": "Clocks, State, Sequencing",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Combinational Logic, Sequential Logic, Registers, Memories",
-           "topic_num": "3",
+         { "content": "Combinational Logic, Sequential Logic, Registers, Memories",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Computers and Network Protocols as examples of State Machines",
-           "topic_num": "4",
+         { "content": "Computers and Network Protocols as examples of State Machines",
+           "num": "4",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Describe computations as a system with a known set of configurations, and a byproduct of the computation is to transition from one unique configuration (state) to another (state).",
+         {"content": "Describe computations as a system with a known set of configurations, and a byproduct of the computation is to transition from one unique configuration (state) to another (state).",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Recognize the distinction between systems whose output is only a function of their input (Combinational) and those with memory/history (Sequential).",
+         {"content": "Recognize the distinction between systems whose output is only a function of their input (Combinational) and those with memory/history (Sequential).",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Describe a computer as a state machine that interprets machine instructions.",
+         {"content": "Describe a computer as a state machine that interprets machine instructions.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Explain how a program or network protocol can also be expressed as a state machine, and that alternative representations for the same computation can exist.",
+         {"content": "Explain how a program or network protocol can also be expressed as a state machine, and that alternative representations for the same computation can exist.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Develop state machine descriptions for simple problem statement solutions (e.g., traffic light sequencing, pattern recognizers).",
+         {"content": "Develop state machine descriptions for simple problem statement solutions (e.g., traffic light sequencing, pattern recognizers).",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Derive time-series behavior of a state machine from its state machine representation.",
+         {"content": "Derive time-series behavior of a state machine from its state machine representation.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          }
       ]}
       ,
       {"unit_name": "Cross",
        "topics": [
-         { "topic_content": "Programming abstractions, interfaces, use of libraries",
-           "topic_num": "0",
+         { "content": "Programming abstractions, interfaces, use of libraries",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Distinction between Application and OS services, Remote Procedure Call",
-           "topic_num": "1",
+         { "content": "Distinction between Application and OS services, Remote Procedure Call",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Application-Virtual Machine Interaction",
-           "topic_num": "2",
+         { "content": "Application-Virtual Machine Interaction",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Reliability",
-           "topic_num": "3",
+         { "content": "Reliability",
+           "num": "3",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Describe how computing systems are constructed of layers upon layers, based on separation of concerns, with well-defined interfaces, hiding details of low layers from the higher layers. This can be motivated by real-world systems, like how a car works, or libraries.",
+         {"content": "Describe how computing systems are constructed of layers upon layers, based on separation of concerns, with well-defined interfaces, hiding details of low layers from the higher layers. This can be motivated by real-world systems, like how a car works, or libraries.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Recognize that hardware, VM, OS, application are additional layers of interpretation/processing.",
+         {"content": "Recognize that hardware, VM, OS, application are additional layers of interpretation/processing.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Describe the mechanisms of how errors are detected, signaled back, and handled through the layers.",
+         {"content": "Describe the mechanisms of how errors are detected, signaled back, and handled through the layers.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Construct a simple program using methods of layering, error detection and recovery, and reflection of error status across layers.",
+         {"content": "Construct a simple program using methods of layering, error detection and recovery, and reflection of error status across layers.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Find bugs in a layered program by using tools for program tracing, single stepping, and debugging.",
+         {"content": "Find bugs in a layered program by using tools for program tracing, single stepping, and debugging.",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          }
       ]}
       ,
       {"unit_name": "Evaluation",
        "topics": [
-         { "topic_content": "Choosing and understanding performance figures of merit (e.g., speed of execution, energy consumption, bandwidth vs. latency, resource cost)",
-           "topic_num": "0",
+         { "content": "Choosing and understanding performance figures of merit (e.g., speed of execution, energy consumption, bandwidth vs. latency, resource cost)",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Choosing and understanding workloads and representative benchmarks (e.g., SPEC, Dhrystone), and methods of collecting and analyzing performance figures of merit",
-           "topic_num": "1",
+         { "content": "Choosing and understanding workloads and representative benchmarks (e.g., SPEC, Dhrystone), and methods of collecting and analyzing performance figures of merit",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "CPI equation (Execution time = Nb. of instructions * cycles/instruction * time/cycle) as tool for understanding tradeoffs in the design of instruction sets, processor pipelines, and memory system organizations.",
-           "topic_num": "2",
+         { "content": "CPI equation (Execution time = Nb. of instructions * cycles/instruction * time/cycle) as tool for understanding tradeoffs in the design of instruction sets, processor pipelines, and memory system organizations.",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Amdahl’s Law : the part of the computation that cannot be sped up limits the effect of the parts that can",
-           "topic_num": "3",
+         { "content": "Amdahl’s Law : the part of the computation that cannot be sped up limits the effect of the parts that can",
+           "num": "3",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain how the components of system architecture contribute to improving its performance.",
+         {"content": "Explain how the components of system architecture contribute to improving its performance.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Describe Amdahl’s law and discuss its limitations.",
+         {"content": "Describe Amdahl’s law and discuss its limitations.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Design and conduct a performance-oriented experiment, e.g., benchmark a parallel program with different data sets in order to iteratively improve its performance.",
+         {"content": "Design and conduct a performance-oriented experiment, e.g., benchmark a parallel program with different data sets in order to iteratively improve its performance.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Use software tools to profile and measure program performance.",
+         {"content": "Use software tools to profile and measure program performance.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          }
       ]}
       ,
       {"unit_name": "Parallelism",
        "topics": [
-         { "topic_content": "Sequential vs. parallel processing",
-           "topic_num": "0",
+         { "content": "Sequential vs. parallel processing",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Parallel programming (e.g., synchronization for producer-consumer for performance improvement) vs. concurrent programming (e.g., mutual exclusion/atomic operations for reactive programs)",
-           "topic_num": "1",
+         { "content": "Parallel programming (e.g., synchronization for producer-consumer for performance improvement) vs. concurrent programming (e.g., mutual exclusion/atomic operations for reactive programs)",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Request parallelism (e.g., web services) vs. Task parallelism (map-reduce processing)",
-           "topic_num": "2",
+         { "content": "Request parallelism (e.g., web services) vs. Task parallelism (map-reduce processing)",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Client-Server/Web Services, Thread (Fork-Join), Pipelining",
-           "topic_num": "3",
+         { "content": "Client-Server/Web Services, Thread (Fork-Join), Pipelining",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Multicore architectures and hardware support for synchronization",
-           "topic_num": "4",
+         { "content": "Multicore architectures and hardware support for synchronization",
+           "num": "4",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "For a given program, distinguish between its sequential and parallel execution, and the performance implications thereof.",
+         {"content": "For a given program, distinguish between its sequential and parallel execution, and the performance implications thereof.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Demonstrate on an execution time line that parallelism events and operations can take place simultaneously (i.e., at the same time). Explain how work can be performed in less elapsed time if this can be exploited.",
+         {"content": "Demonstrate on an execution time line that parallelism events and operations can take place simultaneously (i.e., at the same time). Explain how work can be performed in less elapsed time if this can be exploited.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Explain other uses of parallelism, such as for reliability/redundancy of execution.",
+         {"content": "Explain other uses of parallelism, such as for reliability/redundancy of execution.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Define the differences between the concepts of Instruction Parallelism, Data Parallelism, Thread Parallelism/Multitasking, Task/Request Parallelism.",
+         {"content": "Define the differences between the concepts of Instruction Parallelism, Data Parallelism, Thread Parallelism/Multitasking, Task/Request Parallelism.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Write more than one parallel program (e.g., one simple parallel program in more than one parallel programming paradigm; a simple parallel program that manages shared resources through synchronization primitives; a simple parallel program that performs simultaneous operation on partitioned data through task parallel (e.g., parallel search terms; a simple parallel program that performs step-by-step pipeline processing through message passing).",
+         {"content": "Write more than one parallel program (e.g., one simple parallel program in more than one parallel programming paradigm; a simple parallel program that manages shared resources through synchronization primitives; a simple parallel program that performs simultaneous operation on partitioned data through task parallel (e.g., parallel search terms; a simple parallel program that performs step-by-step pipeline processing through message passing).",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Use performance tools to measure speed-up achieved by parallel programs in terms of both problem size and number of resources.",
+         {"content": "Use performance tools to measure speed-up achieved by parallel programs in terms of both problem size and number of resources.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          }
       ]}
       ,
       {"unit_name": "Virtualization_and_Isolation",
        "topics": [
-         { "topic_content": "Rationale for protection and predictable performance",
-           "topic_num": "0",
+         { "content": "Rationale for protection and predictable performance",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "",
-           "topic_num": "1",
+         { "content": "",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Levels of indirection, illustrated by virtual memory for managing physical memory resources",
-           "topic_num": "2",
+         { "content": "Levels of indirection, illustrated by virtual memory for managing physical memory resources",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Methods for implementing virtual memory",
-           "topic_num": "3",
+         { "content": "Methods for implementing virtual memory",
+           "num": "3",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain why it is important to isolate and protect the execution of individual programs and environments that share common underlying resources, including the processor, memory, storage, and network access",
+         {"content": "Explain why it is important to isolate and protect the execution of individual programs and environments that share common underlying resources, including the processor, memory, storage, and network access",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Describe how the concept of indirection can create the illusion of a dedicated machine and its resources even when physically shared among multiple programs and environments",
+         {"content": "Describe how the concept of indirection can create the illusion of a dedicated machine and its resources even when physically shared among multiple programs and environments",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Measure the performance of two application instances running on separate virtual machines, and determine the effect of performance isolation",
+         {"content": "Measure the performance of two application instances running on separate virtual machines, and determine the effect of performance isolation",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          }
       ]}
 ]},
@@ -1184,355 +1184,355 @@
   "units": [
       {"unit_name": "Overview_of_Operating_Systems",
        "topics": [
-         { "topic_content": "Role and purpose of the operating system",
-           "topic_num": "0",
+         { "content": "Role and purpose of the operating system",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Functionality of a typical operating system",
-           "topic_num": "1",
+         { "content": "Functionality of a typical operating system",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Mechanisms to support client-server models, hand-held devices",
-           "topic_num": "2",
+         { "content": "Mechanisms to support client-server models, hand-held devices",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Design issues (efficiency, robustness, flexibility, portability, security, compatibility)",
-           "topic_num": "3",
+         { "content": "Design issues (efficiency, robustness, flexibility, portability, security, compatibility)",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Influences of security, networking, multimedia, windows",
-           "topic_num": "4",
+         { "content": "Influences of security, networking, multimedia, windows",
+           "num": "4",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain the objectives and functions of modern operating systems",
+         {"content": "Explain the objectives and functions of modern operating systems",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Analyze the tradeoffs inherent in operating system design",
+         {"content": "Analyze the tradeoffs inherent in operating system design",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Describe the functions of a contemporary operating system with respect to convenience, efficiency, and the ability to evolve",
+         {"content": "Describe the functions of a contemporary operating system with respect to convenience, efficiency, and the ability to evolve",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Discuss networked, client-server, distributed operating systems and how they differ from single user operating systems",
+         {"content": "Discuss networked, client-server, distributed operating systems and how they differ from single user operating systems",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Identify potential threats to operating systems and the security features design to guard against them",
+         {"content": "Identify potential threats to operating systems and the security features design to guard against them",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          }
       ]}
       ,
       {"unit_name": "Real_Time_and_Embedded_Systems",
        "topics": [
-         { "topic_content": "Process and task scheduling",
-           "topic_num": "0",
+         { "content": "Process and task scheduling",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Memory/disk management requirements in a real-time environment",
-           "topic_num": "1",
+         { "content": "Memory/disk management requirements in a real-time environment",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Failures, risks, and recovery",
-           "topic_num": "2",
+         { "content": "Failures, risks, and recovery",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Special concerns in real-time systems",
-           "topic_num": "3",
+         { "content": "Special concerns in real-time systems",
+           "num": "3",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Describe what makes a system a real-time system",
+         {"content": "Describe what makes a system a real-time system",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Explain the presence of and describe the characteristics of latency in real-time systems",
+         {"content": "Explain the presence of and describe the characteristics of latency in real-time systems",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Summarize special concerns that real-time systems present and how these concerns are addressed",
+         {"content": "Summarize special concerns that real-time systems present and how these concerns are addressed",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          }
       ]}
       ,
       {"unit_name": "File_Systems",
        "topics": [
-         { "topic_content": "Files: data, metadata, operations, organization, buffering, sequential, nonsequential",
-           "topic_num": "0",
+         { "content": "Files: data, metadata, operations, organization, buffering, sequential, nonsequential",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Directories: contents and structure",
-           "topic_num": "1",
+         { "content": "Directories: contents and structure",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "File systems: partitioning, mount/unmount, virtual file systems",
-           "topic_num": "2",
+         { "content": "File systems: partitioning, mount/unmount, virtual file systems",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Standard implementation techniques",
-           "topic_num": "3",
+         { "content": "Standard implementation techniques",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Memory-mapped files",
-           "topic_num": "4",
+         { "content": "Memory-mapped files",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Special-purpose file systems",
-           "topic_num": "5",
+         { "content": "Special-purpose file systems",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "Naming, searching, access, backups",
-           "topic_num": "6",
+         { "content": "Naming, searching, access, backups",
+           "num": "6",
            "addressed": "No"
          },
-         { "topic_content": "Journaling and log-structured file systems",
-           "topic_num": "7",
+         { "content": "Journaling and log-structured file systems",
+           "num": "7",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Summarize the full range of considerations in the design of file systems",
+         {"content": "Summarize the full range of considerations in the design of file systems",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Compare and contrast different approaches to file organization, recognizing the strengths and weaknesses of each",
+         {"content": "Compare and contrast different approaches to file organization, recognizing the strengths and weaknesses of each",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Summarize how hardware developments have led to changes in the priorities for the design and the management of file systems",
+         {"content": "Summarize how hardware developments have led to changes in the priorities for the design and the management of file systems",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Summarize the use of journaling and how log-structured file systems enhance fault tolerance",
+         {"content": "Summarize the use of journaling and how log-structured file systems enhance fault tolerance",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          }
       ]}
       ,
       {"unit_name": "Memory_Management",
        "topics": [
-         { "topic_content": "Review of physical memory and memory management hardware",
-           "topic_num": "0",
+         { "content": "Review of physical memory and memory management hardware",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "",
-           "topic_num": "1",
+         { "content": "",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Working sets and thrashing",
-           "topic_num": "2",
+         { "content": "Working sets and thrashing",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Caching",
-           "topic_num": "3",
+         { "content": "Caching",
+           "num": "3",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain memory hierarchy and cost-performance trade-offs",
+         {"content": "Explain memory hierarchy and cost-performance trade-offs",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Summarize the principles of virtual memory as applied to caching and paging",
+         {"content": "Summarize the principles of virtual memory as applied to caching and paging",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Evaluate the trade-offs in terms of memory size (main memory, cache memory, auxiliary memory) and processor speed",
+         {"content": "Evaluate the trade-offs in terms of memory size (main memory, cache memory, auxiliary memory) and processor speed",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Defend the different ways of allocating memory to tasks, citing the relative merits of each",
+         {"content": "Defend the different ways of allocating memory to tasks, citing the relative merits of each",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Describe the reason for and use of cache memory (performance and proximity, different dimension of how caches complicate isolation and VM abstraction)",
+         {"content": "Describe the reason for and use of cache memory (performance and proximity, different dimension of how caches complicate isolation and VM abstraction)",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Discuss the concept of thrashing, both in terms of the reasons it occurs and the techniques used to recognize and manage the problem",
+         {"content": "Discuss the concept of thrashing, both in terms of the reasons it occurs and the techniques used to recognize and manage the problem",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          }
       ]}
       ,
       {"unit_name": "Concurrency",
        "topics": [
-         { "topic_content": "States and state diagrams (cross reference SF/State-State Transition-State Machines)",
-           "topic_num": "0",
+         { "content": "States and state diagrams (cross reference SF/State-State Transition-State Machines)",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Structures (ready list, process control blocks, and so forth)",
-           "topic_num": "1",
+         { "content": "Structures (ready list, process control blocks, and so forth)",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Dispatching and context switching",
-           "topic_num": "2",
+         { "content": "Dispatching and context switching",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "The role of interrupts",
-           "topic_num": "3",
+         { "content": "The role of interrupts",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Managing atomic access to OS objects",
-           "topic_num": "4",
+         { "content": "Managing atomic access to OS objects",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Implementing synchronization primitives",
-           "topic_num": "5",
+         { "content": "Implementing synchronization primitives",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "Multiprocessor issues (spin-locks, reentrancy) (cross reference SF/Parallelism)",
-           "topic_num": "6",
+         { "content": "Multiprocessor issues (spin-locks, reentrancy) (cross reference SF/Parallelism)",
+           "num": "6",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Describe the need for concurrency within the framework of an operating system",
+         {"content": "Describe the need for concurrency within the framework of an operating system",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Demonstrate the potential run-time problems arising from the concurrent operation of many separate tasks",
+         {"content": "Demonstrate the potential run-time problems arising from the concurrent operation of many separate tasks",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Summarize the range of mechanisms that can be employed at the operating system level to realize concurrent systems and describe the benefits of each",
+         {"content": "Summarize the range of mechanisms that can be employed at the operating system level to realize concurrent systems and describe the benefits of each",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Explain the different states that a task may pass through and the data structures needed to support the management of many tasks",
+         {"content": "Explain the different states that a task may pass through and the data structures needed to support the management of many tasks",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Summarize techniques for achieving synchronization in an operating system (e.g., describe how to implement a semaphore using OS primitives)",
+         {"content": "Summarize techniques for achieving synchronization in an operating system (e.g., describe how to implement a semaphore using OS primitives)",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Describe reasons for using interrupts, dispatching, and context switching to support concurrency in an operating system",
+         {"content": "Describe reasons for using interrupts, dispatching, and context switching to support concurrency in an operating system",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Create state and transition diagrams for simple problem domains",
+         {"content": "Create state and transition diagrams for simple problem domains",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          }
       ]}
       ,
       {"unit_name": "Operating_System_Principles",
        "topics": [
-         { "topic_content": "Structuring methods (monolithic, layered, modular, micro-kernel models)",
-           "topic_num": "0",
+         { "content": "Structuring methods (monolithic, layered, modular, micro-kernel models)",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Abstractions, processes, and resources",
-           "topic_num": "1",
+         { "content": "Abstractions, processes, and resources",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Concepts of application program interfaces (APIs)",
-           "topic_num": "2",
+         { "content": "Concepts of application program interfaces (APIs)",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Application needs and the evolution of hardware/software techniques",
-           "topic_num": "3",
+         { "content": "Application needs and the evolution of hardware/software techniques",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Device organization",
-           "topic_num": "4",
+         { "content": "Device organization",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Interrupts: methods and implementations",
-           "topic_num": "5",
+         { "content": "Interrupts: methods and implementations",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "Concept of user/system state and protection, transition to kernel mode",
-           "topic_num": "6",
+         { "content": "Concept of user/system state and protection, transition to kernel mode",
+           "num": "6",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain the concept of a logical layer.",
+         {"content": "Explain the concept of a logical layer.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Explain the benefits of building abstract layers in hierarchical fashion.",
+         {"content": "Explain the benefits of building abstract layers in hierarchical fashion.",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Describe the value of APIs and middleware.",
+         {"content": "Describe the value of APIs and middleware.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Describe how computing resources are used by application software and managed by system software.",
+         {"content": "Describe how computing resources are used by application software and managed by system software.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Contrast kernel and user mode in an operating system.",
+         {"content": "Contrast kernel and user mode in an operating system.",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Discuss the advantages and disadvantages of using interrupt processing.",
+         {"content": "Discuss the advantages and disadvantages of using interrupt processing.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Explain the use of a device list and driver I/O queue.",
+         {"content": "Explain the use of a device list and driver I/O queue.",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          }
       ]}
       ,
       {"unit_name": "Scheduling_and_Dispatch",
        "topics": [
-         { "topic_content": "Preemptive and non-preemptive scheduling (cross reference SF/Resource Allocation and Scheduling, PD/Parallel Performance)",
-           "topic_num": "0",
+         { "content": "Preemptive and non-preemptive scheduling (cross reference SF/Resource Allocation and Scheduling, PD/Parallel Performance)",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Schedulers and policies (cross reference SF/Resource Allocation and Scheduling, PD/Parallel Performance)",
-           "topic_num": "1",
+         { "content": "Schedulers and policies (cross reference SF/Resource Allocation and Scheduling, PD/Parallel Performance)",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Processes and threads (cross reference SF/computational paradigms)",
-           "topic_num": "2",
+         { "content": "Processes and threads (cross reference SF/computational paradigms)",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Deadlines and real-time issues",
-           "topic_num": "3",
+         { "content": "Deadlines and real-time issues",
+           "num": "3",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Compare and contrast the common algorithms used for both preemptive and non-preemptive scheduling of tasks in operating systems, such as priority, performance comparison, and fair-share schemes",
+         {"content": "Compare and contrast the common algorithms used for both preemptive and non-preemptive scheduling of tasks in operating systems, such as priority, performance comparison, and fair-share schemes",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Describe relationships between scheduling algorithms and application domains",
+         {"content": "Describe relationships between scheduling algorithms and application domains",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Discuss the types of processor scheduling such as short-term, medium-term, long-term, and I/O",
+         {"content": "Discuss the types of processor scheduling such as short-term, medium-term, long-term, and I/O",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Describe the difference between processes and threads",
+         {"content": "Describe the difference between processes and threads",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Compare and contrast static and dynamic approaches to real-time scheduling",
+         {"content": "Compare and contrast static and dynamic approaches to real-time scheduling",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Discuss the need for preemption and deadline scheduling",
+         {"content": "Discuss the need for preemption and deadline scheduling",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Identify ways that the logic embodied in scheduling algorithms are applicable to other domains, such as disk I/O, network scheduling, project scheduling, and problems beyond computing",
+         {"content": "Identify ways that the logic embodied in scheduling algorithms are applicable to other domains, such as disk I/O, network scheduling, project scheduling, and problems beyond computing",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          }
       ]}
 ]},
@@ -1540,481 +1540,481 @@
   "units": [
       {"unit_name": "Performance_Enhancements",
        "topics": [
-         { "topic_content": "Superscalar architecture",
-           "topic_num": "0",
+         { "content": "Superscalar architecture",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Branch prediction, Speculative execution, Out-of-order execution",
-           "topic_num": "1",
+         { "content": "Branch prediction, Speculative execution, Out-of-order execution",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Prefetching",
-           "topic_num": "2",
+         { "content": "Prefetching",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Vector processors and GPUs",
-           "topic_num": "3",
+         { "content": "Vector processors and GPUs",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Hardware support for Multithreading",
-           "topic_num": "4",
+         { "content": "Hardware support for Multithreading",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Scalability",
-           "topic_num": "5",
+         { "content": "Scalability",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "Alternative architectures, such as VLIW/EPIC, and Accelerators and other kinds of Special-Purpose Processors",
-           "topic_num": "6",
+         { "content": "Alternative architectures, such as VLIW/EPIC, and Accelerators and other kinds of Special-Purpose Processors",
+           "num": "6",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Describe superscalar architectures and their advantages",
+         {"content": "Describe superscalar architectures and their advantages",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Explain the concept of branch prediction and its utility",
+         {"content": "Explain the concept of branch prediction and its utility",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Characterize the costs and benefits of prefetching",
+         {"content": "Characterize the costs and benefits of prefetching",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Explain speculative execution and identify the conditions that justify it",
+         {"content": "Explain speculative execution and identify the conditions that justify it",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Discuss the performance advantages that multithreading offered in an architecture along with the factors that make it difficult to derive maximum benefits from this approach",
+         {"content": "Discuss the performance advantages that multithreading offered in an architecture along with the factors that make it difficult to derive maximum benefits from this approach",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Describe the relevance of scalability to performance",
+         {"content": "Describe the relevance of scalability to performance",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          }
       ]}
       ,
       {"unit_name": "Digital_Logic_and_Digital_Systems",
        "topics": [
-         { "topic_content": "Overview and history of computer architecture",
-           "topic_num": "0",
+         { "content": "Overview and history of computer architecture",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Combinational vs. sequential logic/Field programmable gate arrays as a fundamental combinational + sequential logic building block",
-           "topic_num": "1",
+         { "content": "Combinational vs. sequential logic/Field programmable gate arrays as a fundamental combinational + sequential logic building block",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Multiple representations/layers of interpretation (hardware is just another layer)",
-           "topic_num": "2",
+         { "content": "Multiple representations/layers of interpretation (hardware is just another layer)",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Computer-aided design tools that process hardware and architectural representations",
-           "topic_num": "3",
+         { "content": "Computer-aided design tools that process hardware and architectural representations",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Register transfer notation/Hardware Description Language (Verilog/VHDL)",
-           "topic_num": "4",
+         { "content": "Register transfer notation/Hardware Description Language (Verilog/VHDL)",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Physical constraints (gate delays, fan-in, fan-out, energy/power)",
-           "topic_num": "5",
+         { "content": "Physical constraints (gate delays, fan-in, fan-out, energy/power)",
+           "num": "5",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Describe the progression of computer technology components from vacuum tubes to VLSI, from mainframe computer architectures to the organization of warehouse-scale computers",
+         {"content": "Describe the progression of computer technology components from vacuum tubes to VLSI, from mainframe computer architectures to the organization of warehouse-scale computers",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Comprehend the trend of modern computer architectures towards multi-core and that parallelism is inherent in all hardware systems",
+         {"content": "Comprehend the trend of modern computer architectures towards multi-core and that parallelism is inherent in all hardware systems",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Explain the implications of the 'power wall' in terms of further processor performance improvements and the drive towards harnessing parallelism",
+         {"content": "Explain the implications of the 'power wall' in terms of further processor performance improvements and the drive towards harnessing parallelism",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Articulate that there are many equivalent representations of computer functionality, including logical expressions and gates, and be able to use mathematical expressions to describe the functions of simple combinational and sequential circuits",
+         {"content": "Articulate that there are many equivalent representations of computer functionality, including logical expressions and gates, and be able to use mathematical expressions to describe the functions of simple combinational and sequential circuits",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Design the basic building blocks of a computer: arithmetic-logic unit (gate-level), registers (gate-level), central processing unit (register transfer-level), memory (register transfer-level)",
+         {"content": "Design the basic building blocks of a computer: arithmetic-logic unit (gate-level), registers (gate-level), central processing unit (register transfer-level), memory (register transfer-level)",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Use CAD tools for capture, synthesis, and simulation to evaluate simple building blocks (e.g., arithmetic-logic unit, registers, movement between registers) of a simple computer design",
+         {"content": "Use CAD tools for capture, synthesis, and simulation to evaluate simple building blocks (e.g., arithmetic-logic unit, registers, movement between registers) of a simple computer design",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Evaluate the functional and timing diagram behavior of a simple processor implemented at the logic circuit level",
+         {"content": "Evaluate the functional and timing diagram behavior of a simple processor implemented at the logic circuit level",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          }
       ]}
       ,
       {"unit_name": "Machine",
        "topics": [
-         { "topic_content": "Bits, bytes, and words",
-           "topic_num": "0",
+         { "content": "Bits, bytes, and words",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Numeric data representation and number bases [Not addressed]",
-           "topic_num": "1",
+         { "content": "Numeric data representation and number bases [Not addressed]",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Fixed- and floating-point systems",
-           "topic_num": "2",
+         { "content": "Fixed- and floating-point systems",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Signed and twos-complement representations",
-           "topic_num": "3",
+         { "content": "Signed and twos-complement representations",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Representation of non-numeric data (character codes, graphical data)",
-           "topic_num": "4",
+         { "content": "Representation of non-numeric data (character codes, graphical data)",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Representation of records and arrays",
-           "topic_num": "5",
+         { "content": "Representation of records and arrays",
+           "num": "5",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain why everything is data, including instructions, in computers",
+         {"content": "Explain why everything is data, including instructions, in computers",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Explain the reasons for using alternative formats to represent numerical data",
+         {"content": "Explain the reasons for using alternative formats to represent numerical data",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Describe how negative integers are stored in sign-magnitude and twos-complement representations",
+         {"content": "Describe how negative integers are stored in sign-magnitude and twos-complement representations",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Explain how fixed-length number representations affect accuracy and precision",
+         {"content": "Explain how fixed-length number representations affect accuracy and precision",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Describe the internal representation of non-numeric data, such as characters, strings, records, and arrays",
+         {"content": "Describe the internal representation of non-numeric data, such as characters, strings, records, and arrays",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Convert numerical data from one format to another",
+         {"content": "Convert numerical data from one format to another",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Write simple programs at the assembly/machine level for string processing and manipulation",
+         {"content": "Write simple programs at the assembly/machine level for string processing and manipulation",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          }
       ]}
       ,
       {"unit_name": "Multiprocessing_and_Alternative_Architectures",
        "topics": [
-         { "topic_content": "Power Law",
-           "topic_num": "0",
+         { "content": "Power Law",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Example SIMD and MIMD instruction sets and architectures",
-           "topic_num": "1",
+         { "content": "Example SIMD and MIMD instruction sets and architectures",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Interconnection networks (hypercube, shuffle-exchange, mesh, crossbar)",
-           "topic_num": "2",
+         { "content": "Interconnection networks (hypercube, shuffle-exchange, mesh, crossbar)",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Shared multiprocessor memory systems and memory consistency",
-           "topic_num": "3",
+         { "content": "Shared multiprocessor memory systems and memory consistency",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Multiprocessor cache coherence",
-           "topic_num": "4",
+         { "content": "Multiprocessor cache coherence",
+           "num": "4",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Discuss the concept of parallel processing beyond the classical von Neumann model",
+         {"content": "Discuss the concept of parallel processing beyond the classical von Neumann model",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Describe alternative architectures such as SIMD and MIMD",
+         {"content": "Describe alternative architectures such as SIMD and MIMD",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Explain the concept of interconnection networks and characterize different approaches",
+         {"content": "Explain the concept of interconnection networks and characterize different approaches",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Discuss the special concerns that multiprocessing systems present with respect to memory management and describe how these are addressed",
+         {"content": "Discuss the special concerns that multiprocessing systems present with respect to memory management and describe how these are addressed",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Describe the differences between memory backplane, processor memory interconnect, and remote memory via networks",
+         {"content": "Describe the differences between memory backplane, processor memory interconnect, and remote memory via networks",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          }
       ]}
       ,
       {"unit_name": "Interfacing_and_Communication",
        "topics": [
-         { "topic_content": "I/O fundamentals: handshaking, buffering, programmed I/O, interrupt-driven I/O",
-           "topic_num": "0",
+         { "content": "I/O fundamentals: handshaking, buffering, programmed I/O, interrupt-driven I/O",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Interrupt structures: vectored and prioritized, interrupt acknowledgment",
-           "topic_num": "1",
+         { "content": "Interrupt structures: vectored and prioritized, interrupt acknowledgment",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "External storage, physical organization, and drives",
-           "topic_num": "2",
+         { "content": "External storage, physical organization, and drives",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Buses: bus protocols, arbitration, direct-memory access (DMA)",
-           "topic_num": "3",
+         { "content": "Buses: bus protocols, arbitration, direct-memory access (DMA)",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Introduction to networks: networks as another layer of access hierarchy",
-           "topic_num": "4",
+         { "content": "Introduction to networks: networks as another layer of access hierarchy",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Multimedia support",
-           "topic_num": "5",
+         { "content": "Multimedia support",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "RAID architectures",
-           "topic_num": "6",
+         { "content": "RAID architectures",
+           "num": "6",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain how interrupts are used to implement I/O control and data transfers",
+         {"content": "Explain how interrupts are used to implement I/O control and data transfers",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Identify various types of buses in a computer system",
+         {"content": "Identify various types of buses in a computer system",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Describe data access from a magnetic disk drive",
+         {"content": "Describe data access from a magnetic disk drive",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Compare common network organizations, such as ethernet/bus, ring, switched vs. routed",
+         {"content": "Compare common network organizations, such as ethernet/bus, ring, switched vs. routed",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Identify interfaces needed for multimedia support, from storage, through network, to memory and display",
+         {"content": "Identify interfaces needed for multimedia support, from storage, through network, to memory and display",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Describe the advantages and limitations of RAID architectures",
+         {"content": "Describe the advantages and limitations of RAID architectures",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          }
       ]}
       ,
       {"unit_name": "Functional_Organization",
        "topics": [
-         { "topic_content": "Implementation of simple datapaths, including instruction pipelining, hazard detection and resolution",
-           "topic_num": "0",
+         { "content": "Implementation of simple datapaths, including instruction pipelining, hazard detection and resolution",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Control unit: hardwired realization vs. microprogrammed realization",
-           "topic_num": "1",
+         { "content": "Control unit: hardwired realization vs. microprogrammed realization",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Instruction pipelining",
-           "topic_num": "2",
+         { "content": "Instruction pipelining",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Introduction to instruction-level parallelism (ILP)",
-           "topic_num": "3",
+         { "content": "Introduction to instruction-level parallelism (ILP)",
+           "num": "3",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Compare alternative implementation of datapaths",
+         {"content": "Compare alternative implementation of datapaths",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Discuss the concept of control points and the generation of control signals using hardwired or microprogrammed implementations",
+         {"content": "Discuss the concept of control points and the generation of control signals using hardwired or microprogrammed implementations",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Explain basic instruction level parallelism using pipelining and the major hazards that may occur",
+         {"content": "Explain basic instruction level parallelism using pipelining and the major hazards that may occur",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Design and implement a complete processor, including datapath and control",
+         {"content": "Design and implement a complete processor, including datapath and control",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Determine, for a given processor and memory system implementation, the average cycles per instruction",
+         {"content": "Determine, for a given processor and memory system implementation, the average cycles per instruction",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          }
       ]}
       ,
       {"unit_name": "Memory_System_Organization_and_Architecture",
        "topics": [
-         { "topic_content": "Storage systems and their technology",
-           "topic_num": "0",
+         { "content": "Storage systems and their technology",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "",
-           "topic_num": "1",
+         { "content": "",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Memory hierarchy",
-           "topic_num": "2",
-           "subtopics": [         { "topic_content": "importance of temporal and spatial locality",
-           "topic_num": "20",
+         { "content": "Memory hierarchy",
+           "num": "2",
+           "subtopics": [         { "content": "importance of temporal and spatial locality",
+           "num": "20",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Main memory organization and operations",
-           "topic_num": "3",
+         { "content": "Main memory organization and operations",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Latency, cycle time, bandwidth, and interleaving",
-           "topic_num": "4",
+         { "content": "Latency, cycle time, bandwidth, and interleaving",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Cache memories (address mapping, block size, replacement and store policy)",
-           "topic_num": "5",
+         { "content": "Cache memories (address mapping, block size, replacement and store policy)",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "Multiprocessor cache consistency/Using the memory system for inter-core synchronization/atomic memory operations",
-           "topic_num": "6",
+         { "content": "Multiprocessor cache consistency/Using the memory system for inter-core synchronization/atomic memory operations",
+           "num": "6",
            "addressed": "No"
          },
-         { "topic_content": "Virtual memory (page table, TLB)",
-           "topic_num": "7",
+         { "content": "Virtual memory (page table, TLB)",
+           "num": "7",
            "addressed": "No"
          },
-         { "topic_content": "Fault handling and reliability",
-           "topic_num": "8",
+         { "content": "Fault handling and reliability",
+           "num": "8",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Identify the main types of memory technology",
+         {"content": "Identify the main types of memory technology",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Explain the effect of memory latency on running time",
+         {"content": "Explain the effect of memory latency on running time",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Describe how the use of memory hierarchy (cache, virtual memory) is used to reduce the effective memory latency",
+         {"content": "Describe how the use of memory hierarchy (cache, virtual memory) is used to reduce the effective memory latency",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Describe the principles of memory management",
+         {"content": "Describe the principles of memory management",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Explain the workings of a system with virtual memory management",
+         {"content": "Explain the workings of a system with virtual memory management",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Compute Average Memory Access Time under a variety of memory system configurations and workload assumptions",
+         {"content": "Compute Average Memory Access Time under a variety of memory system configurations and workload assumptions",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          }
       ]}
       ,
       {"unit_name": "Assembly_Level_Machine_Organization",
        "topics": [
-         { "topic_content": "Basic organization of the von Neumann machine",
-           "topic_num": "0",
+         { "content": "Basic organization of the von Neumann machine",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Control unit; instruction fetch, decode, and execution",
-           "topic_num": "1",
+         { "content": "Control unit; instruction fetch, decode, and execution",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Instruction sets and types (data manipulation, control, I/O)",
-           "topic_num": "2",
+         { "content": "Instruction sets and types (data manipulation, control, I/O)",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Assembly/machine language programming",
-           "topic_num": "3",
+         { "content": "Assembly/machine language programming",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Instruction formats",
-           "topic_num": "4",
+         { "content": "Instruction formats",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Addressing modes",
-           "topic_num": "5",
+         { "content": "Addressing modes",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "Subroutine call and return mechanisms (xref PL/Language Translation and Execution)",
-           "topic_num": "6",
+         { "content": "Subroutine call and return mechanisms (xref PL/Language Translation and Execution)",
+           "num": "6",
            "addressed": "No"
          },
-         { "topic_content": "I/O and interrupts",
-           "topic_num": "7",
+         { "content": "I/O and interrupts",
+           "num": "7",
            "addressed": "No"
          },
-         { "topic_content": "Heap vs. Static vs. Stack vs. Code segments",
-           "topic_num": "8",
+         { "content": "Heap vs. Static vs. Stack vs. Code segments",
+           "num": "8",
            "addressed": "No"
          },
-         { "topic_content": "Shared memory multiprocessors/multicore organization",
-           "topic_num": "9",
+         { "content": "Shared memory multiprocessors/multicore organization",
+           "num": "9",
            "addressed": "No"
          },
-         { "topic_content": "Introduction to SIMD vs. MIMD and the Flynn Taxonomy",
-           "topic_num": "10",
+         { "content": "Introduction to SIMD vs. MIMD and the Flynn Taxonomy",
+           "num": "10",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Explain the organization of the classical von Neumann machine and its major functional units",
+         {"content": "Explain the organization of the classical von Neumann machine and its major functional units",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Describe how an instruction is executed in a classical von Neumann machine, with extensions for threads, multiprocessor synchronization, and SIMD execution",
+         {"content": "Describe how an instruction is executed in a classical von Neumann machine, with extensions for threads, multiprocessor synchronization, and SIMD execution",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Describe instruction level parallelism and hazards, and how they are managed in typical processor pipelines",
+         {"content": "Describe instruction level parallelism and hazards, and how they are managed in typical processor pipelines",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Summarize how instructions are represented at both the machine level and in the context of a symbolic assembler",
+         {"content": "Summarize how instructions are represented at both the machine level and in the context of a symbolic assembler",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Demonstrate how to map between high-level language patterns into assembly/machine language notations",
+         {"content": "Demonstrate how to map between high-level language patterns into assembly/machine language notations",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Explain different instruction formats, such as addresses per instruction and variable length vs. fixed length formats",
+         {"content": "Explain different instruction formats, such as addresses per instruction and variable length vs. fixed length formats",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "Explain how subroutine calls are handled at the assembly level",
+         {"content": "Explain how subroutine calls are handled at the assembly level",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          },
-         {"skill": "Explain the basic concepts of interrupts and I/O operations",
+         {"content": "Explain the basic concepts of interrupts and I/O operations",
            "mastery": "-",
-           "skill_num": "8"
+           "num": "8"
          },
-         {"skill": "Write simple assembly language program segments",
+         {"content": "Write simple assembly language program segments",
            "mastery": "-",
-           "skill_num": "9"
+           "num": "9"
          },
-         {"skill": "Show how fundamental high-level programming constructs are implemented at the machine-language level",
+         {"content": "Show how fundamental high-level programming constructs are implemented at the machine-language level",
            "mastery": "-",
-           "skill_num": "10"
+           "num": "10"
          }
       ]}
 ]},
@@ -2022,51 +2022,51 @@
   "units": [
       {"unit_name": "Code_Generation",
        "topics": [
-         { "topic_content": "Procedure calls and method dispatching",
-           "topic_num": "0",
+         { "content": "Procedure calls and method dispatching",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Separate compilation; linking",
-           "topic_num": "1",
+         { "content": "Separate compilation; linking",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Instruction selection",
-           "topic_num": "2",
+         { "content": "Instruction selection",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Instruction scheduling",
-           "topic_num": "3",
+         { "content": "Instruction scheduling",
+           "num": "3",
            "addressed": "No"
          },
-         { "topic_content": "Register allocation",
-           "topic_num": "4",
+         { "content": "Register allocation",
+           "num": "4",
            "addressed": "No"
          },
-         { "topic_content": "Peephole optimization",
-           "topic_num": "5",
+         { "content": "Peephole optimization",
+           "num": "5",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Identify all essential steps for automatically converting source code into assembly or other low-level languages",
+         {"content": "Identify all essential steps for automatically converting source code into assembly or other low-level languages",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Generate the low-level code for calling functions/methods in modern languages",
+         {"content": "Generate the low-level code for calling functions/methods in modern languages",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Discuss why separate compilation requires uniform calling conventions",
+         {"content": "Discuss why separate compilation requires uniform calling conventions",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Discuss why separate compilation limits optimization because of unknown effects of calls",
+         {"content": "Discuss why separate compilation limits optimization because of unknown effects of calls",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Discuss opportunities for optimization introduced by naive translation and approaches for achieving optimization, such as instruction selection, instruction scheduling, register allocation, and peephole optimization",
+         {"content": "Discuss opportunities for optimization introduced by naive translation and approaches for achieving optimization, such as instruction selection, instruction scheduling, register allocation, and peephole optimization",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          }
       ]}
 ]},
@@ -2074,249 +2074,249 @@
   "units": [
       {"unit_name": "Tools_and_Environments",
        "topics": [
-         { "topic_content": "Software configuration management and version control ; release management",
-           "topic_num": "0",
+         { "content": "Software configuration management and version control ; release management",
+           "num": "0",
            "addressed": "No"
          },
-         { "topic_content": "Requirements analysis and design modeling tools",
-           "topic_num": "1",
+         { "content": "Requirements analysis and design modeling tools",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Testing tools including static and dynamic analysis tools",
-           "topic_num": "2",
+         { "content": "Testing tools including static and dynamic analysis tools",
+           "num": "2",
            "addressed": "No"
          },
-         { "topic_content": "Programming environments that automate parts of program construction processes (e.g., automated builds)",
-           "topic_num": "3",
-           "subtopics": [         { "topic_content": "Continuous integration",
-           "topic_num": "30",
+         { "content": "Programming environments that automate parts of program construction processes (e.g., automated builds)",
+           "num": "3",
+           "subtopics": [         { "content": "Continuous integration",
+           "num": "30",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Tool integration concepts and mechanisms",
-           "topic_num": "4",
+         { "content": "Tool integration concepts and mechanisms",
+           "num": "4",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Describe the difference between centralized and distributed software configuration management",
+         {"content": "Describe the difference between centralized and distributed software configuration management",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Identify configuration items and use a source code control tool in a small team-based project",
+         {"content": "Identify configuration items and use a source code control tool in a small team-based project",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Describe the issues that are important in selecting a set of tools for the development of a particular software system, including tools for requirements tracking, design modeling, implementation, build automation, and testing",
+         {"content": "Describe the issues that are important in selecting a set of tools for the development of a particular software system, including tools for requirements tracking, design modeling, implementation, build automation, and testing",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Demonstrate the capability to use software tools in support of the development of a software product of medium size",
+         {"content": "Demonstrate the capability to use software tools in support of the development of a software product of medium size",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          }
       ]}
       ,
       {"unit_name": "Software_Project_Management",
        "topics": [
-         { "topic_content": "Team participation",
-           "topic_num": "0",
-           "subtopics": [         { "topic_content": "Team processes including responsibilities for tasks, meeting structure, and work schedule o Roles and responsibilities in a software team",
-           "topic_num": "0",
+         { "content": "Team participation",
+           "num": "0",
+           "subtopics": [         { "content": "Team processes including responsibilities for tasks, meeting structure, and work schedule o Roles and responsibilities in a software team",
+           "num": "0",
            "addressed": "No"
          }, 
-         { "topic_content": "Team conflict resolution",
-           "topic_num": "1",
+         { "content": "Team conflict resolution",
+           "num": "1",
            "addressed": "No"
          }, 
-         { "topic_content": "Risks associated with virtual teams (communication, perception, structure)",
-           "topic_num": "2",
+         { "content": "Risks associated with virtual teams (communication, perception, structure)",
+           "num": "2",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Effort Estimation (at the personal level)",
-           "topic_num": "1",
+         { "content": "Effort Estimation (at the personal level)",
+           "num": "1",
            "addressed": "No"
          },
-         { "topic_content": "Risk (cross reference IAS/Secure Software Engineering)",
-           "topic_num": "2",
-           "subtopics": [         { "topic_content": "The role of risk in the lifecycle",
-           "topic_num": "20",
+         { "content": "Risk (cross reference IAS/Secure Software Engineering)",
+           "num": "2",
+           "subtopics": [         { "content": "The role of risk in the lifecycle",
+           "num": "20",
            "addressed": "No"
          }, 
-         { "topic_content": "Risk categories including security, safety, market, financial, technology, people, quality, structure and process",
-           "topic_num": "21",
+         { "content": "Risk categories including security, safety, market, financial, technology, people, quality, structure and process",
+           "num": "21",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Team management",
-           "topic_num": "3",
-           "subtopics": [         { "topic_content": "Team organization and decision-making",
-           "topic_num": "30",
+         { "content": "Team management",
+           "num": "3",
+           "subtopics": [         { "content": "Team organization and decision-making",
+           "num": "30",
            "addressed": "No"
          }, 
-         { "topic_content": "Role identification and assignment",
-           "topic_num": "31",
+         { "content": "Role identification and assignment",
+           "num": "31",
            "addressed": "No"
          }, 
-         { "topic_content": "Individual and team performance assessment",
-           "topic_num": "32",
+         { "content": "Individual and team performance assessment",
+           "num": "32",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Project management",
-           "topic_num": "4",
-           "subtopics": [         { "topic_content": "Scheduling and tracking",
-           "topic_num": "40",
+         { "content": "Project management",
+           "num": "4",
+           "subtopics": [         { "content": "Scheduling and tracking",
+           "num": "40",
            "addressed": "No"
          }, 
-         { "topic_content": "Project management tools",
-           "topic_num": "41",
+         { "content": "Project management tools",
+           "num": "41",
            "addressed": "No"
          }, 
-         { "topic_content": "Cost/benefit analysis",
-           "topic_num": "42",
+         { "content": "Cost/benefit analysis",
+           "num": "42",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "Software measurement and estimation techniques",
-           "topic_num": "5",
+         { "content": "Software measurement and estimation techniques",
+           "num": "5",
            "addressed": "No"
          },
-         { "topic_content": "Software quality assurance and the role of measurements",
-           "topic_num": "6",
+         { "content": "Software quality assurance and the role of measurements",
+           "num": "6",
            "addressed": "No"
          },
-         { "topic_content": "Risk",
-           "topic_num": "7",
-           "subtopics": [         { "topic_content": "Risk identification and management",
-           "topic_num": "70",
+         { "content": "Risk",
+           "num": "7",
+           "subtopics": [         { "content": "Risk identification and management",
+           "num": "70",
            "addressed": "No"
          }, 
-         { "topic_content": "Risk analysis and evaluation",
-           "topic_num": "71",
+         { "content": "Risk analysis and evaluation",
+           "num": "71",
            "addressed": "No"
          }, 
-         { "topic_content": "Risk tolerance (e.g., risk-adverse, risk-neutral, risk-seeking)",
-           "topic_num": "72",
+         { "content": "Risk tolerance (e.g., risk-adverse, risk-neutral, risk-seeking)",
+           "num": "72",
            "addressed": "No"
          }, 
-         { "topic_content": "Risk planning",
-           "topic_num": "73",
+         { "content": "Risk planning",
+           "num": "73",
            "addressed": "No"
          }],
            "addressed": "No"
          },
-         { "topic_content": "System-wide approach to risk including hazards associated with tools",
-           "topic_num": "8",
+         { "content": "System-wide approach to risk including hazards associated with tools",
+           "num": "8",
            "addressed": "No"
          }
       ],
       "skills": [
-         {"skill": "Discuss common behaviors that contribute to the effective functioning of a team.",
+         {"content": "Discuss common behaviors that contribute to the effective functioning of a team.",
            "mastery": "-",
-           "skill_num": "1"
+           "num": "1"
          },
-         {"skill": "Create and follow an agenda for a team meeting",
+         {"content": "Create and follow an agenda for a team meeting",
            "mastery": "-",
-           "skill_num": "2"
+           "num": "2"
          },
-         {"skill": "Identify and justify necessary roles in a software development team.",
+         {"content": "Identify and justify necessary roles in a software development team.",
            "mastery": "-",
-           "skill_num": "3"
+           "num": "3"
          },
-         {"skill": "Understand the sources, hazards, and potential benefits of team conflict.",
+         {"content": "Understand the sources, hazards, and potential benefits of team conflict.",
            "mastery": "-",
-           "skill_num": "4"
+           "num": "4"
          },
-         {"skill": "Apply a conflict resolution strategy in a team setting.",
+         {"content": "Apply a conflict resolution strategy in a team setting.",
            "mastery": "-",
-           "skill_num": "5"
+           "num": "5"
          },
-         {"skill": "Use an ad hoc method to estimate software development effort (e.g., time) and compare to actual effort required.",
+         {"content": "Use an ad hoc method to estimate software development effort (e.g., time) and compare to actual effort required.",
            "mastery": "-",
-           "skill_num": "6"
+           "num": "6"
          },
-         {"skill": "List several examples of software risks.",
+         {"content": "List several examples of software risks.",
            "mastery": "-",
-           "skill_num": "7"
+           "num": "7"
          },
-         {"skill": "Describe the impact of risk in a software development lifecycle.",
+         {"content": "Describe the impact of risk in a software development lifecycle.",
            "mastery": "-",
-           "skill_num": "8"
+           "num": "8"
          },
-         {"skill": "Describe different categories of risk in software systems.",
+         {"content": "Describe different categories of risk in software systems.",
            "mastery": "-",
-           "skill_num": "9"
+           "num": "9"
          },
-         {"skill": "Demonstrate through involvement in a team project the central elements of team building and team management.",
+         {"content": "Demonstrate through involvement in a team project the central elements of team building and team management.",
            "mastery": "-",
-           "skill_num": "10"
+           "num": "10"
          },
-         {"skill": "Describe how the choice of process model affects team organizational structures and decision-making processes.",
+         {"content": "Describe how the choice of process model affects team organizational structures and decision-making processes.",
            "mastery": "-",
-           "skill_num": "11"
+           "num": "11"
          },
-         {"skill": "Create a team by identifying appropriate roles and assigning roles to team members.",
+         {"content": "Create a team by identifying appropriate roles and assigning roles to team members.",
            "mastery": "-",
-           "skill_num": "12"
+           "num": "12"
          },
-         {"skill": "Assess and provide feedback to teams and individuals on their performance in a team setting.",
+         {"content": "Assess and provide feedback to teams and individuals on their performance in a team setting.",
            "mastery": "-",
-           "skill_num": "13"
+           "num": "13"
          },
-         {"skill": "Using a particular software process, describe the aspects of a project that need to be planned and monitored, (e.g., estimates of size and effort, a schedule, resource allocation, configuration control, change management, and project risk identification and management).",
+         {"content": "Using a particular software process, describe the aspects of a project that need to be planned and monitored, (e.g., estimates of size and effort, a schedule, resource allocation, configuration control, change management, and project risk identification and management).",
            "mastery": "-",
-           "skill_num": "14"
+           "num": "14"
          },
-         {"skill": "Track the progress of some stage in a project using appropriate project metrics.",
+         {"content": "Track the progress of some stage in a project using appropriate project metrics.",
            "mastery": "-",
-           "skill_num": "15"
+           "num": "15"
          },
-         {"skill": "Compare simple software size and cost estimation techniques.",
+         {"content": "Compare simple software size and cost estimation techniques.",
            "mastery": "-",
-           "skill_num": "16"
+           "num": "16"
          },
-         {"skill": "Use a project management tool to assist in the assignment and tracking of tasks in a software development project.",
+         {"content": "Use a project management tool to assist in the assignment and tracking of tasks in a software development project.",
            "mastery": "-",
-           "skill_num": "17"
+           "num": "17"
          },
-         {"skill": "Describe the impact of risk tolerance on the software development process.",
+         {"content": "Describe the impact of risk tolerance on the software development process.",
            "mastery": "-",
-           "skill_num": "18"
+           "num": "18"
          },
-         {"skill": "Identify risks and describe approaches to managing risk (avoidance, acceptance, transference, mitigation), and characterize the strengths and shortcomings of each.",
+         {"content": "Identify risks and describe approaches to managing risk (avoidance, acceptance, transference, mitigation), and characterize the strengths and shortcomings of each.",
            "mastery": "-",
-           "skill_num": "19"
+           "num": "19"
          },
-         {"skill": "Explain how risk affects decisions in the software development process.",
+         {"content": "Explain how risk affects decisions in the software development process.",
            "mastery": "-",
-           "skill_num": "20"
+           "num": "20"
          },
-         {"skill": "Identify security risks for a software system.",
+         {"content": "Identify security risks for a software system.",
            "mastery": "-",
-           "skill_num": "21"
+           "num": "21"
          },
-         {"skill": "Demonstrate a systematic approach to the task of identifying hazards and risks in a particular situation.",
+         {"content": "Demonstrate a systematic approach to the task of identifying hazards and risks in a particular situation.",
            "mastery": "-",
-           "skill_num": "22"
+           "num": "22"
          },
-         {"skill": "Apply the basic principles of risk management in a variety of simple scenarios including a security situation",
+         {"content": "Apply the basic principles of risk management in a variety of simple scenarios including a security situation",
            "mastery": "-",
-           "skill_num": "23"
+           "num": "23"
          },
-         {"skill": "Conduct a cost/benefit analysis for a risk mitigation approach.",
+         {"content": "Conduct a cost/benefit analysis for a risk mitigation approach.",
            "mastery": "-",
-           "skill_num": "24"
+           "num": "24"
          },
-         {"skill": "Identify and analyze some of the risks for an entire system that arise from aspects other than the software.",
+         {"content": "Identify and analyze some of the risks for an entire system that arise from aspects other than the software.",
            "mastery": "-",
-           "skill_num": "25"
+           "num": "25"
          }
       ]}
 ]}]
