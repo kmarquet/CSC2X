@@ -107,7 +107,7 @@
 
 .topiccol {
     background-color: lightblue;
-    width: 400px;
+    text-width: 400px;
     word-wrap: break-word;
     margin-bottom: 0.2em;
     font-family: Serif;
@@ -131,7 +131,7 @@
 
 .subtopiccol {
     background-color: lightblue;
-    width: 420px;
+    text-width: 420px;
     word-wrap: break-all;
     margin-left: 2em;
     font-size: 80%;

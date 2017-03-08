@@ -1,4 +1,4 @@
-var curricula = null;
+var JSONCurricula = null;
 
 class JSSkill {
 
@@ -230,26 +230,26 @@ class JSUnit {
     toHTML()
     {
         var txt = "";
-
+        txt += "<td>";
         txt += "<table>\n";
         
         //=== One line for the unit title
-        txt += "<tr>\n";
+        txt += "<tr>";
         txt += "<div class=\"unittitle\" id=\"" + this.id + "\">";
-        txt += this.title + "<br>\n";
+        txt += this.title;
         txt += "</div>";
-        txt += "</tr>\n";
+        txt += "</tr>";
 
         //=== One line for the content
-        txt += "<tr class=\"unitcontent\" id=contentof\"" + this.id + "\">\n";
-        
+        txt += "<tr class=\"unitcontent\" id=\"contentof" + this.id + "\">\n";
+
         // one column empty
         txt += "<td class=\"indent\">\n"; 
         txt += "</td>\n";
 
         //------------ one column for the topics in a table -------
         txt += "<td class=\"topicscol\">\n"; 
-        txt += "<table>\n";
+        txt += "<table id=\"topicsTable\">\n";
         for (var topicRef in this.theJSTopics) {
             var topic = this.theJSTopics[topicRef];
             txt += "<tr class=\"topiccol\">\n"; 
@@ -265,7 +265,7 @@ class JSUnit {
 
         //-------- one column for the skills ---------------
         txt += "<td class=\"skillscol\">\n"; 
-
+        
         // Skills in a table, one row for each skill
         txt += "<table>\n";
         for (var skillRef in this.theJSSkills) {
@@ -278,9 +278,11 @@ class JSUnit {
         txt += "</td>\n"; 
 
         //---------------- end of skills --------------
-
+        txt += "</tr>";
         txt += "</table>\n"; // End of content
-        
+
+        txt += "</td>";
+
         return txt;
     }
 }
@@ -312,9 +314,10 @@ class JSArea {
     toHTML()
     {
         var txt = "";
+
         //=== One column for the area title
         txt += "<td class=\"areatitlecol\">\n"; 
-        txt += "<div class=\"areatitle\" id=\"" + this.id + "\">\n";
+         txt += "<div class=\"areatitle\" id=\"" + this.id + "\">\n";
         txt += this.title + "<br>\n";
         txt += "</div>";
         txt += "</td>\n"; 
@@ -322,12 +325,12 @@ class JSArea {
         //=== One column for the area content
         txt += "<td class=\"areacontentcol\">\n"; 
         txt += "<div id=\"contentof" + this.id + "\">\n";
-        txt += "<table>\n";
+        txt += "<table id=\"areaTable\">\n";
 
         //-- one row for each unit
         for (var unitRef in this.jsUnits) {
             var unit = this.jsUnits[unitRef];
-            txt += "<tr>";
+            txt += "<tr id=\"unitRow\">";
             txt += unit.toHTML();
             txt += "</tr>";
         }
@@ -357,14 +360,14 @@ class JSCurricula {
         var txt = "";
 
         //=== One row for each area
-        txt += "<table>\n";
+        txt += "<table id=\"curricula\">\n";
         for (var areaRef in this.jsAreas) {
             var jsa = this.jsAreas[areaRef];
-            txt += "<tr>\n";
+            txt += "<tr id=\"areaRow\">\n";
             txt += jsa.toHTML();
             txt += "</tr>\n"; 
         }
-        txt += "</table>\n";       
+        txt += "</table>\n";
 
         return txt;
     }
@@ -375,13 +378,15 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.split(search).join(replacement);
 }
 
-
+//======================================================================================
+//=============== printCSC() ===========================================================
+//======================================================================================
 window.printCSC = function(printNotAdressed = true)
 {    
     var fs = require('fs');
     var txt = "";
 
-    if (curricula == null) {
+    if (JSONCurricula == null) {
         JSONCurricula = JSON.parse(fs.readFileSync('CSC-content.json').toString());
         JSCurricula = new JSCurricula(JSONCurricula);
     }
@@ -397,13 +402,13 @@ window.printCSC = function(printNotAdressed = true)
         allSelects[i].addEventListener("change", function() {selectChanged(this)});
     }
     
-    for (var area in curricula) {
-        var areaName = curricula[area].area_name;
-        
-        document.getElementById(areaName).addEventListener("click", function(){displayArea(this)});
-        for (var unit in curricula[area].units) {
-            unitName = curricula[area].units[unit].unit_name;
-            document.getElementById(areaName + "__" + unitName).addEventListener("click", function(){displayUnit(this.id)});
+    for (var areaRef in JSCurricula.jsAreas) {
+        var area = JSCurricula.jsAreas[areaRef];
+        var areaId = area.getId();
+        document.getElementById(areaId).addEventListener("click", function(){displayArea(this)});
+        for (var unit in area.jsUnits) {
+            var unitId = area.jsUnits[unit].getId();
+            document.getElementById(unitId).addEventListener("click", function(){displayUnit(this)});
         }
     }
 
@@ -491,37 +496,29 @@ function resetCSC() {
 }
 
 window.displayArea = function(area) {
-    areaName = area.id;
-    var element = document.getElementById("contentof" + areaName);
+    var element = document.getElementById("contentof" + area.id);
     var eStyle = element.currentStyle ?
         element.currentStyle.display :
         getComputedStyle(element, null).display;
 
     if (eStyle === 'none')
-        document.getElementById("contentof" + areaName).style.display = 'inline';
+        document.getElementById("contentof" + area.id).style.display = 'inline';
     else
-        document.getElementById("contentof" + areaName).style.display = "none";
+        document.getElementById("contentof" + area.id).style.display = "none";
 }
 
-function displayUnit(unitName) {
-    var element = document.getElementById("contentof" + unitName);
+function displayUnit(unit) {
+    var element = document.getElementById("contentof" + unit.id);
     var eStyle = element.currentStyle ?
         element.currentStyle.display :
         getComputedStyle(element, null).display;
 
     if (eStyle === 'none')
-        document.getElementById("contentof" + unitName).style.display = 'block';
+        document.getElementById("contentof" + unit.id).style.display = 'block';
     else
-        document.getElementById("contentof" + unitName).style.display = "none";
+        document.getElementById("contentof" + unit.id).style.display = "none";
 }
 
-function displayConcept(unitName) {
-    
-    if (document.getElementById(conceptId).style.display == 'none')
-        document.getElementById(conceptId).style.display = 'block';
-    else
-        document.getElementById(conceptId).style.display = 'none';
-}
 
 function handleXrefs(theRefs)
 {
