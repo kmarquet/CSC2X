@@ -1,4 +1,5 @@
-var JSONCurricula = null;
+var JSONCur = null;
+var JSCur = null;
 
 class JSSkill {
 
@@ -7,9 +8,35 @@ class JSSkill {
         this.content = jsonSkill.content;
         this.theJSUnit = unit;
         this.skillNum = jsonSkill.num;
-        this.id = this.theJSUnit.getId() + "__skill" + this.skillNum;
+        this.id = this.theJSUnit.getId() + "__skill__" + this.skillNum;
         this.mastery = jsonSkill.mastery;
         this.levels = ["No", "Familiarity", "Usage", "Assessment"];
+        this.concerned = false;
+        if (this.mastery != "No")
+            this.setConcerned();
+    }
+
+    setMastery(value)
+    {
+        this.mastery = value;
+        this.theJSONSkill.mastery = value;
+        if (value == "No") {
+            this.concerned = false;
+            this.theJSUnit.evalConcerned();
+        } else {
+            this.setConcerned();
+        }
+    }
+    
+    setConcerned()
+    {
+        this.concerned = true;
+        this.theJSUnit.setConcerned();
+    }
+    
+    isConcerned()
+    {
+        return this.concerned;
     }
 
     toHTML()
@@ -24,7 +51,7 @@ class JSSkill {
         
         //=== One column for the select
         txt += "<td class=\"skillselectcol \">\n";
-        txt += "<select align=\"right\" class=\"skillselect\" id=\"" + this.id + "\">";
+        txt += "<select align=\"right\" class=\"skillselect\" id=\"select__" + this.id + "\">";
 
         for (var i = 0 ; i < this.levels.length ; i++) {
             var level = this.levels[i];
@@ -49,15 +76,33 @@ class JSTopic {
         this.content = jsonTopic.content;
         this.theJSUnit = unit;
         this.topicNum = jsonTopic.num;
-        this.id = this.theJSUnit.getId() + "__topic" + this.theJSONTopic.num;
+        this.id = this.theJSUnit.getId() + "__topic__" + this.theJSONTopic.num;
         this.theJSSubTopics = [];
         this.levels = ["No", "Yes"];
         this.addressed = this.theJSONTopic.addressed;
+        this.concerned = false;
+        if (this.addressed == "Yes")
+            this.setConcerned();
         
         for (var subTopicRef in this.theJSONTopic.subtopics) {
             var jsonSubTopic = this.theJSONTopic.subtopics[subTopicRef];
             var jsst = new JSSubTopic(jsonSubTopic, this);
             this.theJSSubTopics.push(jsst);
+        }
+    }
+    
+    setAddressed(value)
+    {
+        this.addressed = value;
+        this.theJSONTopic.addressed = value;
+        if (value == "No") {
+            for (var subtopicRef in this.theJSSubTopics) {
+                this.theJSSubTopics[subtopicRef].setConcerned(value);
+            }
+            this.concerned = false;
+            this.theJSUnit.evalConcerned();
+        } else {
+            this.setConcerned();
         }
     }
     
@@ -108,7 +153,18 @@ class JSTopic {
         return txt;
     }
 
-    toHTML()
+    setConcerned()
+    {
+        this.concerned = true;
+        this.theJSUnit.setConcerned();
+    }
+
+    isConcerned()
+    {
+        return this.concerned;
+    }
+    
+    toHTML(displayOnlyConcerned = false)
     {
         var txt = "";
 
@@ -120,6 +176,8 @@ class JSTopic {
         txt += "<table>\n";
         for (var subtopicRef in this.theJSSubTopics) {
             var subtopic = this.theJSSubTopics[subtopicRef];
+            if (displayOnlyConcerned && (! subtopic.isConcerned()))
+                break;
             txt += "<tr class=\"subtopicscol\">\n";
             txt += subtopic.toHTML();
             txt += "</tr>";
@@ -145,16 +203,43 @@ class JSSubTopic {
         this.content = jsonSubTopic.content;
         this.theJSUnit = null;
         this.topicNum = jsonSubTopic.num;
-        this.id = this.parentTopic.getId() + "__subtopic" + this.theJSONTopic.num;
+        this.id = this.parentTopic.getId() + "__subtopic__" + this.theJSONTopic.num;
         this.levels = ["No", "Yes"];
-        this.addressed
+        this.addressed = this.theJSONTopic.addressed;
+        this.concerned = false;
+        if (this.addressed == "Yes")
+            this.setConcerned();
     }
+
+    setAddressed(value)
+    {
+        this.addressed = value;
+        this.theJSONTopic.addressed = value;
+        if (value == "No") {
+            this.concerned = false;
+            this.parentTopic.evalConcerned();
+        } else {
+            this.setConcerned();
+        }
+    }
+    
 
     isSub()
     {
         return true;
     }
+    
+    setConcerned()
+    {
+        this.concerned = true;
+        this.parentTopic.setConcerned();
+    }
 
+    isConcerned()
+    {
+        return this.concerned;
+    }
+    
     getSelect()
     {
         var txt = "";
@@ -205,7 +290,7 @@ class JSUnit {
         this.theJSONUnit = jsonUnit;
         this.theJSTopics = [];
         this.theJSSkills = [];
-
+        this.concerned = false;
         
         for (var topicRef in this.theJSONUnit.topics) {
             var jsonTopic = this.theJSONUnit.topics[topicRef];
@@ -218,7 +303,62 @@ class JSUnit {
             this.theJSSkills.push(jss);
         }
     }
-    
+
+    evalConcerned()
+    {
+        newConcerned = false;
+        for (var topicRef in this.topics) {
+            var jsTopic = this.theJSTopics[topicRef];
+            if (jsTopic.isConcerned()) {
+                newConcerned = true;
+                break;
+            }
+        }
+        
+        if (newConcerned == false) {
+            for (var skillRef in this.skills) {
+                var jsSkill = this.theJSSkills[skillRef];
+                if (jsSkill.isConcerned()) {
+                    newConcerned = true;
+                    break;
+                }
+            }
+        }
+        if (newConcerned != this.concerned) {
+            if (newConcerned == false) {
+                this.concerned = false;
+                this.theJSArea.evalConcerned();
+            } else {
+                this.setConcerned();
+            }
+        }            
+    }
+
+    setTopic(topicNum, value)
+    {
+        this.theJSTopics[topicNum].setAddressed(value);
+    }
+    setSubTopic(topicNum, subTopicNum, value)
+    {
+        this.theJSTopics[topicNum].setSubTopicAddressed(value);
+
+    }
+    setSkill(skillNum, value)
+    {
+        this.theJSSkills[skillNum].setMastery(value);        
+    }
+
+    setConcerned()
+    {
+        this.concerned = true;
+        this.theJSArea.setConcerned();
+    }
+
+    isConcerned()
+    {
+        return this.concerned;
+    }
+
     getTitle() {
         return this.title;
     }
@@ -227,7 +367,7 @@ class JSUnit {
         return this.id;
     }
     
-    toHTML()
+    toHTML(displayOnlyConcerned = false)
     {
         var txt = "";
         txt += "<td>";
@@ -252,8 +392,10 @@ class JSUnit {
         txt += "<table id=\"topicsTable\">\n";
         for (var topicRef in this.theJSTopics) {
             var topic = this.theJSTopics[topicRef];
+            if (displayOnlyConcerned && (! topic.isConcerned()))
+                break;
             txt += "<tr>\n"; 
-            txt += topic.toHTML();
+            txt += topic.toHTML(displayOnlyConcerned);
             txt += "</tr>\n"; 
         }
         txt += "</table>\n";
@@ -270,6 +412,8 @@ class JSUnit {
         txt += "<table>\n";
         for (var skillRef in this.theJSSkills) {
             var skill = this.theJSSkills[skillRef];
+            if (displayOnlyConcerned && (! skill.isConcerned()))
+                break;
             txt += "<tr>\n"; 
             txt += skill.toHTML();
             txt += "</tr>\n"; 
@@ -295,12 +439,34 @@ class JSArea {
         this.title = this.theJSONArea.area_name;
         this.id = this.theJSONArea.area_name;
         this.theJSCurricula = curricula;
+        this.concerned = false;
         
         for (var unitRef in this.theJSONArea.units) {
             var jsonUnit = this.theJSONArea.units[unitRef];
             var jsu = new JSUnit(jsonUnit, this);
             this.jsUnits.push(jsu);
         }
+    }
+    
+    evalConcerned()
+    {
+        newConcerned = false;
+
+        for (var unitRef in this.jsUnits) {
+            var jsUnit = this.jsUnits[unitRef];
+            if (jsUnit.isConcerned()) {
+                newConcerned = true;
+                break;
+            }
+        }
+        
+        if (newConcerned != this.concerned) {
+            if (newConcerned == false) {
+                this.concerned = false;
+            } else {
+                this.setConcerned();
+            }
+        }            
     }
 
     getTitle() {
@@ -311,7 +477,27 @@ class JSArea {
         return this.id;
     }
 
-    toHTML()
+    setConcerned()
+    {
+        this.concerned = true;
+    }
+
+    isConcerned()
+    {
+        return this.concerned;
+    }
+
+    getUnit(unitName)
+    {
+        for (var unitRef in this.jsUnits) {
+            var jsUnit = this.jsUnits[unitRef];
+            if ((this.id + "__" + unitName) == jsUnit.getId())
+                return jsUnit;
+        }
+        return null;
+    }
+
+    toHTML(displayOnlyConcerned = false)
     {
         var txt = "";
 
@@ -330,8 +516,11 @@ class JSArea {
         //-- one row for each unit
         for (var unitRef in this.jsUnits) {
             var unit = this.jsUnits[unitRef];
+            if (displayOnlyConcerned && (! unit.isConcerned()))
+                break;
+
             txt += "<tr id=\"unitRow\">";
-            txt += unit.toHTML();
+            txt += unit.toHTML(displayOnlyConcerned);
             txt += "</tr>";
         }
         txt += "</table>\n";
@@ -354,8 +543,18 @@ class JSCurricula {
             this.jsAreas.push(jsa);
         }
     }
+
+    getUnit(areaName, unitName)
+    {
+        for (var areaRef in this.jsAreas) {
+            var jsArea = this.jsAreas[areaRef];
+            if (jsArea.id == areaName)
+                return jsArea.getUnit(unitName);
+        }
+        return null;
+    }
     
-    toHTML()
+    toHTML(displayOnlyConcerned = false)
     {
         var txt = "";
 
@@ -363,8 +562,10 @@ class JSCurricula {
         txt += "<table id=\"curricula\">\n";
         for (var areaRef in this.jsAreas) {
             var jsa = this.jsAreas[areaRef];
+            if (displayOnlyConcerned && (! jsa.isConcerned()))
+                break;
             txt += "<tr id=\"areaRow\">\n";
-            txt += jsa.toHTML();
+            txt += jsa.toHTML(displayOnlyConcerned);
             txt += "</tr>\n"; 
         }
         txt += "</table>\n";
@@ -381,17 +582,17 @@ String.prototype.replaceAll = function(search, replacement) {
 //======================================================================================
 //=============== printCSC() ===========================================================
 //======================================================================================
-window.printCSC = function(printNotAdressed = true)
+window.printCSC = function(displayOnlyConcerned = false)
 {    
     var fs = require('fs');
     var txt = "";
 
-    if (JSONCurricula == null) {
-        JSONCurricula = JSON.parse(fs.readFileSync('CSC-content.json').toString());
-        JSCurricula = new JSCurricula(JSONCurricula);
+    if (JSONCur == null) {
+        JSONCur = JSON.parse(fs.readFileSync('CSC-content.json').toString());
+        JSCur = new JSCurricula(JSONCur);
     }
 
-    txt = JSCurricula.toHTML();
+    txt = JSCur.toHTML(displayOnlyConcerned);
         
     document.getElementById("theCSCPage").innerHTML = txt;
    
@@ -402,8 +603,8 @@ window.printCSC = function(printNotAdressed = true)
         allSelects[i].addEventListener("change", function() {selectChanged(this)});
     }
     
-    for (var areaRef in JSCurricula.jsAreas) {
-        var area = JSCurricula.jsAreas[areaRef];
+    for (var areaRef in JSCur.jsAreas) {
+        var area = JSCur.jsAreas[areaRef];
         var areaId = area.getId();
         document.getElementById(areaId).addEventListener("click", function(){displayArea(this)});
         for (var unit in area.jsUnits) {
@@ -416,53 +617,28 @@ window.printCSC = function(printNotAdressed = true)
     document.getElementById("saveCSC").addEventListener("click", function(){saveCSC(this.id)});
     document.getElementById("GCCSC").addEventListener("click", function(){GCCSC(this.id)});
     document.getElementById("resetCSC").addEventListener("click", function(){resetCSC(this.id)});
+    document.getElementById("latexExportCSC").addEventListener("click", function(){latexExportCSC(this.id)});
 }
 
 function selectChanged(elt) {
     elt.className = elt.options[elt.selectedIndex].className;
     var splitted = elt.id.split("__");
-    var selectType = splitted[0];
     var areaName = splitted[1];
     var unitName = splitted[2];
+    var selectType = splitted[3];
 
-    for (area in curricula) {
-        var areaObj = curricula[area];
-        if (areaObj.area_name == areaName) {
-            for (unit in areaObj.units) {
-                var unitObj = areaObj.units[unit];
-                if (unitObj.unit_name == unitName) {
-                    if (selectType == "skill") {
-                        var skNum = splitted[3];
-                        for (skill in unitObj.skills) {
-                            var skillObj = unitObj.skills[skill]
-                            if (skillObj.num == skNum) {
-                                skillObj.addressed = value;
-                                return;
-                            }
-                        }
-                    } else {
-                        var topNum = splitted[3];
-                        for (topic in unitObj.topics) {
-                            topicObj = unitObj.topics[topic];
-                            if (topicObj.num == topNum) {
-                                if (selectType == "subtopic") {
-                                    var subtopicNum = splitted[4];
-                                    for (subtopic in topicObj.subtopics) {
-                                        var subtopicObj = topicObj.subtopics[subtopic];
-                                        if (subtopicObj.num == subtopicNum) {
-                                            subtopicObj.addressed = elt.value;
-                                            return;
-                                        }
-                                    }
-                                } else {
-                                    topicObj.addressed = elt.value;
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+    jsUnit = JSCur.getUnit(areaName, unitName);
+
+    if (selectType == "skill") {
+        var skNum = parseInt(splitted[4]);
+        jsUnit.setSkill(skNum, elt.value);
+    } else { 
+        var topNum = parseInt(splitted[4]);
+        if (splitted.length > 5) { //subtopic case
+            var subtopNum = parseInt(splitted[6]);
+            jsUnit.setSubTopic(topNum, subtopicNum, elt.value);
+        } else {
+            jsUnit.setTopic(topNum, elt.value);
         }
     }
 }
@@ -480,19 +656,19 @@ function loadCSC() {
     var fr = new FileReader();
     fr.onloadend = function(e) {
         curricula = JSON.parse(e.target.result);
-        printCSC();
+        printCSC(false);
     }
     var blob = file.slice(0, file.size-1);
     fr.readAsText(blob);
 }
 
-function resetCSC() {
-    printCSC(0);
+function GCCSC() {
+    printCSC(true);
 }
 
 function resetCSC() {
-    curricula = null;
-    printCSC();
+    JSONCur = null;
+    printCSC(false);
 }
 
 window.displayArea = function(area) {
