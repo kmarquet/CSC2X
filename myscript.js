@@ -113,7 +113,7 @@ class JSTopic {
         var txt = "";
 
         //=== One col for the content
-        txt += "<td>";
+        txt += "<td class=\"topiccol\">";
         txt += "<div class=\"topic\">\n";
         txt += this.handleTopicContent() + "\n";
         txt += "</div>";
@@ -252,7 +252,7 @@ class JSUnit {
         txt += "<table id=\"topicsTable\">\n";
         for (var topicRef in this.theJSTopics) {
             var topic = this.theJSTopics[topicRef];
-            txt += "<tr class=\"topiccol\">\n"; 
+            txt += "<tr>\n"; 
             txt += topic.toHTML();
             txt += "</tr>\n"; 
         }

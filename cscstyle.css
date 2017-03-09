@@ -105,9 +105,9 @@
 }
 
 
-.topiccol {
+td .topiccol {
     background-color: lightblue;
-    text-width: 400px;
+    width: 550px;
     word-wrap: break-word;
     margin-bottom: 0.2em;
     font-family: Serif;
