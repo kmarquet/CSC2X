@@ -14,6 +14,38 @@
     border-radius: 8px;
 }
 
+.exportbutton {
+    background-color: #AF50C4; /* Green */
+    border-style: solid;
+    border-color: Gray;
+    border-width: 1px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 250px;
+    border-radius: 8px;
+}
+
+.resetbutton {
+    background-color: #AF4C50; /* Red */
+    border-style: solid;
+    border-color: Gray;
+    border-width: 1px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    width: 250px;
+    border-radius: 8px;
+}
+
 
 .file-input-wrapper {
     overflow: hidden;
