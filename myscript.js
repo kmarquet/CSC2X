@@ -122,22 +122,6 @@ class JSTopic {
         return this.id;
     }
 
-    handleTopicContent()
-    {
-        var regex = /(.*)\(cross[-\s]reference(.*)\)(.*)/i;
-        var match = regex.exec(this.content);
-        if (match != null) {
-            var res = "";
-            var i;
-            res += match[1] + " <pre class=\"crossref\">(cross-ref ";
-            res += handleXrefs(match[2]);
-            res += ")</pre>";
-            return res;
-        } else {
-            return this.content;
-        }
-    }
-
     isSub()
     {
         return false;
@@ -173,7 +157,7 @@ class JSTopic {
         //=== One col for the content
         txt += "<td class=\"topiccol\">";
         txt += "<div class=\"topic\">\n";
-        txt += this.handleTopicContent() + "\n";
+        txt += handleTopicContent(this.content) + "\n";
         txt += "</div>";
         txt += "<table>\n";
         for (var subtopicRef in this.theJSSubTopics) {
@@ -264,7 +248,7 @@ class JSSubTopic {
         //=== One column for the topic
         txt += "<td class=\"subtopiccol\">\n"; 
         txt += "<div class=\"subtopic\">\n";            
-        txt += this.content;
+        txt += handleTopicContent(this.content) + "\n";
         txt += "</div>\n";          
         txt += "</td>\n"; 
 
@@ -607,7 +591,7 @@ window.printCSC = function(displayOnlyConcerned = false)
     for (var areaRef in JSCur.jsAreas) {
         var area = JSCur.jsAreas[areaRef];
 
-        if (! area.isConcerned())
+        if (displayOnlyConcerned && (! area.isConcerned()))
             continue;
         
         var areaId = area.getId();
@@ -615,7 +599,7 @@ window.printCSC = function(displayOnlyConcerned = false)
         for (var unitRef in area.jsUnits) {
             var unit = area.jsUnits[unitRef];
             
-            if (! unit.isConcerned())
+            if (displayOnlyConcerned && (! unit.isConcerned()))
                 continue;
 
             document.getElementById(unit.getId()).addEventListener("click", function(){displayUnit(this)});
@@ -705,6 +689,22 @@ function displayUnit(unit) {
 }
 
 
+function handleTopicContent(content)
+{
+    var regex = /(.*)\(cross[-\s]reference(.*)\)(.*)/i;
+    var match = regex.exec(content);
+    if (match != null) {
+        var res = "";
+        var i;
+        res += match[1] + " <pre class=\"crossref\">(cross-ref ";
+        res += handleXrefs(match[2]);
+        res += ")</pre>";
+        return res;
+    } else {
+        return content;
+    }
+}
+
 function handleXrefs(theRefs)
 {
     var regexList = /([^]*),(\s.{2,4}\/[^]*)/i;
@@ -723,15 +723,26 @@ function handleXrefs(theRefs)
         match = regexEnd.exec(theRef)
         area = match[1].trim();
         topic = match[2].trim();
-        res += "<a href=\"\#" + area + "_" + topic.replaceAll(" ", "_") + "\">" + area + "/" + topic + "</a>" + " and ";
+        res += "<a href=\"\#" + area + "__" + topic.replaceAll(" ", "_") + "\">" + area + "/" + topic + "</a>" + " and ";
     }
     match = regexEnd.exec(refs);
     if (match != null) {
         area = match[1].trim();
         topic = match[2].trim();
-        res += "<a href=\"\#" + area + "_" + topic.replaceAll(" ", "_") + "\">" + area + "/" + topic + "</a>";
+        res += "<a href=\"\#" + area + "__" + topic.replaceAll(" ", "_") + "\">" + area + "/" + topic + "</a>";
     } else {
         res += "BUG!!!" + refs + "!!!";
     }
     return res;
 }
+
+
+// TODO
+// - add "Show useless item"
+// - export to LaTeX
+// - export to pdf
+// - place buttons in a pretty manner
+// - play with colors
+// - copy/paste from .pdf => dans le .json
+// - debugger le texte certains cross-ref sont coupés
+// - mettre en ligne

@@ -139,7 +139,7 @@
 
 td .topiccol {
     background-color: lightblue;
-    width: 550px;
+    width: 600px;
     word-wrap: break-word;
     margin-bottom: 0.2em;
     font-family: Serif;
@@ -163,7 +163,7 @@ td .topiccol {
 
 .subtopiccol {
     background-color: lightblue;
-    text-width: 420px;
+    text-width: 450px;
     word-wrap: break-all;
     margin-left: 2em;
     font-size: 80%;

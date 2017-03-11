@@ -212,7 +212,7 @@
          }
       ],
       "skills": [
-         {"content": "Distinguish using computational resources for a faster answer from managing efficient access to a shared resource. (Cross-reference GV/Fundamental Concepts, outcome 5.)",
+         {"content": "Distinguish using computational resources for a faster answer from managing efficient access to a shared resource. (cross-reference GV/Fundamental Concepts, outcome 5.)",
            "mastery": "No",
            "num": "0"
          },
@@ -264,7 +264,7 @@
          }],
            "addressed": "No"
          },
-         { "content": "Virtualization (cross-reference SF/Virtualization and Isolation and OS/Virtual Machines)",
+         { "content": "Virtualization (cross-reference SF/Virtualization and Isolation, OS/Virtual Machines)",
            "num": "2",
            "subtopics": [         { "content": "Shared resource management",
            "num": "0",
