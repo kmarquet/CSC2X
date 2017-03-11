@@ -83,7 +83,7 @@ class Topic:
         return outlist
     
     def addSubTopic(self, content, addressed):
-        newSubTopic = Topic(content, self.unit, addressed, self.num *10 + len(self.subtopics))
+        newSubTopic = Topic(content, self.unit, addressed, len(self.subtopics))
         self.subtopics.append(newSubTopic)
         return newSubTopic
         
@@ -91,7 +91,7 @@ class Skill:
     def __init__(self, content, unit, num, mastery):
         self.content = content
         self.unit = unit
-        self.mastery = "-"
+        self.mastery = "No"
         self.num = num
         
     def toJson(self, ):
@@ -153,7 +153,7 @@ class Unit:
         return newTopic
 
     def addSkill(self, content, num, mastery):
-        newSkill = Skill(content, self, num, mastery)
+        newSkill = Skill(content, self, len(self.skills), mastery)
         self.skills.append(newSkill)
         return newSkill
 

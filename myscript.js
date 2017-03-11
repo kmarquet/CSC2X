@@ -1,5 +1,7 @@
 var JSONCur = null;
 var JSCur = null;
+addressedLevels = ["No", "Yes"];
+masteryLevels = ["No", "Familiarity", "Usage", "Assessment"];
 
 class JSSkill {
 
@@ -10,33 +12,28 @@ class JSSkill {
         this.skillNum = jsonSkill.num;
         this.id = this.theJSUnit.getId() + "__skill__" + this.skillNum;
         this.mastery = jsonSkill.mastery;
-        this.levels = ["No", "Familiarity", "Usage", "Assessment"];
-        this.concerned = false;
         if (this.mastery != "No")
-            this.setConcerned();
+            this.theJSUnit.setConcerned();
     }
 
     setMastery(value)
     {
+        var selectElt = document.getElementById("select__" + this.id);
+        selectElt.className = "skill" + value.toLowerCase();
+        selectElt.selectedIndex = masteryLevels.indexOf(value);
         this.mastery = value;
         this.theJSONSkill.mastery = value;
+
         if (value == "No") {
-            this.concerned = false;
             this.theJSUnit.evalConcerned();
         } else {
-            this.setConcerned();
+            this.theJSUnit.setConcerned();
         }
-    }
-    
-    setConcerned()
-    {
-        this.concerned = true;
-        this.theJSUnit.setConcerned();
     }
     
     isConcerned()
     {
-        return this.concerned;
+        return (this.mastery != "No");
     }
 
     toHTML()
@@ -51,10 +48,10 @@ class JSSkill {
         
         //=== One column for the select
         txt += "<td class=\"skillselectcol \">\n";
-        txt += "<select align=\"right\" class=\"skillselect\" id=\"select__" + this.id + "\">";
+        txt += "<select align=\"right\" class=\"skill" + this.mastery.toLowerCase() + "\" id=\"select__" + this.id + "\">";
 
-        for (var i = 0 ; i < this.levels.length ; i++) {
-            var level = this.levels[i];
+        for (var i = 0 ; i < masteryLevels.length ; i++) {
+            var level = masteryLevels[i];
             txt += "<option";
             if (level == this.mastery) {
                 txt += " selected";
@@ -78,31 +75,42 @@ class JSTopic {
         this.topicNum = jsonTopic.num;
         this.id = this.theJSUnit.getId() + "__topic__" + this.theJSONTopic.num;
         this.theJSSubTopics = [];
-        this.levels = ["No", "Yes"];
         this.addressed = this.theJSONTopic.addressed;
-        this.concerned = false;
-        if (this.addressed == "Yes")
-            this.setConcerned();
         
         for (var subTopicRef in this.theJSONTopic.subtopics) {
             var jsonSubTopic = this.theJSONTopic.subtopics[subTopicRef];
             var jsst = new JSSubTopic(jsonSubTopic, this);
             this.theJSSubTopics.push(jsst);
         }
+        
+        if (this.addressed != "No")
+            this.theJSUnit.setConcerned();
+    }
+
+    setSubTopicAddressed(num, value)
+    {
+        this.theJSSubTopics[num].setAddressed(value);
     }
     
     setAddressed(value)
     {
+        if (this.addressed == value)
+            return;
+        
+        var selectElt = document.getElementById("select__" + this.id);
+        selectElt.className = "topic" + value.toLowerCase();
+        selectElt.selectedIndex = addressedLevels.indexOf(value);
+        
         this.addressed = value;
         this.theJSONTopic.addressed = value;
+
         if (value == "No") {
             for (var subtopicRef in this.theJSSubTopics) {
-                this.theJSSubTopics[subtopicRef].setConcerned(value);
+                this.theJSSubTopics[subtopicRef].setAddressed(value);                
             }
-            this.concerned = false;
             this.theJSUnit.evalConcerned();
         } else {
-            this.setConcerned();
+            this.theJSUnit.setConcerned();
         }
     }
     
@@ -138,9 +146,9 @@ class JSTopic {
     getSelect()
     {
         var txt = "";
-        txt += "<select id=\"select__" + this.id + "\">";
-        for (var i = 0 ; i < this.levels.length ; i++) {
-            var aLevel = this.levels[i];
+        txt += "<select id=\"select__" + this.id + "\" class=\"topic" + this.addressed.toLowerCase() + "\">";
+        for (var i = 0 ; i < addressedLevels.length ; i++) {
+            var aLevel = addressedLevels[i];
             txt += "<option";
             if (this.addressed == aLevel) {
                 txt += " selected";
@@ -153,15 +161,9 @@ class JSTopic {
         return txt;
     }
 
-    setConcerned()
-    {
-        this.concerned = true;
-        this.theJSUnit.setConcerned();
-    }
-
     isConcerned()
     {
-        return this.concerned;
+        return (this.addressed != "No");
     }
     
     toHTML(displayOnlyConcerned = false)
@@ -204,48 +206,44 @@ class JSSubTopic {
         this.theJSUnit = null;
         this.topicNum = jsonSubTopic.num;
         this.id = this.parentTopic.getId() + "__subtopic__" + this.theJSONTopic.num;
-        this.levels = ["No", "Yes"];
         this.addressed = this.theJSONTopic.addressed;
-        this.concerned = false;
         if (this.addressed == "Yes")
-            this.setConcerned();
-    }
-
-    setAddressed(value)
-    {
-        this.addressed = value;
-        this.theJSONTopic.addressed = value;
-        if (value == "No") {
-            this.concerned = false;
-            this.parentTopic.evalConcerned();
-        } else {
-            this.setConcerned();
-        }
+            this.parentTopic.setAddressed(this.addressed);
     }
     
+    setAddressed(value)
+    {
+        if (this.addressed == value)
+            return;
+        
+        var selectElt = document.getElementById("select__" + this.id);
+        selectElt.className = "subtopic" + value.toLowerCase();
+        selectElt.selectedIndex = addressedLevels.indexOf(value);
+
+        this.addressed = value;
+        this.theJSONTopic.addressed = value;
+
+        if (value == "Yes") {
+            this.parentTopic.setAddressed("Yes");
+        }
+    }
 
     isSub()
     {
         return true;
     }
     
-    setConcerned()
-    {
-        this.concerned = true;
-        this.parentTopic.setConcerned();
-    }
-
     isConcerned()
     {
-        return this.concerned;
+        return (this.addressed != "No");
     }
     
     getSelect()
     {
         var txt = "";
-        txt += "<select id=\"select__" + this.id + "\">";
-        for (var i = 0 ; i < this.levels.length ; i++) {
-            var aLevel = this.levels[i];
+        txt += "<select id=\"select__" + this.id + "\" class=\"subtopic" + this.addressed.toLowerCase() + "\">";
+        for (var i = 0 ; i < addressedLevels.length ; i++) {
+            var aLevel = addressedLevels[i];
             txt += "<option";
             if (this.addressed == aLevel) {
                 txt += " selected";
@@ -306,7 +304,7 @@ class JSUnit {
 
     evalConcerned()
     {
-        newConcerned = false;
+        var newConcerned = false;
         for (var topicRef in this.topics) {
             var jsTopic = this.theJSTopics[topicRef];
             if (jsTopic.isConcerned()) {
@@ -334,14 +332,13 @@ class JSUnit {
         }            
     }
 
-    setTopic(topicNum, value)
+    setTopicAddressed(topicNum, value)
     {
         this.theJSTopics[topicNum].setAddressed(value);
     }
-    setSubTopic(topicNum, subTopicNum, value)
+    setSubTopicAddressed(topicNum, subTopicNum, value)
     {
-        this.theJSTopics[topicNum].setSubTopicAddressed(value);
-
+        this.theJSTopics[topicNum].setSubTopicAddressed(subTopicNum, value);
     }
     setSkill(skillNum, value)
     {
@@ -392,10 +389,12 @@ class JSUnit {
         txt += "<table id=\"topicsTable\">\n";
         for (var topicRef in this.theJSTopics) {
             var topic = this.theJSTopics[topicRef];
-            if (displayOnlyConcerned && (! topic.isConcerned()))
-                break;
+            if (displayOnlyConcerned && (! topic.isConcerned())) {
+                continue;
+            }
             txt += "<tr>\n"; 
             txt += topic.toHTML(displayOnlyConcerned);
+            // txt += " " + topic.isConcerned();
             txt += "</tr>\n"; 
         }
         txt += "</table>\n";
@@ -412,11 +411,14 @@ class JSUnit {
         txt += "<table>\n";
         for (var skillRef in this.theJSSkills) {
             var skill = this.theJSSkills[skillRef];
-            if (displayOnlyConcerned && (! skill.isConcerned()))
-                break;
-            txt += "<tr>\n"; 
-            txt += skill.toHTML();
-            txt += "</tr>\n"; 
+            if (displayOnlyConcerned && (! skill.isConcerned())) {
+                continue;
+            } else {
+                txt += "<tr>\n"; 
+                txt += skill.toHTML();
+                // txt += "->" + skill.mastery;
+                txt += "</tr>\n";
+            }
         }
         txt += "</table>\n";
         txt += "</td>\n"; 
@@ -450,7 +452,7 @@ class JSArea {
     
     evalConcerned()
     {
-        newConcerned = false;
+        var newConcerned = false;
 
         for (var unitRef in this.jsUnits) {
             var jsUnit = this.jsUnits[unitRef];
@@ -599,17 +601,24 @@ window.printCSC = function(displayOnlyConcerned = false)
     var allSelects = document.getElementsByTagName("select");
     for (var i=0; i < allSelects.length; i++)
     {
-        allSelects[i].className = allSelects[i].options[allSelects[i].selectedIndex].className;
         allSelects[i].addEventListener("change", function() {selectChanged(this)});
     }
     
     for (var areaRef in JSCur.jsAreas) {
         var area = JSCur.jsAreas[areaRef];
+
+        if (! area.isConcerned())
+            continue;
+        
         var areaId = area.getId();
         document.getElementById(areaId).addEventListener("click", function(){displayArea(this)});
-        for (var unit in area.jsUnits) {
-            var unitId = area.jsUnits[unit].getId();
-            document.getElementById(unitId).addEventListener("click", function(){displayUnit(this)});
+        for (var unitRef in area.jsUnits) {
+            var unit = area.jsUnits[unitRef];
+            
+            if (! unit.isConcerned())
+                continue;
+
+            document.getElementById(unit.getId()).addEventListener("click", function(){displayUnit(this)});
         }
     }
 
@@ -621,13 +630,13 @@ window.printCSC = function(displayOnlyConcerned = false)
 }
 
 function selectChanged(elt) {
-    elt.className = elt.options[elt.selectedIndex].className;
+    // elt.className = elt.options[elt.selectedIndex].className;
     var splitted = elt.id.split("__");
     var areaName = splitted[1];
     var unitName = splitted[2];
     var selectType = splitted[3];
 
-    jsUnit = JSCur.getUnit(areaName, unitName);
+    var jsUnit = JSCur.getUnit(areaName, unitName);
 
     if (selectType == "skill") {
         var skNum = parseInt(splitted[4]);
@@ -636,9 +645,9 @@ function selectChanged(elt) {
         var topNum = parseInt(splitted[4]);
         if (splitted.length > 5) { //subtopic case
             var subtopNum = parseInt(splitted[6]);
-            jsUnit.setSubTopic(topNum, subtopicNum, elt.value);
+            jsUnit.setSubTopicAddressed(topNum, subtopNum, elt.value);
         } else {
-            jsUnit.setTopic(topNum, elt.value);
+            jsUnit.setTopicAddressed(topNum, elt.value);
         }
     }
 }

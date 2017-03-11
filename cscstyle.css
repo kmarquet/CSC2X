@@ -311,20 +311,26 @@ td .topiccol {
     background-color: White;
     background-size: 9%;
     font-size:90%;    
+    content: 'no';
+    value: 'no';    
 }
 
 .skillfamiliarity {
     text-color: black;
     background-color: LightGray;
     background-size: 9%;
-    font-size:90%;    
+    font-size:90%;
+    content: 'familiarity';
+    value: 'familiarity';        
 }
 
 .skillusage {
     text-color: black;
     background-color: LightSteelBlue;
     background-size: 9%;
-    font-size:90%;    
+    font-size:90%;
+    content: 'usage';
+    value: 'usage';    
 }
 
 .skillassessment {
@@ -332,6 +338,8 @@ td .topiccol {
     background-color: MediumSlateBlue;
     background-size: 9%;
     font-size:90%;
+    content: 'assessment';
+    value: 'assessment';    
 }
 
 select {
