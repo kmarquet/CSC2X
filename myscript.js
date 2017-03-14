@@ -80,6 +80,7 @@ class JSTopic {
         this.id = this.theJSUnit.getId() + "__topic__" + this.theJSONTopic.num;
         this.theJSSubTopics = [];
         this.addressed = this.theJSONTopic.addressed;
+        this.nbSubTopicsConcerned = 0;
         
         for (var subTopicRef in this.theJSONTopic.subtopics) {
             var jsonSubTopic = this.theJSONTopic.subtopics[subTopicRef];
@@ -93,7 +94,7 @@ class JSTopic {
 
     setSubTopicAddressed(num, value)
     {
-        var aJSSubTopic = this.theJSSubTopics[num]
+        var aJSSubTopic = this.theJSSubTopics[num];
         if (aJSSubTopic.addressed != value) {
             aJSSubTopic.setAddressed(value);
             if (value == "Yes") {
@@ -245,11 +246,6 @@ class JSSubTopic {
         this.theJSONTopic.addressed = value;
     }
 
-    isSub()
-    {
-        return true;
-    }
-    
     isConcerned()
     {
         return (this.addressed != "No");
