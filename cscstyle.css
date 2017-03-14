@@ -1,32 +1,45 @@
 .cscbutton {
+    background-color:  #6688FF;
+    border-style: solid;
+    border-color: Gray;
+    border-width: 1px;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 200px;
+    border-radius: 8px;
+}
+
+.exportbutton {
     background-color: #4CAF50; /* Green */
     border-style: solid;
     border-color: Gray;
     border-width: 1px;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
     cursor: pointer;
-    width: 250px;
+    width: 200px;
     border-radius: 8px;
 }
 
-.exportbutton {
-    background-color: #AF50C4; /* Green */
+.hidebutton {
+    background-color: #BBBBBB;
     border-style: solid;
     border-color: Gray;
     border-width: 1px;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
     cursor: pointer;
-    width: 250px;
+    width: 200px;
     border-radius: 8px;
 }
 
@@ -62,7 +75,10 @@
 
 
 
-.cscbutton:hover {background-color: #3e8e41}
+.cscbutton:hover {background-color:  #5577EE}
+.hidebutton:hover {background-color: #AAAAAA}
+.exportbutton:hover {background-color: #3e8e41}
+.resetbutton:hover {background-color: #9E3B3F}
 
 /* .button:active { */
 /*   background-color: #3e8e41; */
@@ -72,8 +88,7 @@
 
 
 .indent {
-    padding-left: 1.8em;
-    background-color: white;
+    width : 2cm;
 }
 
 .areatitlecol {
@@ -117,6 +132,8 @@
     border-color: Gray;
     border-radius: 5px;
 }
+
+.unittitle:hover {background-color: Yellow}
 
 .unitcontent {
     display: block;
@@ -356,4 +373,12 @@ select {
     /* background-size: 15%; */
     /* background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #eee; */
     cursor:pointer;
+}
+
+.smallindent {
+    width : 0.2cm;
+}
+
+.indent {
+    width : 2cm;
 }

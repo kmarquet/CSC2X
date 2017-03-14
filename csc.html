@@ -16,50 +16,59 @@
 
     <h2>ACM / IEEE Curricula</h2>
 
-
+    
     <table>
       <tr>
-        <td>
-          <div class="cscbutton">
-            <a id="saveCSC">Save current curricula</a>
-          </div>
-        </td>
-        <td>
-          <div class="indent"></div>
-        </td>
-        <td>
-          <div class="file-input-wrapper cscbutton">
-            <span>Load new curricula</span>
-            <input id="newCSC" class="cscbutton" type="file"/>
-          </div>
-        </td>
-        <td>
-          <div class="indent"></div>
-        </td>
-        <td>
-          <div class="cscbutton">
-            <a id="GCCSC">Hide useless items</a>
-          </div>
-        </td>
-    </table>
-
-    <table>
-      <tr>
-        <td>
-          <div class="file-input-wrapper exportbutton">
-            <span>Export to Latex</span>
-            <input id="latexExportCSC" class="exportbutton" type="file"/>
-          </div>
-        </td>
-        <td>
-          <div class="indent"></div>
-        </td>
-        <td>
-          <div class="resetbutton">
-            <a id="resetCSC">Reset curricula</a>
-          </div>
-        </th>
-
+      <td>
+        
+        <table>
+          <tr>
+            <td>
+              <div>
+                <span class="cscbutton" id="saveCSC"><b>Save</b> current curricula</span>
+              </div>
+            </td>
+            <td class="indent"></td>
+            <td>
+              <div>
+                <span class="exportbutton" id="latexExportCSC"><b>Export</b> to LaTeX</span>
+              </div>
+            </td>
+            <td class="indent"></td>
+            <td>
+              <div>
+                <span class="hidebutton" id="GCCSC"><b>Hide</b> useless items</span>
+              </div>
+            </td>
+          <tr>
+            <td>
+              <div class="file-input-wrapper cscbutton">
+                <span><b>Load</b> new curricula</span>
+                <input id="newCSC" class="cscbutton" type="file"/>
+              </div>
+            </td>
+            <td class="indent"></td>
+            <td>
+              <div >
+                <span class="exportbutton" id="pdfExportCSC" ><b>Export</b> to pdf</span>
+              </div>
+            </td>
+            <td class="indent"></td>
+            <td>
+              <div>
+                <span class="hidebutton" id="showCSC"><b>Show</b> useless items</span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td class="indent"></td>
+      <td class="indent"></td>
+      <td>
+        <div>
+          <span class="resetbutton" id="resetCSC">Reset curricula</span>
+        </div>
+      </tr>
     </table>
 
 

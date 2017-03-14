@@ -23,12 +23,6 @@ class JSSkill {
         selectElt.selectedIndex = masteryLevels.indexOf(value);
         this.mastery = value;
         this.theJSONSkill.mastery = value;
-
-        if (value == "No") {
-            this.theJSUnit.evalConcerned();
-        } else {
-            this.theJSUnit.setConcerned();
-        }
     }
     
     isConcerned()
@@ -64,6 +58,16 @@ class JSSkill {
         txt += "</td>\n"; 
         return txt;
     }
+
+    toLaTeX()
+    {
+        var txt = "";
+
+        txt += this.content;
+        txt += " & ";
+        txt += this.mastery;
+        return txt;
+    }
 }
 
 class JSTopic {
@@ -81,15 +85,29 @@ class JSTopic {
             var jsonSubTopic = this.theJSONTopic.subtopics[subTopicRef];
             var jsst = new JSSubTopic(jsonSubTopic, this);
             this.theJSSubTopics.push(jsst);
+            if (jsst.isConcerned()) {
+                this.nbSubTopicsConcerned++;
+            }
         }
-        
-        if (this.addressed != "No")
-            this.theJSUnit.setConcerned();
     }
 
     setSubTopicAddressed(num, value)
     {
-        this.theJSSubTopics[num].setAddressed(value);
+        var aJSSubTopic = this.theJSSubTopics[num]
+        if (aJSSubTopic.addressed != value) {
+            aJSSubTopic.setAddressed(value);
+            if (value == "Yes") {
+                this.nbSubTopicsConcerned++;
+                if (this.nbSubTopicsConcerned == 1) {
+                    this.setAddressed("Yes");
+                }
+            } else {
+                this.nbSubTopicsConcerned--;
+                if (this.nbSubTopicsConcerned == 0) {
+                    this.setAddressed("No");
+                }
+            }
+        }
     }
     
     setAddressed(value)
@@ -108,9 +126,6 @@ class JSTopic {
             for (var subtopicRef in this.theJSSubTopics) {
                 this.theJSSubTopics[subtopicRef].setAddressed(value);                
             }
-            this.theJSUnit.evalConcerned();
-        } else {
-            this.theJSUnit.setConcerned();
         }
     }
     
@@ -179,6 +194,28 @@ class JSTopic {
         
         return txt;
     }
+    
+    toLaTeX()
+    {
+        var txt = " & ";
+        txt += "\\begin{minipage}[h]{7cm}";
+        txt += this.content;
+        if (this.theJSSubTopics.length > 0) {
+            txt += "\\\\";
+            txt += "\\begin{tabular}{m{6.5cm} m{0.5cm}}\n";
+            for (var topicRef in this.theJSSubTopics) {
+                var subtopic = this.theJSSubTopics[topicRef];
+                if (subtopic.isConcerned()) {
+                    txt += subtopic.toLaTeX();
+                    txt += "\\\\\\hline\n";
+                }
+            }
+            txt += "\\end{tabular}\n";
+        }
+        txt += "\\end{minipage}";
+        txt += " & " + this.addressed;
+        return txt;
+    }
 }
 
 class JSSubTopic {
@@ -206,10 +243,6 @@ class JSSubTopic {
 
         this.addressed = value;
         this.theJSONTopic.addressed = value;
-
-        if (value == "Yes") {
-            this.parentTopic.setAddressed("Yes");
-        }
     }
 
     isSub()
@@ -258,7 +291,18 @@ class JSSubTopic {
         txt += "</td>\n";
         return txt;
     }
+
+    toLaTeX()
+    {
+        var txt = " & ";
+        txt += this.content;
+        txt += " & ";
+        txt += this.addressed;
+        return txt;
+    }
+
 }
+
 
 Object.setPrototypeOf(JSSubTopic.prototype, JSTopic);
 
@@ -268,76 +312,73 @@ class JSUnit {
         this.title = jsonUnit.unit_name;
         this.theJSArea = area;
         this.id = this.theJSArea.getId() + "__" + this.title.replaceAll(" ", "_"); 
-        this.title = this.id.replaceAll("_", " "); 
+        this.title = jsonUnit.unit_name.replaceAll("_", " ");
         this.theJSONUnit = jsonUnit;
         this.theJSTopics = [];
         this.theJSSkills = [];
         this.concerned = false;
+        this.nbTopicsConcerned = 0;
+        this.nbSkillsConcerned = 0;
         
         for (var topicRef in this.theJSONUnit.topics) {
             var jsonTopic = this.theJSONUnit.topics[topicRef];
             var jst = new JSTopic(jsonTopic, this);
             this.theJSTopics.push(jst);
+            if (jst.isConcerned()) {
+                this.nbTopicsConcerned++;
+            }
         }
         for (var skillRef in this.theJSONUnit.skills) {
             var jsonSkill = this.theJSONUnit.skills[skillRef];
             var jss = new JSSkill(jsonSkill, this);
             this.theJSSkills.push(jss);
-        }
-    }
-
-    evalConcerned()
-    {
-        var newConcerned = false;
-        for (var topicRef in this.topics) {
-            var jsTopic = this.theJSTopics[topicRef];
-            if (jsTopic.isConcerned()) {
-                newConcerned = true;
-                break;
+            if (jss.isConcerned()) {
+                this.nbSkillsConcerned++;
             }
         }
-        
-        if (newConcerned == false) {
-            for (var skillRef in this.skills) {
-                var jsSkill = this.theJSSkills[skillRef];
-                if (jsSkill.isConcerned()) {
-                    newConcerned = true;
-                    break;
-                }
-            }
-        }
-        if (newConcerned != this.concerned) {
-            if (newConcerned == false) {
-                this.concerned = false;
-                this.theJSArea.evalConcerned();
-            } else {
-                this.setConcerned();
-            }
-        }            
     }
 
     setTopicAddressed(topicNum, value)
     {
-        this.theJSTopics[topicNum].setAddressed(value);
+        var aJSTopic = this.theJSTopics[topicNum];
+        if (aJSTopic.addressed != value) {
+            aJSTopic.setAddressed(value);
+
+            if (value == "Yes") {
+                this.nbTopicsConcerned++;
+                if (this.nbTopicsConcerned == 1) {
+                    this.theJSArea.incUnitsConcerned();
+                }
+            } else {
+                this.nbSubTopicsConcerned--;
+                if (this.nbTopicsConcerned == 0) {
+                    this.theJSArea.decUnitsConcerned();
+                }
+            }
+        }
     }
+    
     setSubTopicAddressed(topicNum, subTopicNum, value)
     {
         this.theJSTopics[topicNum].setSubTopicAddressed(subTopicNum, value);
     }
     setSkill(skillNum, value)
     {
-        this.theJSSkills[skillNum].setMastery(value);        
-    }
-
-    setConcerned()
-    {
-        this.concerned = true;
-        this.theJSArea.setConcerned();
+        var aJSSkill = this.theJSSkills[skillNum];
+        if (aJSSkill.mastery != value) {
+            aJSSkill.setMastery(value);
+            if (this.value == "No") {
+                this.nbSkillsConcerned++;
+            } else {
+                if (value == "No")
+                    this.nbSkillsConcerned--;
+            }
+        }        
     }
 
     isConcerned()
     {
-        return this.concerned;
+        return (this.nbTopicsConcerned > 0);
     }
 
     getTitle() {
@@ -365,7 +406,7 @@ class JSUnit {
         txt += "<tr class=\"unitcontent\" id=\"contentof" + this.id + "\">\n";
 
         // one column empty
-        txt += "<td class=\"indent\">\n"; 
+        txt += "<td class=\"smallindent\">\n"; 
         txt += "</td>\n";
 
         //------------ one column for the topics in a table -------
@@ -415,6 +456,28 @@ class JSUnit {
 
         return txt;
     }
+
+    topicsToLaTeX()
+    {
+        var txt = " & ";
+        var first = true;
+        
+        txt += "\\multirow {" + this.nbTopicsConcerned + "}{*}{" + this.title + "}";
+        for (var topicRef in this.theJSTopics) {
+            var topic = this.theJSTopics[topicRef];
+            if (topic.isConcerned()) {
+                if (first) {
+                    first = false;
+                    txt += topic.toLaTeX();
+                } else {
+                    txt += "\n\\\\\\cline{3-4}\n";
+                    txt += " & ";
+                    txt += topic.toLaTeX();
+                }
+            }
+        }
+        return txt;
+    }
 }
 
 class JSArea {
@@ -426,35 +489,31 @@ class JSArea {
         this.id = this.theJSONArea.area_name;
         this.theJSCurricula = curricula;
         this.concerned = false;
+        this.nbUnitsConcerned = 0;
         
         for (var unitRef in this.theJSONArea.units) {
             var jsonUnit = this.theJSONArea.units[unitRef];
             var jsu = new JSUnit(jsonUnit, this);
             this.jsUnits.push(jsu);
+            if (jsu.isConcerned()) {
+                this.nbUnitsConcerned++;
+            }
         }
+    }
+
+    incUnitsConcerned()
+    {
+        this.nbUnitsConcerned++;
+        if (this.nbUnitsConcerned == 1)
+            this.theJSCurricula.incAreasConcerned();
+    }
+    decUnitsConcerned()
+    {
+        this.nbUnitsConcerned--;
+        if (this.nbUnitsConcerned == 0)
+            this.theJSCurricula.decAreasConcerned();
     }
     
-    evalConcerned()
-    {
-        var newConcerned = false;
-
-        for (var unitRef in this.jsUnits) {
-            var jsUnit = this.jsUnits[unitRef];
-            if (jsUnit.isConcerned()) {
-                newConcerned = true;
-                break;
-            }
-        }
-        
-        if (newConcerned != this.concerned) {
-            if (newConcerned == false) {
-                this.concerned = false;
-            } else {
-                this.setConcerned();
-            }
-        }            
-    }
-
     getTitle() {
         return this.title;
     }
@@ -463,14 +522,9 @@ class JSArea {
         return this.id;
     }
 
-    setConcerned()
-    {
-        this.concerned = true;
-    }
-
     isConcerned()
     {
-        return this.concerned;
+        return (this.nbUnitsConcerned != 0);
     }
 
     getUnit(unitName)
@@ -514,22 +568,64 @@ class JSArea {
         txt += "</td>\n";        
         return txt;
     }
+
+    topicsToLaTeX()
+    {
+        var txt = "";
+        var nbTopicsTotal = 0;
+        var first = true;
+        
+        for (var unitRef in this.jsUnits) {
+            var unit = this.jsUnits[unitRef];
+            nbTopicsTotal += unit.nbTopicsConcerned;
+        }
+        
+        //=== One column for the area title
+        txt += "\\multirow{" + nbTopicsTotal + "}{*}{" + this.title + "}";        
+        //-- one row for each unit
+        for (var unitRef in this.jsUnits) {
+            var unit = this.jsUnits[unitRef];
+            if (unit.isConcerned()) {
+                if (first) {
+                    txt += unit.topicsToLaTeX();
+                    first = false;
+                } else {
+                    txt += "\n\\\\\\cline{3-4}\n";
+                    txt += unit.topicsToLaTeX();
+                }
+            }
+        }
+        return txt;
+    }    
 }
 
-class JSCurricula {
-    
+class JSCurricula
+{
     constructor(jsonCurricula)
     {
         this.jsonCur = jsonCurricula;
         this.jsAreas = [];
+        this.nbAreasConcerned = 0;
         
         for (var areaRef in this.jsonCur) {
             var jsonArea = this.jsonCur[areaRef];
             var jsa = new JSArea(jsonArea, this);
             this.jsAreas.push(jsa);
+            if (jsa.isConcerned()) {
+                this.nbAreasConcerned++;
+            }
         }
     }
-
+    
+    incAreasConcerned()
+    {
+        this.nbAreasConcerned++;
+    }
+    decAreasConcerned()
+    {
+        this.nbAreasConcerned--;
+    }
+    
     getUnit(areaName, unitName)
     {
         for (var areaRef in this.jsAreas) {
@@ -539,7 +635,7 @@ class JSCurricula {
         }
         return null;
     }
-    
+
     toHTML(displayOnlyConcerned = false)
     {
         var txt = "";
@@ -558,6 +654,36 @@ class JSCurricula {
 
         return txt;
     }
+
+    toLaTeX()
+    {
+        var txt = "";
+        var first;
+        
+        txt += "\\begin{table}\n";
+
+        txt += "\\begin{center}\n";
+        txt += "\\begin{tabular}{ >{\\bfseries\\large}l  >{\\bfseries}m{4cm}  m{7cm}  m{1cm} }\n";
+        txt += "\n";
+        txt += "Area & Unit & \\textbf{Topics} & \\textbf{Addressed ?}\n";
+        txt += "\\\\\\hline\n";
+
+        for (var areaRef in this.jsAreas) {
+            var jsa = this.jsAreas[areaRef];
+            if (jsa.isConcerned()) {
+                if (first) {
+                    txt += jsa.topicsToLaTeX();
+                    first = false;
+                } else {
+                    txt += "\\\\\\hline";
+                    txt += jsa.topicsToLaTeX();                    
+                }
+            }
+        }
+        txt += "\\end{tabular}\n\\end{center}\n"
+        txt += "\\end{table}\n";
+        return txt;
+    }
 }
 
 String.prototype.replaceAll = function(search, replacement) {
@@ -573,11 +699,10 @@ window.printCSC = function(displayOnlyConcerned = false)
     var fs = require('fs');
     var txt = "";
 
-    if (JSONCur == null) {
+    if (JSCur == null) {
         JSONCur = JSON.parse(fs.readFileSync('CSC-content.json').toString());
         JSCur = new JSCurricula(JSONCur);
     }
-
     txt = JSCur.toHTML(displayOnlyConcerned);
         
     document.getElementById("theCSCPage").innerHTML = txt;
@@ -609,8 +734,11 @@ window.printCSC = function(displayOnlyConcerned = false)
     document.getElementById("newCSC").addEventListener("change", function(){loadCSC(this.id)});
     document.getElementById("saveCSC").addEventListener("click", function(){saveCSC(this.id)});
     document.getElementById("GCCSC").addEventListener("click", function(){GCCSC(this.id)});
+    document.getElementById("showCSC").addEventListener("click", function(){showCSC(this.id)});
     document.getElementById("resetCSC").addEventListener("click", function(){resetCSC(this.id)});
     document.getElementById("latexExportCSC").addEventListener("click", function(){latexExportCSC(this.id)});
+    document.getElementById("pdfExportCSC").addEventListener("click", function(){pdfExportCSC(this.id)});
+
 }
 
 function selectChanged(elt) {
@@ -637,18 +765,22 @@ function selectChanged(elt) {
 }
 
 function saveCSC(id) {
-    var dlElem = document.getElementById(id);
-    var data = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(curricula));
-    dlElem.setAttribute("href", "data:" + data);
-    dlElem.setAttribute("download", "savedCSC.json");
-    // dlElem.click();
+//    var dlElem = document.getElementById(id);
+    var link = document.createElement('a');
+    var data = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSONCur));
+    link.setAttribute("href", "data:" + data);
+    link.setAttribute("download", "savedCSC.json");
+    document.body.appendChild(link);
+    link.click();
+
 }
 
 function loadCSC() {
     var file = document.getElementById("newCSC").files[0];
     var fr = new FileReader();
-    fr.onloadend = function(e) {
-        curricula = JSON.parse(e.target.result);
+    fr.onload = function(e) {
+        JSONCur = JSON.parse(e.target.result);
+        JSCur = new JSCurricula(JSONCur);
         printCSC(false);
     }
     var blob = file.slice(0, file.size-1);
@@ -659,9 +791,27 @@ function GCCSC() {
     printCSC(true);
 }
 
-function resetCSC() {
-    JSONCur = null;
+function showCSC() {
     printCSC(false);
+}
+
+function resetCSC() {
+    JSCur = null;
+    printCSC(false);
+}
+
+function latexExportCSC(id) {
+    // var dlElem = document.getElementById(id);
+    var link = document.createElement('a');
+    var data = "data:application/x-latex;charset=utf-8," + encodeURIComponent(JSCur.toLaTeX());
+    link.setAttribute("href", "data:" + data);
+    link.setAttribute("download", "savedCSC.tex");    
+    document.body.appendChild(link);
+    link.click();
+}
+
+function pdfExportCSC() {
+    
 }
 
 window.displayArea = function(area) {
@@ -738,7 +888,6 @@ function handleXrefs(theRefs)
 
 
 // TODO
-// - add "Show useless item"
 // - export to LaTeX
 // - export to pdf
 // - place buttons in a pretty manner
