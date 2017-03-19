@@ -94,13 +94,17 @@
 }
 
 .areatitle {
-    background-color: LightSkyBlue;
+    background-color: #9999CC;
     width: 70px;
     word-wrap: break-word;
     border-style: solid;
     border-width: 2px;
     border-color: Gray;
     border-radius: 5px;
+}
+
+.areaabbrev {
+    font-size: 60%;
 }
 
 .areacontentcol {
@@ -144,14 +148,14 @@
     border-width: 2px;
     border-color: Gray;
     border-style: solid;
-    background-color: lightblue;
+    background-color: #AFCFFF;
     vertical-align: top;
     text-align: left; 
 }
 
 
 td .topiccol {
-    background-color: lightblue;
+    background-color: #AFCFFF;
     width: 600px;
     word-wrap: break-word;
     margin-bottom: 0.2em;
@@ -175,7 +179,7 @@ td .topiccol {
 
 
 .subtopiccol {
-    background-color: lightblue;
+    background-color: #AFCFFF;
     text-width: 450px;
     word-wrap: break-all;
     margin-left: 2em;
@@ -186,20 +190,20 @@ td .topiccol {
 }
 
 .subtopicscol {
-    background-color: lightblue;
+    background-color: #AFCFFF;
     vertical-align: top;
     text-align: left; 
 }
 
 .topicselectcol {
-    background-color: lightblue;
+    background-color: #AFCFFF;
     vertical-align: center;
     text-align: center; 
     width: 20px;
 }
 
 .skillselectcol {
-    background-color: SkyBlue;
+    background-color: LightSkyBlue;
     vertical-align: center;
     text-align: center; 
 }
@@ -218,7 +222,7 @@ td .topiccol {
 }
 
 .subtopicselectcol {
-    background-color: lightblue;
+    background-color: #AFCFFF;
     vertical-align: center;
     text-align: center; 
     width: 15px;
@@ -226,7 +230,7 @@ td .topiccol {
 
 .subtopicpad {
     width: 40px;
-    background-color: lightblue;
+    background-color: #AFCFFF;
 }
 
 .skillcol {
@@ -237,11 +241,11 @@ td .topiccol {
     font-size: 90%;
     vertical-align: top;
     text-align: left; 
-    background-color: SkyBlue;
+    background-color: LightSkyBlue;
 }
 
 .skill {
-    background-color: SkyBlue;
+    background-color: LightSkyBlue;
 }
 
 .skill::before {
@@ -261,7 +265,7 @@ td .topiccol {
     border-width: 2px;
     border-color: Gray;
     border-style: solid;
-    background-color: SkyBlue;
+    background-color: LightSkyBlue;
     vertical-align: top;
     text-align: left; 
 }
@@ -269,8 +273,8 @@ td .topiccol {
 
 .crossref {
     font-size:80%;
-    background: lightblue;
-    border: lightblue;
+    background: #AFCFFF;
+    border: #AFCFFF;
     font-family: Serif;
     padding: 0 0 0;
     margin: 0 0 0;
@@ -279,7 +283,7 @@ td .topiccol {
 
 .topicno {
     text-color: black;
-    background-color: IndianRed;
+    background-color: LightGray;
     background-size: 17%;
     value: "no";
     content: "no";
@@ -288,7 +292,7 @@ td .topiccol {
 }
 
 .topicyes {
-    background-color: LightGreen;
+    background-color: LightCoral;
     text-color: black;
     background-size: 17%;
     content: 'yes';
@@ -299,7 +303,7 @@ td .topiccol {
 
 .subtopicno {
     text-color: black;
-    background-color: LightCoral;
+    background-color: LightGray;
     font-size: 75%;
     background-size: 15%;
     content: 'no';
@@ -309,7 +313,7 @@ td .topiccol {
 }
 
 .subtopicyes {
-    background-color: PaleGreen;
+    background-color: LightCoral;
     text-color: black;
     font-size: 80%;
     background-size: 15%;
@@ -321,7 +325,7 @@ td .topiccol {
 
 .skillno {
     text-color: black;
-    background-color: White;
+    background-color: LightGray;
     background-size: 9%;
     font-size:90%;    
     content: 'no';
@@ -330,7 +334,7 @@ td .topiccol {
 
 .skillfamiliarity {
     text-color: black;
-    background-color: LightGray;
+    background-color: #DF7F83;
     background-size: 9%;
     font-size:90%;
     content: 'familiarity';
@@ -339,7 +343,7 @@ td .topiccol {
 
 .skillusage {
     text-color: black;
-    background-color: LightSteelBlue;
+    background-color: #BF5D60;
     background-size: 9%;
     font-size:90%;
     content: 'usage';
@@ -348,7 +352,7 @@ td .topiccol {
 
 .skillassessment {
     text-color: black;
-    background-color: MediumSlateBlue;
+    background-color: #9D3B3F;
     background-size: 9%;
     font-size:90%;
     content: 'assessment';

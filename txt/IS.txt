@@ -1,0 +1,356 @@
+===Title
+Intelligent Systems
+
+===Intro
+Artificial intelligence (AI) is the study of solutions for problems that are difficult or impractical
+to solve with traditional methods. It is used pervasively in support of everyday applications such
+as email, word-processing and search, as well as in the design and analysis of autonomous agents
+that perceive their environment and interact rationally with the environment.
+The solutions rely on a broad set of general and specialized knowledge representation schemes,
+problem solving mechanisms and learning techniques. They deal with sensing (e.g., speech
+recognition, natural language understanding, computer vision), problem-solving (e.g., search,
+planning), and acting (e.g., robotics) and the architectures needed to support them (e.g., agents,
+multi-agents). The study of Artificial Intelligence prepares the student to determine when an AI
+approach is appropriate for a given problem, identify the appropriate representation and
+reasoning mechanism, and implement and evaluate it.
+
+=====Fundamental Issues
+==Intro
+==Topics
+Overview of AI problems, examples of successful recent AI applications
+What is intelligent behavior?
+o The Turing test
+o Rational versus non-rational reasoning
+Problem characteristics
+o Fully versus partially observable
+o Single versus multi-agent
+o Deterministic versus stochastic
+o Static versus dynamic
+o Discrete versus continuous
+Nature of agents
+o Autonomous versus semi-autonomous
+o Reflexive, goal-based, and utility-based
+o The importance of perception and environmental interactions
+Philosophical and ethical issues. [elective]
+==Skills
+Describe Turing test and the “Chinese Room” thought experiment. [Familiarity]
+Differentiate between the concepts of optimal reasoning/behavior and human-like reasoning/behavior.
+[Familiarity]
+Determine the characteristics of a given problem that an intelligent system must solve. [Assessment]
+
+=====Basic Search Strategies
+==Intro
+Cross-reference AL/Basic Analysis, AL/Algorithmic Strategies, AL/Fundamental Data Structures and Algorithms
+
+==Topics
+Problem spaces (states, goals and operators), problem solving by search
+Factored representation (factoring state into variables)
+Uninformed search (breadth-first, depth-first, depth-first with iterative deepening)
+Heuristics and informed search (hill-climbing, generic best-first, A*)
+Space and time efficiency of search
+Two-player games (introduction to minimax search)
+Constraint satisfaction (backtracking and local search methods)
+==Skills
+Formulate an efficient problem space for a problem expressed in natural language (e.g., English) in terms
+of initial and goal states, and operators. [Usage]
+Describe the role of heuristics and describe the trade-offs among completeness, optimality, time
+complexity, and space complexity. [Familiarity]
+Describe the problem of combinatorial explosion of search space and its consequences. [Familiarity]
+Select and implement an appropriate uninformed search algorithm for a problem, and characterize its time
+and space complexities. [Usage]
+Select and implement an appropriate informed search algorithm for a problem by designing the necessary
+heuristic evaluation function. [Usage]
+Evaluate whether a heuristic for a given problem is admissible/can guarantee optimal solution.
+[Assessment]
+Formulate a problem specified in natural language (e.g., English) as a constraint satisfaction problem and
+implement it using a chronological backtracking algorithm or stochastic local search. [Usage]
+Compare and contrast basic search issues with game playing issues. [Familiarity]
+
+=====Basic Knowledge Representation and Reasoning
+==Topics
+Review of propositional and predicate logic (cross-reference DS/Basic Logic)
+Resolution and theorem proving (propositional logic only)
+Forward chaining, backward chaining
+Review of probabilistic reasoning, Bayes theorem (cross-reference with DS/Discrete Probability)
+
+==Skills
+Translate a natural language (e.g., English) sentence into predicate logic statement. [Usage]
+Convert a logic statement into clause form. [Usage]
+Apply resolution to a set of logic statements to answer a query. [Usage]
+Make a probabilistic inference in a real-world problem using Bayes’ theorem to determine the probability of a hypothesis given evidence. [Usage]
+
+=====Basic Machine Learning
+==Intro
+==Topics
+Definition and examples of broad variety of machine learning tasks, including classification
+Inductive learning
+Simple statistical-based learning, such as Naive Bayesian Classifier, decision trees
+The over-fitting problem
+Measuring classifier accuracy
+
+==Skills
+List the differences among the three main styles of learning: supervised, reinforcement, and unsupervised.
+[Familiarity]
+Identify examples of classification tasks, including the available input features and output to be predicted.
+[Familiarity]
+Explain the difference between inductive and deductive learning. [Familiarity]
+Describe over-fitting in the context of a problem. [Familiarity]
+Apply the simple statistical learning algorithm such as Naive Bayesian Classifier to a classification task and
+measure the classifier's accuracy. [Usage]
+
+=====Advanced Search
+==Intro
+Note that the general topics of Branch-and-bound and Dynamic Programing are listed in AL/Algorithmic Strategies.
+
+==Topics
+Constructing search trees, dynamic search space, combinatorial explosion of search space
+Stochastic search
+o Simulated annealing
+o Genetic algorithms
+o Monte-Carlo tree search
+Implementation of A* search, beam search
+Minimax search, alpha-beta pruning
+Expectimax search (MDP-solving) and chance nodes
+
+==Skills
+Design and implement a genetic algorithm solution to a problem. [Usage]
+Design and implement a simulated annealing schedule to avoid local minima in a problem. [Usage]
+Design and implement A*/beam search to solve a problem. [Usage]
+Apply minimax search with alpha-beta pruning to prune search space in a two-player game. [Usage]
+Compare and contrast genetic algorithms with classic search techniques. [Assessment]
+Compare and contrast various heuristic searches vis-a-vis applicability to a given problem. [Assessment]
+
+=====Advanced Representation and Reasoning
+==Intro
+==Topics
+Knowledge representation issues
+o Description logics
+o Ontology engineering
+Non-monotonic reasoning (e.g., non-classical logics, default reasoning)
+Argumentation
+Reasoning about action and change (e.g., situation and event calculus)
+Temporal and spatial reasoning
+Rule-based Expert Systems
+Semantic networks
+Model-based and Case-based reasoning
+Planning:
+o Partial and totally ordered planning
+o Plan graphs
+o Hierarchical planning
+o Planning and execution including conditional planning and continuous planning
+o Mobile agent/Multi-agent planning
+
+==Skills
+Compare and contrast the most common models used for structured knowledge representation, highlighting
+their strengths and weaknesses. [Assessment]
+2. Identify the components of non-monotonic reasoning and its usefulness as a representational mechanism
+for belief systems. [Familiarity]
+3. Compare and contrast the basic techniques for representing uncertainty. [Assessment]
+4. Compare and contrast the basic techniques for qualitative representation. [Assessment]
+5. Apply situation and event calculus to problems of action and change. [Usage]
+6. Explain the distinction between temporal and spatial reasoning, and how they interrelate. [Familiarity]
+7. Explain the difference between rule-based, case-based and model-based reasoning techniques. [Familiarity]
+8. Define the concept of a planning system and how it differs from classical search techniques. [Familiarity]
+9. Describe the differences between planning as search, operator-based planning, and propositional planning,
+providing examples of domains where each is most applicable. [Familiarity]
+10. Explain the distinction between monotonic and non-monotonic inference. [Familiarity]
+
+=====Reasoning Under Uncertainty
+==Intro
+==Topics
+Review of basic probability (cross-reference DS/Discrete Probability)
+Random variables and probability distributions
+o Axioms of probability
+o Probabilistic inference
+o Bayes’ Rule
+Conditional Independence
+Knowledge representations
+o Bayesian Networks. Exact inference and its complexity. Randomized sampling (Monte Carlo) methods (e.g. Gibbs sampling)
+o Markov Networks
+o Relational probability models
+o Hidden Markov Models
+Decision Theory
+o Preferences and utility functions
+o Maximizing expected utility
+
+==Skills
+Apply Bayes’ rule to determine the probability of a hypothesis given evidence. [Usage]
+Explain how conditional independence assertions allow for greater efficiency of probabilistic systems.
+[Assessment]
+Identify examples of knowledge representations for reasoning under uncertainty. [Familiarity]
+State the complexity of exact inference. Identify methods for approximate inference. [Familiarity]
+Design and implement at least one knowledge representation for reasoning under uncertainty. [Usage]
+Describe the complexities of temporal probabilistic reasoning. [Familiarity]
+Design and implement an HMM as one example of a temporal probabilistic system. [Usage]
+Describe the relationship between preferences and utility functions. [Familiarity]
+Explain how utility functions and probabilistic reasoning can be combined to make rational decisions.
+[Assessment]
+
+=====Agents
+==Intro
+Cross-reference HCI/Collaboration and Communication
+
+==Topics
+Definitions of agents
+Agent architectures (e.g., reactive, layered, cognitive)
+Agent theory
+Rationality, game theory
+o Decision-theoretic agents
+o Markov decision processes (MDP)
+Software agents, personal assistants, and information access
+o Collaborative agents
+o Information-gathering agents
+o Believable agents (synthetic characters, modeling emotions in agents)
+Learning agents
+Multi-agent systems
+o Collaborating agents
+o Agent teams
+o Competitive agents (e.g., auctions, voting)
+o Swarm systems and biologically inspired models
+
+==Skills
+List the defining characteristics of an intelligent agent. [Familiarity]
+Characterize and contrast the standard agent architectures. [Assessment]
+Describe the applications of agent theory to domains such as software agents, personal assistants, and
+believable agents. [Familiarity]
+Describe the primary paradigms used by learning agents. [Familiarity]
+Demonstrate using appropriate examples how multi-agent systems support agent interaction. [Usage]
+
+=====Natural Language Processing
+==Intro
+Cross-reference HCI/New Interactive Technologies
+==Topics
+Deterministic and stochastic grammars
+Parsing algorithms
+o CFGs and chart parsers (e.g. CYK)
+o Probabilistic CFGs and weighted CYK
+Representing meaning / Semantics
+o Logic-based knowledge representations
+o Semantic roles
+o Temporal representations
+o Beliefs, desires, and intentions
+Corpus-based methods
+N-grams and HMMs
+Smoothing and backoff
+Examples of use: POS tagging and morphology
+Information retrieval (Cross-reference IM/Information Storage and Retrieval)
+o Vector space model (TF and IDF)
+o Precision and recall
+Information extraction
+Language translation
+Text classification, categorization
+o Bag of words model
+
+==Skills
+Define and contrast deterministic and stochastic grammars, providing examples to show the adequacy of
+each. [Assessment]
+Simulate, apply, or implement classic and stochastic algorithms for parsing natural language. [Usage]
+Identify the challenges of representing meaning. [Familiarity]
+List the advantages of using standard corpora. Identify examples of current corpora for a variety of NLP
+tasks. [Familiarity]
+Identify techniques for information retrieval, language translation, and text classification. [Familiarity]
+
+=====Advanced Machine Learning
+==Intro
+==Topics
+Definition and examples of broad variety of machine learning tasks
+General statistical-based learning, parameter estimation (maximum likelihood)
+Inductive logic programming (ILP)
+Supervised learning
+o Learning decision trees
+o Learning neural networks
+o Support vector machines (SVMs)
+Ensembles
+Nearest-neighbor algorithms
+Unsupervised Learning and clustering
+o EM
+o K-means
+o Self-organizing maps
+Semi-supervised learning
+Learning graphical models (Cross-reference IS/Reasoning under Uncertainty)
+Performance evaluation (such as cross-validation, area under ROC curve)
+Learning theory
+The problem of overfitting, the curse of dimensionality
+Reinforcement learning
+o Exploration vs. exploitation trade-off
+o Markov decision processes
+o Value and policy iteration
+Application of Machine Learning algorithms to Data Mining (cross-reference IM/Data Mining)
+
+==Skills
+Explain the differences among the three main styles of learning: supervised, reinforcement, and
+unsupervised. [Familiarity]
+Implement simple algorithms for supervised learning, reinforcement learning, and unsupervised learning.
+[Usage]
+Determine which of the three learning styles is appropriate to a particular problem domain. [Usage]
+Compare and contrast each of the following techniques, providing examples of when each strategy is
+superior: decision trees, neural networks, and belief networks. [Assessment]
+Evaluate the performance of a simple learning system on a real-world dataset. [Assessment]
+Characterize the state of the art in learning theory, including its achievements and its shortcomings.
+[Familiarity]
+Explain the problem of overfitting, along with techniques for detecting and managing the problem. [Usage]
+
+=====Robotics
+==Intro
+==Topics
+Overview: problems and progress
+o State-of-the-art robot systems, including their sensors and an overview of their sensor processing
+o Robot control architectures, e.g., deliberative vs. reactive control and Braitenberg vehicles
+o World modeling and world models
+o Inherent uncertainty in sensing and in control
+Configuration space and environmental maps
+Interpreting uncertain sensor data
+Localizing and mapping
+Navigation and control
+Motion planning
+Multiple-robot coordination
+
+==Skills
+List capabilities and limitations of today's state-of-the-art robot systems, including their sensors and the
+crucial sensor processing that informs those systems. [Familiarity]
+Integrate sensors, actuators, and software into a robot designed to undertake some task. [Usage]
+Program a robot to accomplish simple tasks using deliberative, reactive, and/or hybrid control architectures.
+[Usage]
+Implement fundamental motion planning algorithms within a robot configuration space. [Usage]
+Characterize the uncertainties associated with common robot sensors and actuators; articulate strategies for
+mitigating these uncertainties. [Familiarity]
+List the differences among robots' representations of their external environment, including their strengths
+and shortcomings. [Familiarity]
+Compare and contrast at least three strategies for robot navigation within known and/or unknown
+environments, including their strengths and shortcomings. [Assessment]
+Describe at least one approach for coordinating the actions and sensing of several robots to accomplish a
+single task. [Familiarity]
+
+=====Perception and Computer Vision
+==Topics
+Computer vision
+o Image acquisition, representation, processing and properties
+o Shape representation, object recognition and segmentation
+o Motion analysis
+Audio and speech recognition
+Modularity in recognition
+Approaches to pattern recognition (cross-reference IS/Advanced Machine Learning)
+o Classification algorithms and measures of classification quality
+o Statistical techniques
+
+==Skills
+Summarize the importance of image and object recognition in AI and indicate several significant
+applications of this technology. [Familiarity]
+2. List at least three image-segmentation approaches, such as thresholding, edge-based and region-based
+algorithms, along with their defining characteristics, strengths, and weaknesses. [Familiarity]
+3. Implement 2d object recognition based on contour- and/or region-based shape representations. [Usage]
+4. Distinguish the goals of sound-recognition, speech-recognition, and speaker-recognition and identify how
+the raw audio signal will be handled differently in each of these cases. [Familiarity]
+5. Provide at least two examples of a transformation of a data source from one sensory domain to another,
+e.g., tactile data interpreted as single-band 2d images. [Familiarity]
+6. Implement a feature-extraction algorithm on real data, e.g., an edge or corner detector for images or vectors
+of Fourier coefficients describing a short slice of audio signal. [Usage]
+7. Implement an algorithm combining features into higher-level percepts, e.g., a contour or polygon from
+visual primitives or phoneme hypotheses from an audio signal. [Usage]
+8. Implement a classification algorithm that segments input percepts into output categories and quantitatively
+evaluates the resulting classification. [Usage]
+9. Evaluate the performance of the underlying feature-extraction, relative to at least one alternative possible
+approach (whether implemented or not) in its contribution to the classification task (8), above.
+[Assessment]
+10. Describe at least three classification approaches, their prerequisites for applicability, their strengths, and
+their shortcomings. [Familiarity]

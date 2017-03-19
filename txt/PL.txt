@@ -1,0 +1,375 @@
+===Title
+Programming Languages
+
+===Intro
+Programming languages are the medium through which programmers precisely describe
+concepts, formulate algorithms, and reason about solutions. In the course of a career, a computer
+scientist will work with many different languages, separately or together. Software developers
+must understand the programming models underlying different languages and make informed
+design choices in languages supporting multiple complementary approaches. Computer
+scientists will often need to learn new languages and programming constructs, and must
+understand the principles underlying how programming language features are defined,
+composed, and implemented. The effective use of programming languages, and appreciation of
+their limitations, also requires a basic knowledge of programming language translation and static
+program analysis, as well as run-time components such as memory management.
+
+=====Object-Oriented Programming
+==Intro
+==Topics
+Object-oriented design
+o Decomposition into objects carrying state and having behavior
+o Class-hierarchy design for modeling
+Definition of classes: fields, methods, and constructors
+Subclasses, inheritance, and method overriding
+Dynamic dispatch: definition of method-call
+Subtyping (cross-reference PL/Type Systems)
+o Subtype polymorphism; implicit upcasts in typed languages
+o Notion of behavioral replacement: subtypes acting like supertypes
+o Relationship between subtyping and inheritance
+Object-oriented idioms for encapsulation
+o Privacy and visibility of class members
+o Interfaces revealing only method signatures
+o Abstract base classes
+Using collection classes, iterators, and other common library components
+
+==Skills
+Design and implement a class. [Usage]
+Use subclassing to design simple class hierarchies that allow code to be reused for distinct subclasses.
+[Usage]
+Correctly reason about control flow in a program using dynamic dispatch. [Usage]
+Compare and contrast (1) the procedural/functional approach (defining a function for each operation with
+the function body providing a case for each data variant) and (2) the object-oriented approach (defining a
+class for each data variant with the class definition providing a method for each operation). Understand
+both as defining a matrix of operations and variants. [Assessment]
+Explain the relationship between object-oriented inheritance (code-sharing and overriding) and subtyping
+(the idea of a subtype being usable in a context that expects the supertype). [Familiarity]
+Use object-oriented encapsulation mechanisms such as interfaces and private members. [Usage]
+Define and use iterators and other operations on aggregates, including operations that take functions as
+arguments, in multiple programming languages, selecting the most natural idioms for each language.
+[Usage]
+
+=====Functional Programming
+==Intro
+==Topics
+Effect-free programming
+o Function calls have no side effects, facilitating compositional reasoning
+o Variables are immutable, preventing unexpected changes to program data by other code
+o Data can be freely aliased or copied without introducing unintended effects from mutation
+Processing structured data (e.g., trees) via functions with cases for each data variant
+o Associated language constructs such as discriminated unions and pattern-matching over them
+o Functions defined over compound data in terms of functions applied to the constituent pieces
+First-class functions (taking, returning, and storing functions)
+Function closures (functions using variables in the enclosing lexical environment)
+o Basic meaning and definition -- creating closures at run-time by capturing the environment
+o Canonical idioms: call-backs, arguments to iterators, reusable code via function arguments
+o Using a closure to encapsulate data in its environment
+o Currying and partial application
+Defining higher-order operations on aggregates, especially map, reduce/fold, and filter
+
+==Skills
+Write basic algorithms that avoid assigning to mutable state or considering reference equality. [Usage]
+Write useful functions that take and return other functions. [Usage]
+Compare and contrast (1) the procedural/functional approach (defining a function for each operation with the function body providing a case for each data variant) and (2) the object-oriented approach (defining a class for each data variant with the class definition providing a method for each operation). Understand both as defining a matrix of operations and variants. [Assessment]
+Correctly reason about variables and lexical scope in a program using function closures. [Usage]
+Use functional encapsulation mechanisms such as closures and modular interfaces. [Usage]
+Define and use iterators and other operations on aggregates, including operations that take functions as
+arguments, in multiple programming languages, selecting the most natural idioms for each language.
+[Usage]
+
+=====Event-Driven and Reactive Programming
+==Intro
+This material can stand alone or be integrated with other knowledge units on concurrency, asynchrony, and threading to allow contrasting events with threads.
+
+==Topics
+Events and event handlers
+Canonical uses such as GUIs, mobile devices, robots, servers
+Using a reactive framework
+o Defining event handlers/listeners
+o Main event loop not under event-handler-writer’s control
+Externally-generated events and program-generated events
+Separation of model, view, and controller
+
+==Skills
+Write event handlers for use in reactive systems, such as GUIs. [Usage]
+Explain why an event-driven programming style is natural in domains where programs react to external
+events. [Familiarity]
+Describe an interactive system in terms of a model, a view, and a controller. [Familiarity]
+
+=====Basic Type Systems
+==Intro
+==Topics
+A type as a set of values together with a set of operations
+o Primitive types (e.g., numbers, Booleans)
+o Compound types built from other types (e.g., records, unions, arrays, lists, functions, references)
+Association of types to variables, arguments, results, and fields
+Type safety and errors caused by using values inconsistently given their intended types
+Goals and limitations of static typing
+o Eliminating some classes of errors without running the program
+o Undecidability means static analysis must conservatively approximate program behavior
+Generic types (parametric polymorphism)
+o Definition
+o Use for generic libraries such as collections
+o Comparison with ad hoc polymorphism (overloading) and subtype polymorphism
+Complementary benefits of static and dynamic typing
+o Errors early vs. errors late/avoided
+o Enforce invariants during code development and code maintenance vs. postpone typing decisions
+while prototyping and conveniently allow flexible coding patterns such as heterogeneous
+collections
+o Avoid misuse of code vs. allow more code reuse
+o Detect incomplete programs vs. allow incomplete programs to run
+
+==Skills
+For both a primitive and a compound type, informally describe the values that have that type. [Familiarity]
+For a language with a static type system, describe the operations that are forbidden statically, such as
+passing the wrong type of value to a function or method. [Familiarity]
+Describe examples of program errors detected by a type system. [Familiarity]
+For multiple programming languages, identify program properties checked statically and program
+properties checked dynamically. [Usage]
+Give an example program that does not type-check in a particular language and yet would have no error if
+run. [Familiarity]
+Use types and type-error messages to write and debug programs. [Usage]
+Explain how typing rules define the set of operations that are legal for a type. [Familiarity]
+Write down the type rules governing the use of a particular compound type. [Usage]
+Explain why undecidability requires type systems to conservatively approximate program behavior.
+[Familiarity]
+10. Define and use program pieces (such as functions, classes, methods) that use generic types, including for
+collections. [Usage]
+11. Discuss the differences among generics, subtyping, and overloading. [Familiarity]
+12. Explain multiple benefits and limitations of static typing in writing, maintaining, and debugging software.
+[Familiarity]
+
+=====Program Representation
+==Intro
+==Topics
+Programs that take (other) programs as input such as interpreters, compilers, type-checkers, documentation generators
+Abstract syntax trees; contrast with concrete syntax
+Data structures to represent code for execution, translation, or transmission
+
+==Skills
+Explain how programs that process other programs treat the other programs as their input data.
+[Familiarity]
+Describe an abstract syntax tree for a small language. [Usage]
+Describe the benefits of having program representations other than strings of source code. [Familiarity]
+Write a program to process some representation of code for some purpose, such as an interpreter, an
+expression optimizer, or a documentation generator. [Usage]
+
+=====Language Translation and Execution
+==Intro
+==Topics
+Interpretation vs. compilation to native code vs. compilation to portable intermediate representation
+Language translation pipeline: parsing, optional type-checking, translation, linking, execution
+o Execution as native code or within a virtual machine
+o Alternatives like dynamic loading and dynamic (or “just-in-time”) code generation
+Run-time representation of core language constructs such as objects (method tables) and first-class functions (closures)
+Run-time layout of memory: call-stack, heap, static data
+o Implementing loops, recursion, and tail calls
+Memory management
+o Manual memory management: allocating, de-allocating, and reusing heap memory
+o Automated memory management: garbage collection as an automated technique using the notion of reachability
+
+==Skills
+Distinguish a language definition (what constructs mean) from a particular language implementation
+(compiler vs. interpreter, run-time representation of data objects, etc.). [Familiarity]
+Distinguish syntax and parsing from semantics and evaluation. [Familiarity]
+Sketch a low-level run-time representation of core language constructs, such as objects or closures.
+[Familiarity]
+Explain how programming language implementations typically organize memory into global data, text,
+heap, and stack sections and how features such as recursion and memory management map to this memory
+model. [Familiarity]
+Identify and fix memory leaks and dangling-pointer dereferences. [Usage]
+Discuss the benefits and limitations of garbage collection, including the notion of reachability. [Familiarity]
+
+=====Syntax Analysis
+==Intro
+==Topics
+Scanning (lexical analysis) using regular expressions
+Parsing strategies including top-down (e.g., recursive descent, Earley parsing, or LL) and bottom-up (e.g., backtracking or LR) techniques; role of context-free grammars
+Generating scanners and parsers from declarative specifications
+
+==Skills
+Use formal grammars to specify the syntax of languages. [Usage]
+Use declarative tools to generate parsers and scanners. [Usage]
+Identify key issues in syntax definitions: ambiguity, associativity, precedence. [Familiarity]
+
+=====Compiler Semantic Analysis
+==Intro
+==Topics
+High-level program representations such as abstract syntax trees
+Scope and binding resolution
+Type checking
+Declarative specifications such as attribute grammars
+
+==Skills
+Implement context-sensitive, source-level static analyses such as type-checkers or resolving identifiers to identify their binding occurrences. [Usage]
+Describe semantic analyses using an attribute grammar. [Usage]
+
+=====Code Generation
+==Intro
+==Topics
+Procedure calls and method dispatching
+Separate compilation; linking
+Instruction selection
+Instruction scheduling
+Register allocation
+Peephole optimization
+
+==Skills
+Identify all essential steps for automatically converting source code into assembly or other low-level
+languages. [Familiarity]
+Generate the low-level code for calling functions/methods in modern languages. [Usage]
+Discuss why separate compilation requires uniform calling conventions. [Familiarity]
+Discuss why separate compilation limits optimization because of unknown effects of calls. [Familiarity]
+Discuss opportunities for optimization introduced by naive translation and approaches for achieving
+optimization, such as instruction selection, instruction scheduling, register allocation, and peephole
+optimization. [Familiarity]
+
+=====Runtime Systems
+==Intro
+==Topics
+Dynamic memory management approaches and techniques: malloc/free, garbage collection (mark-sweep, copying, reference counting), regions (also known as arenas or zones)
+Data layout for objects and activation records
+Just-in-time compilation and dynamic recompilation Other common features of virtual machines, such as class loading, threads, and security.
+
+==Skills
+Compare the benefits of different memory-management schemes, using concepts such as fragmentation,
+locality, and memory overhead. [Familiarity]
+Discuss benefits and limitations of automatic memory management. [Familiarity]
+Explain the use of metadata in run-time representations of objects and activation records, such as class
+pointers, array lengths, return addresses, and frame pointers. [Familiarity]
+Discuss advantages, disadvantages, and difficulties of just-in-time and dynamic recompilation.
+[Familiarity]
+Identify the services provided by modern language run-time systems. [Familiarity]
+
+=====Static Analysis
+==Intro
+==Topics
+Relevant program representations, such as basic blocks, control-flow graphs, def-use chains, and static
+single assignment
+Undecidability and consequences for program analysis
+Flow-insensitive analyses, such as type-checking and scalable pointer and alias analyses
+Flow-sensitive analyses, such as forward and backward dataflow analyses
+Path-sensitive analyses, such as software model checking
+Tools and frameworks for defining analyses
+Role of static analysis in program optimization
+Role of static analysis in (partial) verification and bug-finding
+
+==Skills
+Define useful static analyses in terms of a conceptual framework such as dataflow analysis. [Usage]
+Explain why non-trivial sound static analyses must be approximate. [Familiarity]
+Communicate why an analysis is correct (sound and terminating). [Usage]
+Distinguish “may” and “must” analyses. [Familiarity]
+Explain why potential aliasing limits sound program analysis and how alias analysis can help. [Familiarity]
+Use the results of a static analysis for program optimization and/or partial program correctness. [Usage]
+
+=====Advanced Programming Constructs
+==Intro
+==Topics
+Lazy evaluation and infinite streams
+Control Abstractions: Exception Handling, Continuations, Monads
+Object-oriented abstractions: Multiple inheritance, Mixins, Traits, Multimethods
+Metaprogramming: Macros, Generative programming, Model-based development
+Module systems
+String manipulation via pattern-matching (regular expressions)
+Dynamic code evaluation (“eval”)
+Language support for checking assertions, invariants, and pre/post-conditions
+
+==Skills
+Use various advanced programming constructs and idioms correctly. [Usage]
+Discuss how various advanced programming constructs aim to improve program structure, software quality, and programmer productivity. [Familiarity]
+Discuss how various advanced programming constructs interact with the definition and implementation of other language features. [Familiarity]
+
+=====Concurrency and Parallelism
+==Intro
+Support for concurrency is a fundamental programming-languages issue with rich material in
+programming language design, language implementation, and language theory. Due to coverage
+in other Knowledge Areas, this elective Knowledge Unit aims only to complement the material
+included elsewhere in the Body of Knowledge. Courses on programming languages are an
+excellent place to include a general treatment of concurrency including this other material.
+Cross-reference PD/Parallel and Distributed Computing, SF/Parallelism.
+
+==Topics
+Constructs for thread-shared variables and shared-memory synchronization
+Actor models
+Futures
+Language support for data parallelism
+Models for passing messages between sequential processes
+Effect of memory-consistency models on language semantics and correct code generation
+
+==Skills
+Write correct concurrent programs using multiple programming models, such as shared memory, actors, futures, and data-parallelism primitives. [Usage]
+Use a message-passing model to analyze a communication protocol. [Usage]
+Explain why programming languages do not guarantee sequential consistency in the presence of data races and what programmers must do as a result. [Familiarity]
+
+=====Type Systems
+==Intro
+==Topics
+Compositional type constructors, such as product types (for aggregates), sum types (for unions), function
+types, quantified types, and recursive types
+Type checking
+Type safety as preservation plus progress
+Type inference
+Static overloading
+
+==Skills
+Define a type system precisely and compositionally. [Usage]
+For various foundational type constructors, identify the values they describe and the invariants they
+enforce. [Familiarity]
+Precisely specify the invariants preserved by a sound type system. [Familiarity]
+Prove type safety for a simple language in terms of preservation and progress theorems. [Usage]
+Implement a unification-based type-inference algorithm for a simple language. [Usage]
+Explain how static overloading and associated resolution algorithms influence the dynamic behavior of
+programs. [Familiarity]
+
+=====Formal Semantics
+==Intro
+==Topics
+Syntax vs. semantics
+Lambda Calculus
+Approaches to semantics: Operational, Denotational, Axiomatic
+Proofs by induction over language semantics
+Formal definitions and proofs for type systems (cross-reference PL/Type Systems)
+Parametricity (cross-reference PL/Type Systems)
+Using formal semantics for systems modeling
+
+==Skills
+Give a formal semantics for a small language. [Usage]
+Write a lambda-calculus program and show its evaluation to a normal form. [Usage]
+Discuss the different approaches of operational, denotational, and axiomatic semantics. [Familiarity]
+Use induction to prove properties of all programs in a language. [Usage]
+Use induction to prove properties of all programs in a language that are well-typed according to a formally
+defined type system. [Usage]
+Use parametricity to establish the behavior of code given only its type. [Usage]
+Use formal semantics to build a formal model of a software system other than a programming language.
+[Usage]
+
+=====Language Pragmatics
+==Intro
+==Topics
+Principles of language design such as orthogonality
+Evaluation order, precedence, and associativity
+Eager vs. delayed evaluation
+Defining control and iteration constructs
+External calls and system libraries
+
+==Skills
+Discuss the role of concepts such as orthogonality and well-chosen defaults in language design.
+[Familiarity]
+Use crisp and objective criteria for evaluating language-design decisions. [Usage]
+Give an example program whose result can differ under different rules for evaluation order, precedence, or
+associativity. [Usage]
+Show uses of delayed evaluation, such as user-defined control abstractions. [Familiarity]
+Discuss the need for allowing calls to external calls and system libraries and the consequences for language
+implementation. [Familiarity]
+
+=====Logic Programming
+==Intro
+==Topics
+Clausal representation of data structures and algorithms
+Unification
+Backtracking and search
+Cuts
+
+==Skills
+Use a logic language to implement a conventional algorithm. [Usage]
+Use a logic language to implement an algorithm employing implicit search using clauses, relations, and
+cuts. [Usage]

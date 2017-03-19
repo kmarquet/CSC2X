@@ -376,10 +376,6 @@ class JSUnit {
     {
         return (this.nbTopicsConcerned > 0);
     }
-
-    getTitle() {
-        return this.title;
-    }
     
     getId() {
         return this.id;
@@ -481,8 +477,9 @@ class JSArea {
     constructor(jsonArea, curricula) {
         this.theJSONArea = jsonArea;
         this.jsUnits = [];
-        this.title = this.theJSONArea.area_name;
-        this.id = this.theJSONArea.area_name;
+        this.abbrev = this.theJSONArea.abbrev;
+        this.title = this.theJSONArea.title;
+        this.id = this.theJSONArea.abbrev;
         this.theJSCurricula = curricula;
         this.concerned = false;
         this.nbUnitsConcerned = 0;
@@ -510,10 +507,6 @@ class JSArea {
             this.theJSCurricula.decAreasConcerned();
     }
     
-    getTitle() {
-        return this.title;
-    }
-
     getId() {
         return this.id;
     }
@@ -539,8 +532,9 @@ class JSArea {
 
         //=== One column for the area title
         txt += "<td class=\"areatitlecol\">\n"; 
-         txt += "<div class=\"areatitle\" id=\"" + this.id + "\">\n";
-        txt += this.title + "<br>\n";
+        txt += "<div class=\"areaabbrev\" id=\"" + this.id + "\">\n";
+        txt += this.abbrev + "<br>\n";
+        txt += "<span class=\"areatitle\">" + this.title + "<br>\n";
         txt += "</div>";
         txt += "</td>\n"; 
 
@@ -577,7 +571,7 @@ class JSArea {
         }
         
         //=== One column for the area title
-        txt += "\\multirow{" + nbTopicsTotal + "}{*}{" + this.title + "}";        
+        txt += "\\multirow{" + nbTopicsTotal + "}{*}{" + this.abbrev + "}";        
         //-- one row for each unit
         for (var unitRef in this.jsUnits) {
             var unit = this.jsUnits[unitRef];

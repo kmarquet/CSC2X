@@ -1,6 +1,5 @@
 #!/usr/bin/env python3.5
 import os
-import csv
 import sys
 import codecs
 from subprocess import call
@@ -9,8 +8,8 @@ from optparse import OptionParser
 cwd=os.getcwd()
 
 parser = OptionParser()
-parser.add_option("-i", "--csvdir", dest="csvpath",
-                  help="Directory where all csv files reside", metavar="DIR")
+parser.add_option("-i", "--areadir", dest="areapath",
+                  help="Directory where the files describing each area reside", metavar="DIR")
 parser.add_option("-o", "--outputfile", dest="outputfilename",
                   help="Output file", metavar="FILE")
 parser.add_option("-f", "--format", dest="outputformat",
@@ -20,6 +19,15 @@ parser.add_option("-f", "--format", dest="outputformat",
 
 ############### Classes ###########
 from enum import Enum
+
+class PState(Enum):
+    ReadingAreaTitle = 0
+    ReadingAreaIntro = 1
+    ReadingUnit = 2
+    ReadingUnitIntro = 3
+    ReadingTopics = 4
+    ReadingSkills  = 5
+
 class SkillLevel(Enum):
     Zero = 0
     Familiarity = 1
@@ -39,7 +47,7 @@ class SkillLevel(Enum):
             return SkillLevel.Assessment
 
 class Topic:
-    def __init__(self, content, unit, addressed, num):
+    def __init__(self, content, unit, num):
         self.content = content
         self.unit = unit
         self.addressed = "No"
@@ -48,11 +56,6 @@ class Topic:
         
     def toJson(self, ):
         outlist = []
-        # outlist.append("{ \"area\": \"");
-        # outlist.append(self.unit.area.abbrev);
-        # outlist.append("\", \n\"unit\" : \"");
-        # outlist.append(self.unit.name);
-        # outlist.append("\",\n\"concept\": ");
         outlist.append("         { \"content\": ");
         if self.content.startswith("\""):
             outlist.append(self.content);
@@ -82,13 +85,13 @@ class Topic:
         outlist.append("         }");
         return outlist
     
-    def addSubTopic(self, content, addressed):
-        newSubTopic = Topic(content, self.unit, addressed, len(self.subtopics))
+    def addSubTopic(self, content):
+        newSubTopic = Topic(content, self.unit, len(self.subtopics))
         self.subtopics.append(newSubTopic)
         return newSubTopic
         
 class Skill:
-    def __init__(self, content, unit, num, mastery):
+    def __init__(self, content, unit, num):
         self.content = content
         self.unit = unit
         self.mastery = "No"
@@ -96,13 +99,6 @@ class Skill:
         
     def toJson(self, ):
         outlist = []
-        # outlist.append("{ \"area\": \"");
-        # outlist.append(self.unit.area.abbrev);
-        # outlist.append("\", \n\"unit\": \"");
-        # outlist.append(self.unit.name);
-        # outlist.append("\",\n\"num\": \"");
-        # outlist.append(self.num);
-        #        outlist.append("\", \n\"skill\": ");
         
         outlist.append("         {\"content\": ");
         if self.content.startswith("\""):
@@ -124,42 +120,33 @@ class Skill:
         return outlist
         
 class Unit:
-    def __init__(self, name, area):
-        self.name = name
+    def __init__(self, title, area):
+        self.title = title
         self.topics = []
         self.skills = []
         self.area = area
-        
-    def getAddressedTopics(self, ):
-        theAddressedTopics = []
-        for topic in topics:
-            if topic.addressed:
-                addressed_topics += topic
-        return addressed_topics
+        self.intro = ""
 
-    def getSkillsForLevel(self, level):
-        theSkills = []
-        for skill in skills:
-            if skill.skillLevel > level:
-                the_skills += skill
-        return theSkills
+    def setIntro(self, intro):
+        self.intro = intro.replace("\n\n", "+++").replace("\n", " ").replace("+++", "\n\n").replace("\"", "\\\"")
 
-    def addTopicIfNeeded(self, content, addressed):
+    def addTopic(self, content):
         for topic in self.topics:
             if topic.content == content:
-                return topic
-        newTopic = Topic(content, self, addressed, len(self.topics))
+                print("WARNING : topic present more than 1 time in " + self.area.abbrev + "/" + self.title + " : " + content)
+        newTopic = Topic(content, self, len(self.topics))
         self.topics.append(newTopic)
         return newTopic
 
-    def addSkill(self, content, num, mastery):
-        newSkill = Skill(content, self, len(self.skills), mastery)
+    def addSkill(self, content):
+        newSkill = Skill(content, self, len(self.skills))
         self.skills.append(newSkill)
         return newSkill
 
     def toJson(self):
         outlist = []
-        outlist += "      {\"unit_name\": \"" + self.name + "\",\n";
+        outlist += "      {\"title\": \"" + self.title + "\",\n";
+        outlist += "       \"intro\": \"" + self.intro + "\",\n";        
         outlist += "       \"topics\": [\n"
         for i, topic in enumerate(self.topics):
             if i > 0:
@@ -184,18 +171,28 @@ class Area:
     def __init__(self, abbrev):
         self.abbrev = abbrev
         self.units = []
+        self.title = None
+        self.intro = None
         
-    def addUnitIfNeeded(self, name):
+    def addUnit(self, title):
         for unit in self.units:
-            if unit.name == name:
-                return unit
-        newUnit = Unit(name, self)
+            if unit.title == title:
+                print("WARNING: multiple defined unit: " + self.abbrev + "/" + title)
+        newUnit = Unit(title, self)
         self.units.append(newUnit)
         return newUnit
 
+    def setTitle(self, title):
+        self.title = title
+
+    def setIntro(self, intro):
+        self.intro = intro.replace("\n\n", "+++").replace("\n", " ").replace("+++", "\n\n").replace("\"", "\\\"")
+        
     def toJson(self):
         outlist = []
-        outlist += "{\"area_name\": \"" + self.abbrev + "\",\n"
+        outlist += "{\"abbrev\": \"" + self.abbrev + "\",\n"
+        outlist += "  \"title\": \"" + self.title + "\",\n"
+        outlist += "  \"intro\": \"" + self.intro + "\",\n"
         outlist += "  \"units\": [\n"
         for i, unit in enumerate(self.units):
             if i > 0:
@@ -297,59 +294,74 @@ def create_open_file(filename):
 
 theCurricula = Curricula()
 
-for csvfilename in os.listdir(options.csvpath):
-    current_csv_filename = options.csvpath + os.sep + csvfilename
-    with open(current_csv_filename) as csvfile:
-        
-        if not (csvfilename.endswith('.csv')):
-            continue
-        if "Concept" in csvfilename:
-            isConcept = True
-        elif "Skill" in csvfilename:
-            isConcept = False
-        else:
-            print("File is neither Skill or Concept file ; or its name does not contain 'Skill' nor 'Concept' : " + current_csv_filename)
+for areafilename in os.listdir(options.areapath):
+    current_area_filename = options.areapath + os.sep + areafilename
+    with open(current_area_filename) as areafile:        
+        if not (areafilename.endswith('.txt')):
+            print("Warning: " + areafilename + " not handled." )
             continue
 
-        print("\n========== Handling file " + csvfilename + " ================")
+        print("\n========== Handling file " + areafilename + " ================")
 
-        # ---- Read file, process each row -----
-        csvreader = csv.reader(csvfile, delimiter=',', skipinitialspace=True)
-
-        namesplitted = csvfilename.replace('.csv', '').split('-')
-        areaAbbrev = namesplitted[0]
-        unitName = namesplitted[1]
+        areaAbbrev = areafilename.replace('.txt', '')
         currentArea = theCurricula.addAreaIfNeeded(areaAbbrev)
-        currentUnit = currentArea.addUnitIfNeeded(unitName)
-        
-        for row in csvreader:
-            if isConcept:
-                topicContent = row[0].strip()
-                addressed = row[1].strip()
+        currentAreaIntro = ""
+        currentTopic = None
+        currentSkillContent = ""
 
-                if topicContent.startswith('<'):
-                    splitted = topicContent.split('>:')
-                    parentTopicContent = splitted[0][1:].strip()
-                    topic = currentUnit.addTopicIfNeeded(parentTopicContent, addressed)
-                    subTopicContent = splitted[1].strip()
-                    topic.addSubTopic(subTopicContent, addressed)
-                else:
-                    currentUnit.addTopicIfNeeded(topicContent, addressed)
+        # ---- Read file, process each line -----
+        for line in areafile:
+            sline = line.strip()
+            if sline == "":
+                continue
+            elif sline == "===Title":
+                state = PState.ReadingAreaTitle
+            elif sline == "===Intro":
+                state = PState.ReadingAreaIntro
+            elif sline.startswith("====="):
+                if state == PState.ReadingAreaIntro:
+                    currentArea.setIntro(currentAreaIntro)
+                state = PState.ReadingUnit
+                unitTitle = sline[5:].strip()
+                currentUnit = currentArea.addUnit(unitTitle)
+                currentUnitIntro = ""
 
+            elif sline == "==Intro":
+                state = PState.ReadingUnitIntro
+            elif sline == "==Topics":
+                if state == PState.ReadingUnitIntro:
+                    currentUnit.setIntro(currentUnitIntro)
+                state = PState.ReadingTopics
+            elif sline == "==Skills":
+                state = PState.ReadingSkills
+            elif sline.startswith("o "):
+                subTopicContent = sline[2:]
+                currentTopic.addSubTopic(subTopicContent);
             else:
-                skillNum = row[0].strip()
-                if not skillNum.isdigit():
-                    print("ERROR IN SKILL FILE : lack number")
-                    print(current_csv_filename)
-                    print(csvfilename)
-                    exit(-1)
-                skillContent = row[1].strip()
-                mastery = row[2].strip()
-                currentUnit.addSkill(skillContent, skillNum, mastery)
-        csvfile.close()
+                if state == PState.ReadingAreaTitle:
+                    currentArea.setTitle(sline)
+                elif state == PState.ReadingAreaIntro:
+                    currentAreaIntro += line
+                elif state == PState.ReadingUnitIntro:
+                    currentUnitIntro += line
+                elif state == PState.ReadingTopics:
+                    currentTopic = currentUnit.addTopic(sline)
+                elif state == PState.ReadingSkills:
+                    currentSkillContent += sline
+                    if state == PState.ReadingSkills:
+                        endIndex = sline.find("[")
+                        if  endIndex >= 0:
+                            currentSkillContent += sline[0:endIndex]
+                            currentUnit.addSkill(currentSkillContent)
+                            currentSkillContent = ""
+                        else:
+                            currentSkillContent += sline
+                else:
+                    continue                
+        areafile.close()
 
 ################## Output ###############
 outfile = create_open_file(options.outputfilename)
-outlist =theCurricula.toJson()
+outlist = theCurricula.toJson()
 outfile.write(''.join(outlist))
 outfile.close()
