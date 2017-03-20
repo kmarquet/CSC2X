@@ -305,10 +305,10 @@ Object.setPrototypeOf(JSSubTopic.prototype, JSTopic);
 class JSUnit {
     
     constructor(jsonUnit, area) {
-        this.title = jsonUnit.unit_name;
+        this.title = jsonUnit.title;
         this.theJSArea = area;
         this.id = this.theJSArea.getId() + "__" + this.title.replaceAll(" ", "_"); 
-        this.title = jsonUnit.unit_name.replaceAll("_", " ");
+        this.title = jsonUnit.title.replaceAll("_", " ");
         this.theJSONUnit = jsonUnit;
         this.theJSTopics = [];
         this.theJSSkills = [];
@@ -394,12 +394,20 @@ class JSUnit {
         txt += "</div>";
         txt += "</tr>";
 
+        if (this.theJSONUnit.intro != "") {
+            txt += "<tr>";
+            txt += "<div class=\"unitintro\" id=\"intro_" + this.id + "\">";
+            txt += this.theJSONUnit.intro;
+            txt += "</div>";
+            txt += "</tr>";
+        }
+
         //=== One line for the content
         txt += "<tr class=\"unitcontent\" id=\"contentof" + this.id + "\">\n";
 
         // one column empty
-        txt += "<td class=\"smallindent\">\n"; 
-        txt += "</td>\n";
+        // txt += "<td class=\"smallindent\">\n"; 
+        // txt += "</td>\n";
 
         //------------ one column for the topics in a table -------
         txt += "<td class=\"topicscol\">\n"; 
@@ -419,7 +427,7 @@ class JSUnit {
         //------------------- End of topics -------------------
 
         //--------- empty column ----------
-        txt += "<td class=\"paddingtopskill\"></td>\n"; 
+        txt += "<td class=\"smallpadding\"></td>\n"; 
 
         //-------- one column for the skills ---------------
         txt += "<td class=\"skillscol\">\n"; 
@@ -526,6 +534,16 @@ class JSArea {
         return null;
     }
 
+    getIntroId()
+    {
+        return "content_intro_" + this.id;
+    }
+
+    getLinkIntroId()
+    {
+        return "intro_" + this.id;
+    }
+
     toHTML(displayOnlyConcerned = false)
     {
         var txt = "";
@@ -534,8 +552,15 @@ class JSArea {
         txt += "<td class=\"areatitlecol\">\n"; 
         txt += "<div class=\"areaabbrev\" id=\"" + this.id + "\">\n";
         txt += this.abbrev + "<br>\n";
-        txt += "<span class=\"areatitle\">" + this.title + "<br>\n";
+        txt += "<span class=\"areatitle\">" + this.title + "</span><br>\n";
         txt += "</div>";
+        txt += "<div class=\"linkareaintro\" id=\""+ this.getLinkIntroId() + "\">";
+        txt += "See introduction notes";
+        txt += "</div>";
+        // txt += "<div class=\"areaintro\" id=\"" + this.getIntroId() + "\">";
+        // txt += this.theJSONArea.intro;
+        // txt += "</div>";        
+
         txt += "</td>\n"; 
 
         //=== One column for the area content
@@ -616,6 +641,16 @@ class JSCurricula
         this.nbAreasConcerned--;
     }
     
+    getArea(areaName)
+    {
+        for (var areaRef in this.jsAreas) {
+            var jsArea = this.jsAreas[areaRef];
+            if (jsArea.id == areaName)
+                return jsArea;
+        }
+        return null;
+    }
+
     getUnit(areaName, unitName)
     {
         for (var areaRef in this.jsAreas) {
@@ -711,6 +746,9 @@ window.printCSC = function(displayOnlyConcerned = false)
         
         var areaId = area.getId();
         document.getElementById(areaId).addEventListener("click", function(){displayArea(this)});
+        var areaLinkIntroId = area.getLinkIntroId();
+        document.getElementById(areaLinkIntroId).addEventListener("click", function(){displayAreaIntro(this)});
+        
         for (var unitRef in area.jsUnits) {
             var unit = area.jsUnits[unitRef];
             
@@ -826,6 +864,37 @@ function displayUnit(unit) {
         document.getElementById("contentof" + unit.id).style.display = 'block';
     else
         document.getElementById("contentof" + unit.id).style.display = "none";
+}
+
+function displayAreaIntro(area) {
+    var areaIntroId = area.id;
+    var areaId = area.id.substring(6);
+    var newdiv = document.createElement('div');
+    var jsarea = JSCur.getArea(areaId);
+    // var rect = area.getBoundingClientRect();
+    // var x = rect.top;
+    // var y = rect.left;
+
+    newdiv.setAttribute("class", "areaintro");
+    newdiv.setAttribute("id", "content_" + areaIntroId);
+    // newdiv.style.top = x + 'px';
+    // newdiv.style.left = y + 'px';
+    
+    newdiv.innerHTML += jsarea.theJSONArea.intro;
+
+    document.body.append(newdiv);
+    
+    //    document.body.appendChild(newdiv);
+
+    // var element = document.getElementById("content_" + areaIntroId);
+    // var eStyle = element.currentStyle ?
+    //     element.currentStyle.display :
+    //     getComputedStyle(element, null).display;
+
+    // if (eStyle === 'none')
+    //     element.style.display = "block";
+    // else
+    //     element.style.display = "none";
 }
 
 

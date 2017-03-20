@@ -232,7 +232,7 @@ services. [Usage]
 
 =====Numerical Analysis
 ==Intro
-Cross-reference AR/Machine Level Representation of Data
+Cross-reference {AR/Machine Level Representation of Data}
 
 ==Topics
 Error, stability, convergence, including truncation and round-off

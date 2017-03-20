@@ -76,7 +76,7 @@ for separately in terms of the core hours.
 Build upon students’ familiarity with the notion of basic parallel execution—a concept addressed
 in Systems Fundamentals—to delve into the complicating issues that stem from this notion, such
 as race conditions and liveness.
-Cross-reference SF/Computational Paradigms and SF/System Support for Parallelism.
+Cross-reference {SF/Computational Paradigms} and {SF/System Support for Parallelism}.
 
 ==Topics
 Multiple simultaneous computations
@@ -91,7 +91,7 @@ o Lack of liveness/progress (deadlock, starvation)
 
 ==Skills
 Distinguish using computational resources for a faster answer from managing efficient access to a shared
-resource. (Cross-reference GV/Fundamental Concepts, outcome 5.) [Familiarity]
+resource. (Cross-reference {GV/Fundamental Concepts}, outcome 5.) [Familiarity]
 Distinguish multiple sufficient programming constructs for synchronization that may be inter-
 implementable but have complementary advantages. [Familiarity]
 Distinguish data races from higher level races. [Familiarity]
@@ -99,12 +99,12 @@ Distinguish data races from higher level races. [Familiarity]
 =====Parallel Decomposition
 ==Intro
 
-(Cross-reference SF/System Support for Parallelism)
+(Cross-reference {SF/System Support for Parallelism})
 
 ==Topics
 Need for communication and coordination/synchronization
 Independence and partitioning
-Basic knowledge of parallel decomposition concepts (cross-reference SF/System Support for Parallelism)
+Basic knowledge of parallel decomposition concepts (cross-reference {SF/System Support for Parallelism})
 Task-based decomposition
 o Implementation strategies such as threads
 Data-parallel decomposition
@@ -122,7 +122,7 @@ Write a program using actors and/or reactive processes. [Usage]
 =====Communication and Coordination
 ==Intro
 
-Cross-reference OS/Concurrency for mechanism implementation issues.
+Cross-reference {OS/Concurrency}/mechanism implementation issues.
 
 ==Topics
 Shared Memory
@@ -130,7 +130,7 @@ Consistency, and its role in programming language guarantees for data-race-free 
 Message passing
 o Point-to-point versus multicast (or event-based) messages
 o Blocking versus non-blocking styles for sending and receiving messages
-o Message buffering (cross-reference PF/Fundamental Data Structures/Queues)
+o Message buffering (cross-reference {PF/Fundamental Data Structures}/Queues)
 Atomicity
 o Specifying and testing atomicity and safety requirements
 o Granularity of atomic accesses and updates, and the use of constructs such as critical sections or transactions to describe them
@@ -165,13 +165,12 @@ contention among updates. [Familiarity]
 
 
 ==Topics
-Critical paths, work and span, and the relation to Amdahl’s law (cross-reference SF/Performance)
+Critical paths, work and span, and the relation to Amdahl’s law (cross-reference {SF/Performance})
 Speed-up and scalability
 Naturally (embarrassingly) parallel algorithms
 Parallel algorithmic patterns (divide-and-conquer, map and reduce, master-workers, others)
 o Specific algorithms (e.g., parallel MergeSort)
-Parallel graph algorithms (e.g., parallel shortest path, parallel spanning tree) (cross-reference
-AL/Algorithmic Strategies/Divide-and-conquer)
+Parallel graph algorithms (e.g., parallel shortest path, parallel spanning tree) (cross-reference {AL/Algorithmic Strategies/Divide-and-conquer})
 Parallel matrix computations
 Producer-consumer and pipelined algorithms
 Examples of non-scalable parallel algorithms
@@ -233,18 +232,17 @@ Describe the key performance challenges in different memory and distributed syst
 ==Topics
 Load balancing
 Performance measurement
-Scheduling and contention (cross-reference OS/Scheduling and Dispatch)
+Scheduling and contention (cross-reference {OS/Scheduling and Dispatch})
 Evaluating communication overhead
 Data management
-o Non-uniform communication costs due to proximity (cross-reference SF/Proximity)
+o Non-uniform communication costs due to proximity (cross-reference {SF/Proximity})
 o Cache effects (e.g., false sharing)
 o Maintaining spatial locality
 Power usage and management
 
 ==Skills
 Detect and correct a load imbalance. [Usage]
-Calculate the implications of Amdahl’s law for a particular parallel algorithm (cross-reference
-SF/Evaluation for Amdahl’s Law). [Usage]
+Calculate the implications of Amdahl’s law for a particular parallel algorithm (cross-reference {SF/Evaluation for Amdahl’s Law}). [Usage]
 Describe how data distribution/layout can affect an algorithm’s communication costs. [Familiarity]
 Detect and correct an instance of false sharing. [Usage]
 Explain the impact of scheduling on parallel performance. [Familiarity]
@@ -256,7 +254,7 @@ Explain the impact and trade-off related to power usage on parallel performance.
 
 
 ==Topics
-Faults (cross-reference OS/Fault Tolerance)
+Faults (cross-reference {OS/Fault Tolerance})
 o Network-based (including partitions) and node-based failures
 o Impact on system-wide guarantees (e.g., availability)
 Distributed message sending
@@ -295,7 +293,7 @@ Give examples of problems for which consensus algorithms such as leader election
 
 ==Topics
 Internet-Scale computing
-o Task partitioning (cross-reference PD/Parallel Algorithms, Analysis, and Programming)
+o Task partitioning (cross-reference {PD/Parallel Algorithms, Analysis, and Programming})
 o Data access
 o Clusters, grids, and meshes
 Cloud services
@@ -303,14 +301,14 @@ o Infrastructure as a service (Elasticity of resources ; Platform APIs)
 o Software as a service
 o Security
 o Cost management
-Virtualization (cross-reference SF/Virtualization and Isolation and OS/Virtual Machines)
+Virtualization (cross-reference {SF/Virtualization and Isolation} and {OS/Virtual Machines})
 o Shared resource management
 o Migration of processes
 Cloud-based data storage
 o Shared access to weakly consistent data stores
 o Data synchronization
 o Data partitioning
-o Distributed file systems (cross-reference IM/Distributed Databases)
+o Distributed file systems (cross-reference {IM/Distributed Databases})
 o Replication
 
 ==Skills

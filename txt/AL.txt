@@ -68,7 +68,7 @@ that the 1:2 ratio is reasonable.
 ==Topics
 Brute-force algorithms
 Greedy algorithms
-Divide-and-conquer (cross-reference SDF/Algorithms and Design/Problem-solving strategies)
+Divide-and-conquer (cross-reference {SDF/Algorithms}{Design/Problem-solving strategies})
 Recursive backtracking
 Dynamic Programming
 Branch-and-bound
@@ -137,7 +137,7 @@ one minimum spanning tree algorithm. [Usage]
 Finite-state machines
 Regular expressions
 The halting problem
-Context-free grammars (cross-reference PL/Syntax Analysis)
+Context-free grammars (cross-reference {PL/Syntax Analysis})
 Introduction to the P and NP classes and the P vs. NP problem
 Introduction to the NP-complete class and exemplary NP-complete problems (e.g., SAT, Knapsack)
 

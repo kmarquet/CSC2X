@@ -35,7 +35,7 @@ CIA (Confidentiality, Integrity, Availability)
 Concepts of risk, threats, vulnerabilities, and attack vectors (cros- reference SE/Software Project Management/Risk)
 Authentication and authorization, access control (mandatory vs. discretionary)
 Concept of trust and trustworthiness
-Ethics (responsible disclosure). (cross-reference SP/Professional Ethics/Accountability, responsibility and liability)
+Ethics (responsible disclosure). cross-reference {SP/Professional Ethics}: accountability, responsibility and liability
 
 ==Skills
 Analyze the tradeoffs of balancing key security properties (Confidentiality, Integrity, and Availability).
@@ -50,18 +50,18 @@ fixing or not fixing vulnerabilities and disclosing or not disclosing vulnerabil
 =====Principles of Secure Design
 ==Intro
 ==Topics
-Least privilege and isolation (cross-reference OS/Security and Protection/Policy/mechanism separation and SF/Virtualization and Isolation/Rationale for protection and predictable performance and PL/Language Translation and Execution/Memory management)
+Least privilege and isolation (cross-reference {OS/Security and Protection}: Policy/mechanism separation. {SF/Virtualization and Isolation}: Rationale for protection and predictable performance. {PL/Language Translation and Execution}: Memory management)
 Fail-safe defaults (cross-reference SE/Software Construction/ Coding practices: techniques, idioms/patterns, mechanisms for building quality programs and SDF/Development Methods/Programming
 correctness)
-Open design (cross-reference SE/Software Evolution/ Software development in the context of large, pre-existing code bases)
-End-to-end security (cross-reference SF/Reliability through Redundancy/ How errors increase the longer the distance between the communicating entities; the end-to-end principle)
+Open design (cross-reference {SE/Software Evolution}: Software development in the context of large, pre-existing code bases)
+End-to-end security (cross-reference {SF/Reliability through Redundancy}: how errors increase the longer the distance between the communicating entities; the end-to-end principle)
 Defense in depth (e.g., defensive programming, layered defense)
-Security by design (cross-reference SE/Software Design/System design principles)
+Security by design (cross-reference {SE/Software Design}: System design principles)
 Tensions between security and other design goals
 Complete mediation
 Use of vetted security components
-Economy of mechanism (reducing trusted computing base, minimize attack surface) (cross-reference SE/Software Design/System design principles and SE/Software Construction/Development context: “green field” vs. existing code base)
-Usable security (cross-reference HCI/Foundations/Cognitive models that inform interaction design)
+Economy of mechanism (reducing trusted computing base, minimize attack surface) (cross-reference {SE/Software Design}: System design principles {SE/Software Construction}: Development context: “green field” vs. existing code base)
+Usable security (cross-reference {HCI/Foundations}: Cognitive models that inform interaction design)
 Security composability
 Prevention, detection, and deterrence (cross-reference SF/Reliability through Redundancy/Distinction between bugs and faults and NC/Reliable Data Delivery/Error control and NC/Reliable Data Delivery/Flow control)
 
@@ -91,17 +91,15 @@ other topics particularly in SDF, SE and PD Knowledge Areas.
 ==Topics
 Input validation and data sanitization (cross-reference SDF/Development Methods/Program Correctness)
 Choice of programming language and type-safe languages
-Examples of input validation and data sanitization errors (cross-reference SDF/Development
-Methods/Program Correctness and SE/Software Construction/Coding Practices)
+Examples of input validation and data sanitization errors (cross-reference {SDF/Development Methods}: Program Correctness {SE/Software Construction}: Coding Practices)
 o Buffer overflows
 o Integer errors
 o SQL injection
 o XSS vulnerability
-Race conditions (cross-reference SF/Parallelism/Parallel programming and PD/Parallel Architecture/Shared vs. distributed memory and PD/Communication and Coordination/Shared Memory and PD/Parallelism
-Fundamentals/Programming errors not found in sequential programming)
-Correct handling of exceptions and unexpected behaviors (cross-reference SDF/Development Methods/program correctness)
-Correct usage of third-party components (cross-reference SDF/Development Methods/program correctnes and Operating System Principles/Concepts of application program interfaces (APIs)
-Effectively deploying security updates (cross-reference OS/Security and Protection/Security methods and devices)
+Race conditions (cross-reference {SF/Parallelism}/ Parallel programming {PD/Parallel Architecture}/Shared vs. distributed memory {PD/Communication and Coordination}/Shared Memory {PD/Parallelism Fundamentals}/Programming errors not found in sequential programming)
+Correct handling of exceptions and unexpected behaviors (cross-reference {SDF/Development Methods}/program correctness)
+Correct usage of third-party components (cross-reference {SDF/Development Methods}/program correctnes  {SDF/Operating System Principles}/Concepts of application program interfaces (APIs)
+Effectively deploying security updates (cross-reference {OS/Security and Protection}/Security methods and devices)
 Information flow control
 Correctly generating randomness for security purposes
 Mechanisms for detecting and mitigating input and data sanitization errors
@@ -139,9 +137,8 @@ Describe how memory architecture is used to protect runtime attacks. [Familiarit
 Attacker goals, capabilities, and motivations (such as underground economy, digital espionage, cyberwarfare, insider threats, hacktivism, advanced persistent threats)
 Examples of malware (e.g., viruses, worms, spyware, botnets, Trojan horses or rootkits)
 Denial of Service (DoS) and Distributed Denial of Service (DDoS)
-Social engineering (e.g., phishing) (cross-reference SP/Social Context/Social implications of computing in a networked world and HCI/Designing Interaction/Handling human/system failure)
-Attacks on privacy and anonymity (cross-reference HCI/Foundations/Social models that inform interaction design: culture, communication, networks and organizations (cross-reference SP/Privacy and Civil
-Liberties/technology-based solutions for privacy protection)
+Social engineering (e.g., phishing) (cross-reference {SP/Social Context}/Social implications of computing in a networked world {HCI/Designing Interaction}/Handling human/system failure)
+Attacks on privacy and anonymity (cross-reference {HCI/Foundations}/Social models that inform interaction design: culture, communication, networks and organizations {SP/Privacy and Civil Liberties}/technology-based solutions for privacy protection)
 Malware/unwanted communication such as covert channels and steganography
 
 ==Skills
@@ -153,17 +150,17 @@ Discuss how Denial of Service attacks can be identified and mitigated. [Familiar
 Describe risks to privacy and anonymity in commonly used applications. [Familiarity]
 Discuss the concepts of covert channels and other data leakage procedures. [Familiarity]
 
-=====IAS/Network Security
+=====Network Security
 ==Intro
 Discussion of network security relies on previous understanding on fundamental concepts of
-networking, including protocols, such as TCP/IP, and network architecture/organization (cross-reference NC/Network Communication).
+networking, including protocols, such as TCP/IP, and network architecture/organization (cross-reference {NC/Network Communication}).
 
 ==Topics
 Network specific threats and attack types (e.g., denial of service, spoofing, sniffing and traffic redirection, man-in-the-middle, message integrity attacks, routing attacks, and traffic analysis)
 Use of cryptography for data and network security
 Architectures for secure networks (e.g., secure channels, secure routing protocols, secure DNS, VPNs, anonymous communication protocols, isolation)
 Defense mechanisms and countermeasures (e.g., network monitoring, intrusion detection, firewalls, spoofing and DoS protection, honeypots, tracebacks).
-Security for wireless, cellular networks (cross-reference NC/Mobility/Principles of cellular networks; cross-reference NC/Mobility/802.11)
+Security for wireless, cellular networks (cross-reference {NC/Mobility}/Principles of cellular networks {NC/Mobility}/802.11)
 Other non-wired networks (e.g., ad hoc, sensor, and vehicular networks)
 Censorship resistance
 Operational network security management (e.g., configure network access control)
@@ -290,7 +287,7 @@ Discuss the concept and importance of trusted path. [Familiarity]
 See general cross-referencing with the SP/Security Policies, Laws and Computer Crimes.
 
 ==Topics
-Privacy policy (cross-reference SP/Social Context/Social implications of computing in a networked world; cross-reference SP/Professional Ethics/Accountability, responsibility and liability; cross-reference SP/Privacy and Civil Liberties/Legal foundations of privacy protection)
+Privacy policy (cross-reference {SP/Social Context}/Social implications of computing in a networked world. {SP/Professional Ethics}: accountability, responsibility and liability {SP/Privacy and Civil Liberties}/Legal foundations of privacy protection)
 Inference controls/statistical disclosure limitation
 Backup policy, password refresh policy
 Breach disclosure policy
@@ -353,10 +350,10 @@ Identify anti-forensic methods. [Familiarity]
 ==Intro
 Fundamentals of secure coding practices covered in other knowledge areas, including SDF and SE. For example, see SE/Software Construction; Software Verification and Validation.
 ==Topics
-Building security into the software development lifecycle (cross-reference SE/Software Processes)
+Building security into the software development lifecycle (cross-reference {SE/Software Processes})
 Secure design principles and patterns
 Secure software specifications and requirements
-Secure software development practices (cross-reference SE/Software Construction)
+Secure software development practices (cross-reference {SE/Software Construction})
 Secure testing - the process of testing that security requirements are met (including static and dynamic analysis).
 Software quality assurance and benchmarking measurements
 

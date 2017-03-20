@@ -28,7 +28,7 @@ lower layers and build their understanding of the network, transport and applica
 
 =====Introduction
 ==Intro
-Cross-reference IAS/Network Security, which discusses network security and its applications.
+Cross-reference {IAS/Network Security}, which discusses network security and its applications.
 
 ==Topics
 Organization of the Internet (Internet Service Providers, Content Providers, etc.)
@@ -59,8 +59,8 @@ Implement a simple client-server socket-based application. [Usage]
 
 =====Reliable Data Delivery
 ==Intro
-This knowledge unit is related to Systems Fundamentals (SF). Cross-reference SF/State and
-State Machines and SF/Reliability through Redundancy.
+This knowledge unit is related to Systems Fundamentals (SF). Cross-reference {SF/State and State Machines} and {SF/Reliability through Redundancy}.
+
 ==Topics
 Error control (retransmission techniques, timers)
 Flow control (acknowledgements, sliding window)

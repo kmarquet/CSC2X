@@ -22,7 +22,7 @@ o Class-hierarchy design for modeling
 Definition of classes: fields, methods, and constructors
 Subclasses, inheritance, and method overriding
 Dynamic dispatch: definition of method-call
-Subtyping (cross-reference PL/Type Systems)
+Subtyping (cross-reference {PL/Type Systems})
 o Subtype polymorphism; implicit upcasts in typed languages
 o Notion of behavioral replacement: subtypes acting like supertypes
 o Relationship between subtyping and inheritance
@@ -285,7 +285,7 @@ programming language design, language implementation, and language theory. Due t
 in other Knowledge Areas, this elective Knowledge Unit aims only to complement the material
 included elsewhere in the Body of Knowledge. Courses on programming languages are an
 excellent place to include a general treatment of concurrency including this other material.
-Cross-reference PD/Parallel and Distributed Computing, SF/Parallelism.
+Cross-reference {PD/Parallel and Distributed Computing}, {SF/Parallelism}.
 
 ==Topics
 Constructs for thread-shared variables and shared-memory synchronization
@@ -327,8 +327,8 @@ Syntax vs. semantics
 Lambda Calculus
 Approaches to semantics: Operational, Denotational, Axiomatic
 Proofs by induction over language semantics
-Formal definitions and proofs for type systems (cross-reference PL/Type Systems)
-Parametricity (cross-reference PL/Type Systems)
+Formal definitions and proofs for type systems (cross-reference {PL/Type Systems})
+Parametricity (cross-reference {PL/Type Systems})
 Using formal semantics for systems modeling
 
 ==Skills

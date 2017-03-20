@@ -74,12 +74,12 @@ branch of science and engineering. Social Context provides the foundation for al
 knowledge units, especially Professional Ethics. Also see cross-referencing with Human-Computer Interaction (HCI) and Networking and Communication (NC) Knowledge Areas.
 
 ==Topics
-Social implications of computing in a networked world (cross-reference HCI/Foundations/social models; IAS/Fundamental Concepts/social issues)
+Social implications of computing in a networked world (cross-reference {HCI/Foundations}/social models; {IAS/Fundamental Concepts}/social issues)
 Impact of social media on individualism, collectivism and culture.
-Growth and control of the Internet (cross-reference NC/Introduction/organization of the Internet)
+Growth and control of the Internet (cross-reference {NC/Introduction}/organization of the Internet)
 Often referred to as the digital divide, differences in access to digital technology resources and its resulting ramifications for gender, class, ethnicity, geography, and/or underdeveloped countries.
 Accessibility issues, including legal requirements
-Context-aware computing (cross-reference HCI/Design for non-mouse interfaces/ ubiquitous and context-aware)
+Context-aware computing (cross-reference {HCI/New Interactive Technologies}/non-mouse interfaces / ubiquitous and context-aware)
 
 ==Skills
 Describe positive and negative ways in which computer technology (networks, mobile computing, cloud
@@ -134,7 +134,7 @@ Community values and the laws by which we live
 The nature of professionalism including care, attention and discipline, fiduciary responsibility, and mentoring
 Keeping up-to-date as a computing professional in terms of familiarity, tools, skills, legal and professional framework as well as the ability to self-assess and progress in the computing field
 Professional certification, codes of ethics, conduct, and practice, such as the ACM/IEEE-CS, SE, AITP,
-IFIP and international societies (cross-reference IAS/Fundamental Concepts/ethical issues)
+IFIP and international societies (cross-reference {IAS/Fundamental Concepts}/ethical issues)
 Accountability, responsibility and liability (e.g. software correctness, reliability and safety, as well as ethical confidentiality of cybersecurity professionals)
 The role of the computing professional in public policy
 Maintaining awareness of consequences
@@ -179,7 +179,7 @@ Information Management (IM) Knowledge Area.
 
 ==Topics
 Philosophical foundations of intellectual property
-Intellectual property rights (cross-reference IM/Information Storage and Retrieval/intellectual property and protection)
+Intellectual property rights (cross-reference {IM/Information Storage and Retrieval}/intellectual property and protection)
 Intangible digital intellectual property (IDIP)
 Legal foundations for intellectual property protection
 Digital rights management
@@ -211,11 +211,11 @@ referencing with the Human-Computer Interaction (HCI), Information Assurance and
 (IAS), Information Management (IM), and Intelligent Systems (IS) Knowledge Areas.
 
 ==Topics
-Philosophical foundations of privacy rights (cross-reference IS/Fundamental Issues/philosophical issues)
+Philosophical foundations of privacy rights (cross-reference {IS/Fundamental Issues}/philosophical issues)
 Legal foundations of privacy protection
-Privacy implications of widespread data collection for transactional databases, data warehouses, surveillance systems, and cloud computing (cross-reference IM/Database Systems/data independence; IM/Data Mining/data cleaning)
+Privacy implications of widespread data collection for transactional databases, data warehouses, surveillance systems, and cloud computing (cross-reference {IM/Database Systems}/data independence; IM/Data Mining/data cleaning)
 Ramifications of differential privacy
-Technology-based solutions for privacy protection (cross-reference IAS/Threats and Attacks/attacks on privacy and anonymity)
+Technology-based solutions for privacy protection (cross-reference {IAS/Threats and Attacks}/attacks on privacy and anonymity)
 Privacy legislation in areas of practice
 Civil liberties and cultural differences
 Freedom of expression and its limitations
@@ -242,11 +242,11 @@ Interaction (HCI) and Software Engineering (SE) Knowledge Areas.
 ==Topics
 Reading, understanding and summarizing technical material, including source code and documentation
 Writing effective technical documentation and materials
-Dynamics of oral, written, and electronic team and group communication (cross-reference HCI/Collaboration and Communication/group communication; SE/Project Management/team participation)
+Dynamics of oral, written, and electronic team and group communication (cross-reference {HCI/Collaboration and Communication}/group communication; {SE/Project Management}/team participation)
 Communicating professionally with stakeholders
-Utilizing collaboration tools (cross-reference HCI/Collaboration and Communication/online communities; IS/Agents/collaborative agents)
-Dealing with cross-cultural environments (cross-reference HCI/User-Centered Design and Testing/cross-cultural evaluation)
-Tradeoffs of competing risks in software projects, such as technology, structure/process, quality, people, market and financial (cross-reference SE/Software Project Management/Risk)
+Utilizing collaboration tools (cross-reference {HCI/Collaboration and Communication}/online communities; IS/Agents/collaborative agents)
+Dealing with cross-cultural environments (cross-reference {HCI/User-Centered Design and Testing}/cross-cultural evaluation)
+Tradeoffs of competing risks in software projects, such as technology, structure/process, quality, people, market and financial (cross-reference {SE/Software Project Management}/Risk)
 
 ==Skills
 Write clear, concise, and accurate technical documents following well-defined standards for format and for
@@ -277,7 +277,7 @@ interaction and software evolution. See cross-referencing with the Human-Compute
 ==Topics
 Being a sustainable practitioner by taking into consideration cultural and environmental impacts of implementation decisions (e.g. organizational policies, economic viability, and resource consumption).
 Explore global social and environmental impacts of computer use and disposal (e-waste)
-Environmental impacts of design choices in specific areas such as algorithms, operating systems, networks, databases, or human-computer interaction (cross-reference SE/Software Evaluation/software evolution; HCI/Design-Oriented HCI/sustainability)
+Environmental impacts of design choices in specific areas such as algorithms, operating systems, networks, databases, or human-computer interaction (cross-reference {SE/Software Evaluation}/software evolution; HCI/Design-Oriented HCI/sustainability)
 Guidelines for sustainable design standards
 Systemic effects of complex computer-mediated phenomena (e.g. telecommuting or web shopping)
 Pervasive computing; information processing integrated into everyday objects and activities, such as smart energy systems, social networking and feedback systems to promote sustainable behavior, transportation, environmental monitoring, citizen science and activism.
@@ -305,7 +305,7 @@ system fundamentals and software developmental fundamentals.
 
 ==Topics
 Prehistory—the world before 1946
-History of computer hardware, software, networking (cross-reference AR/Digital logic and digital systems/history of computer architecture)
+History of computer hardware, software, networking (cross-reference {AR/Digital logic and digital systems}/history of computer architecture)
 Pioneers of computing
 History of the Internet
 
@@ -351,13 +351,13 @@ years. At the same time, they have contributed to unprecedented threats to priva
 categories of crime and anti-social behavior; major disruptions to organizations; and the large-scale concentration of risk into information systems. See cross-referencing with the Human-Computer Interaction (HCI) and Information Assurance and Security (IAS) Knowledge Areas.
 
 ==Topics
-Examples of computer crimes and legal redress for computer criminals (cross-reference IAS/Digital Forensics/rules of evidence)
-Social engineering, identity theft and recovery (cross-reference HCI/Human Factors and Security/trust, privacy and deception)
+Examples of computer crimes and legal redress for computer criminals (cross-reference {IAS/Digital Forensics}/rules of evidence)
+Social engineering, identity theft and recovery (cross-reference {HCI/Human Factors and Security}/trust, privacy and deception)
 Issues surrounding the misuse of access and breaches in security
 Motivations and ramifications of cyber terrorism and criminal hacking, “cracking”
 Effects of malware, such as viruses, worms and Trojan horses
 Crime prevention strategies
-Security policies (cross-reference IAS/Security Policy and Governance/policies)
+Security policies (cross-reference {IAS/Security Policy and Governance}/policies)
 
 ==Skills
 List classic examples of computer crimes and social engineering incidents with societal impact.

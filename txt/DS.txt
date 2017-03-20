@@ -53,7 +53,7 @@ operations and terminology in context. [Assessment]
 =====Basic Logic
 ==Intro
 ==Topics
-Propositional logic (cross-reference: IS/Knowledge Based Reasoning)
+Propositional logic (cross-reference {IS/Knowledge Based Reasoning})
 Logical connectives
 Truth tables
 Normal forms (conjunctive and disjunctive)
@@ -116,7 +116,7 @@ Permutations and combinations
 o Basic definitions
 o Pascal’s identity
 o The binomial theorem
-Solving recurrence relations (cross-reference: AL/Basic Analysis)
+Solving recurrence relations (cross-reference {AL/Basic Analysis})
 o An example of a simple recurrence relation, such as Fibonacci numbers
 o Other examples, showing a variety of solutions
 Basic modular arithmetic
@@ -136,8 +136,7 @@ Perform computations involving modular arithmetic. [Usage]
 
 =====Graphs and Trees
 ==Intro
-Cross-reference: AL/Fundamental Data Structures and Algorithms, especially with relation to
-graph traversal strategies.
+cross-reference {AL/Fundamental Data Structures and Algorithms}, especially with relation to graph traversal strategies.
 
 ==Topics
 Trees

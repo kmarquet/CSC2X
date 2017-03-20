@@ -19,7 +19,7 @@ appropriate to the particular domain area.
 ==Intro
 The view presented here is the multiple representations of a system across layers, from hardware
 building blocks to application components, and the parallelism available in each representation.
-Cross-reference PD/Parallelism Fundamentals.
+Cross-reference {PD/Parallelism Fundamentals}.
 
 ==Topics
 Basic building blocks and components of a computer (gates, flip-flops, registers, interconnections;
@@ -50,7 +50,7 @@ and be able to describe the speed-ups achieved. [Assessment]
 
 =====Cross-Layer Communications
 ==Intro
-Cross-reference NC/Introduction, OS/Operating Systems Principles
+Cross-reference {NC/Introduction}, {OS/Operating Systems Principles}
 
 ==Topics
 Programming abstractions, interfaces, use of libraries
@@ -71,8 +71,7 @@ Find bugs in a layered program by using tools for program tracing, single steppi
 
 =====State and State Machines
 ==Intro
-Cross-reference AL/Basic Computability and Complexity, OS/State and State Diagrams,
-NC/Protocols
+Cross-reference {AL/Basic Computability and Complexity}, {OS/State and State Diagrams}, {NC/Protocols}
 
 ==Topics
 Digital vs. Analog/Discrete vs. Continuous Systems
@@ -95,7 +94,7 @@ Derive time-series behavior of a state machine from its state machine representa
 
 =====Parallelism
 ==Intro
-Cross-reference PD/Parallelism Fundamentals.
+Cross-reference {PD/Parallelism Fundamentals}.
 
 ==Topics
 Sequential vs. parallel processing
@@ -123,7 +122,7 @@ and number of resources. [Assessment]
 
 =====Evaluation
 ==Intro
-Cross-reference PD/Parallel Performance.
+Cross-reference {PD/Parallel Performance}.
 
 ==Topics
 Performance figures of merit
@@ -157,7 +156,7 @@ Use figures of merit of alternative scheduler implementations. [Assessment]
 
 =====Proximity
 ==Intro
-Cross-reference AR/Memory Management, OS/Virtual Memory.
+Cross-reference {AR/Memory Management}, {OS/Virtual Memory}.
 
 ==Topics
 Speed of light and computers (one foot per nanosecond vs. one GHz clocks)

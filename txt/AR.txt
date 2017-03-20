@@ -80,7 +80,7 @@ Instruction sets and types (data manipulation, control, I/O)
 Assembly/machine language programming
 Instruction formats
 Addressing modes
-Subroutine call and return mechanisms (cross-reference PL/Language Translation and Execution)
+Subroutine call and return mechanisms (cross-reference {PL/Language Translation and Execution})
 I/O and interrupts
 Heap vs. Static vs. Stack vs. Code segments
 Shared memory multiprocessors/multicore organization
@@ -107,7 +107,7 @@ level. [Usage]
 =====Memory System Organization and Architecture
 ==Intro
 
-Cross-reference OS/Memory Management/Virtual Machines
+cross-reference {OS/Memory Management}{OS/Virtual Machines}
 
 ==Topics
 Storage systems and their technology
@@ -118,7 +118,7 @@ Cache memories (address mapping, block size, replacement and store policy)
 Multiprocessor cache consistency/Using the memory system for inter-core synchronization/atomic memory operations
 Virtual memory (page table, TLB)
 Fault handling and reliability
-Error coding, data compression, and data integrity (cross-reference SF/Reliability through Redundancy)
+Error coding, data compression, and data integrity (cross-reference {SF/Reliability through Redundancy})
 
 ==Skills
 Identify the main types of memory technology (e.g., SRAM, DRAM, Flash, magnetic disk) and their
@@ -181,8 +181,7 @@ Determine, for a given processor and memory system implementation, the average c
 =====Multiprocessing and Alternative Architectures
 ==Intro
 
-The view here is on the hardware implementation of SIMD and MIMD architectures.
-Cross-reference PD/Parallel Architecture.
+The view here is on the hardware implementation of SIMD and MIMD architectures. cross-reference {PD/Parallel Architecture}.
 
 ==Topics
 Power Law

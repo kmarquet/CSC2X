@@ -129,7 +129,7 @@ Approximation techniques such as polynomial curves, Bezier curves, spline curves
 Surface representation techniques including tessellation, mesh representation, mesh fairing, and mesh generation techniques such as Delaunay triangulation, marching cubes
 Spatial subdivision techniques
 Procedural models such as fractals, generative modeling, and L-systems
-Graftals, cross referenced with programming languages (grammars to generated pictures)
+Graftals (cross-referenced with programming languages -- grammars to generated pictures)
 Elastically deformable and freeform deformable models
 Subdivision surfaces
 Multiresolution modeling

@@ -62,13 +62,13 @@ Explain the use of a device list and driver I/O queue. [Familiarity]
 ==Intro
 
 ==Topics
-States and state diagrams (cross-reference SF/State and State Machines)
+States and state diagrams (cross-reference {SF/State and State Machines})
 Structures (ready list, process control blocks, and so forth)
 Dispatching and context switching
 The role of interrupts
 Managing atomic access to OS objects
 Implementing synchronization primitives
-Multiprocessor issues (spin-locks, reentrancy) (cross-reference SF/Parallelism)
+Multiprocessor issues (spin-locks, reentrancy) (cross-reference {SF/Parallelism})
 
 ==Skills
 Describe the need for concurrency within the framework of an operating system. [Familiarity]
@@ -88,9 +88,9 @@ Create state and transition diagrams for simple problem domains. [Usage]
 ==Intro
 
 ==Topics
-Preemptive and non-preemptive scheduling (cross-reference SF/Resource Allocation and Scheduling, PD/Parallel Performance)
-Schedulers and policies (cross-reference SF/Resource Allocation and Scheduling, PD/Parallel Performance)
-Processes and threads (cross-reference SF/Computational paradigms)
+Preemptive and non-preemptive scheduling (cross-reference {SF/Resource Allocation and Scheduling}, {PD/Parallel Performance})
+Schedulers and policies (cross-reference {SF/Resource Allocation and Scheduling}, {PD/Parallel Performance})
+Processes and threads (cross-reference {SF/Computational paradigms})
 Deadlines and real-time issues
 
 ==Skills
@@ -110,7 +110,7 @@ disk I/O, network scheduling, project scheduling, and problems beyond computing.
 ==Topics
 Review of physical memory and memory management hardware
 Working sets and thrashing
-Caching (cross-reference AR/Memory System Organization and Architecture)
+Caching (cross-reference {AR/Memory System Organization and Architecture})
 
 ==Skills
 Explain memory hierarchy and cost-performance trade-offs. [Familiarity]
@@ -134,16 +134,12 @@ Protection, access control, and authentication
 Backups
 
 ==Skills
-Articulate the need for protection and security in an OS (cross-reference IAS/Security Architecture and
-Systems Administration/Investigating Operating Systems Security for various systems). [Assessment]
-Summarize the features and limitations of an operating system used to provide protection and security
-(cross-reference IAS/Security Architecture and Systems Administration). [Familiarity]
-Explain the mechanisms available in an OS to control access to resources (cross-reference IAS/Security
-Architecture and Systems Administration/Access Control/Configuring systems to operate securely as an IT
-system). [Familiarity]
+Articulate the need for protection and security in an OS (cross-reference {IAS/Security Architecture and
+Systems Administration}/Investigating Operating Systems Security for various systems). [Assessment]
+Summarize the features and limitations of an operating system used to provide protection and security. [Familiarity]
+Explain the mechanisms available in an OS to control access to resources. [Familiarity]
 Carry out simple system administration tasks according to a security policy, for example creating accounts,
-setting permissions, applying patches, and arranging for regular backups (cross-reference IAS/Security
-Architecture and Systems Administration). [Usage]
+setting permissions, applying patches, and arranging for regular backups. [Usage]
 
 =====Virtual Machines
 ==Intro
@@ -226,8 +222,8 @@ addressed. [Familiarity]
 ==Intro
 
 ==Topics
-Fundamental concepts: reliable and available systems (cross-reference SF/Reliability through Redundancy)
-Spatial and temporal redundancy (cross-reference SF/Reliability through Redundancy)
+Fundamental concepts: reliable and available systems (cross-reference {SF/Reliability through Redundancy})
+Spatial and temporal redundancy (cross-reference {SF/Reliability through Redundancy})
 Methods used to implement fault tolerance
 Examples of OS mechanisms for detection, recovery, restart to implement fault tolerance, use of these
 techniques for the OS’s own services
@@ -241,8 +237,8 @@ Explain how an operating system can continue functioning after a fault occurs. [
 ==Intro
 
 ==Topics
-Why system performance needs to be evaluated (cross-reference SF/Performance/Figures of performance merit)
-What is to be evaluated (cross-reference SF/Performance/Figures of performance merit)
+Why system performance needs to be evaluated (cross-reference {SF/Performance}/Figures of performance merit)
+What is to be evaluated (cross-reference {SF/Performance}/Figures of performance merit)
 Systems performance policies, e.g., caching, paging, scheduling, memory management, and security
 Evaluation models: deterministic, analytic, simulation, or implementation-specific
 How to collect evaluation data (profiling and tracing mechanisms)

@@ -87,7 +87,7 @@ topics and core hour specifications in this Software Engineering Knowledge Area 
 
 =====Software Processes
 ==Topics
-Systems level considerations, i.e., the interaction of software with its intended environment (cross-reference IAS/Secure Software Engineering)
+Systems level considerations, i.e., the interaction of software with its intended environment (cross-reference {IAS/Secure Software Engineering})
 Introduction to software process models (e.g., waterfall, incremental, agile)
 o Activities within software lifecycles
 Programming in the large vs. individual programming
@@ -129,7 +129,7 @@ o Roles and responsibilities in a software team
 o Team conflict resolution
 o Risks associated with virtual teams (communication, perception, structure)
 Effort Estimation (at the personal level)
-Risk (cross reference IAS/Secure Software Engineering)
+Risk (cross reference {IAS/Secure Software Engineering})
 o The role of risk in the lifecycle
 o Risk categories including security, safety, market, financial, technology, people, quality, structure and process
 Team management
@@ -228,7 +228,7 @@ Describing functional requirements using, for example, use cases or users storie
 Properties of requirements including consistency, validity, completeness, and feasibility
 Software requirements elicitation
 Describing system data using, for example, class diagrams or entity-relationship diagrams
-Non-functional requirements and their relationship to software quality (cross-reference IAS/Secure Software Engineering)
+Non-functional requirements and their relationship to software quality (cross-reference {IAS/Secure Software Engineering})
 Evaluation and use of requirements specifications
 Requirements analysis modeling techniques
 Acceptability of certainty / uncertainty considerations regarding software / system behavior
@@ -281,7 +281,7 @@ Measurement and analysis of design quality
 Tradeoffs between different aspects of quality
 Application frameworks
 Middleware: the object-oriented paradigm within middleware, object request brokers and marshalling, transaction processing monitors, workflow systems
-Principles of secure design and coding (cross-reference IAS/Principles of Secure Design)
+Principles of secure design and coding (cross-reference {IAS/Principles of Secure Design})
 o Principle of least privilege
 o Principle of fail-safe defaults
 o Principle of psychological acceptability
@@ -328,7 +328,7 @@ services for remote query and database management, or for secure communication a
 =====Software Construction
 ==Intro
 ==Topics
-Coding practices: techniques, idioms/patterns, mechanisms for building quality programs (cross-reference IAS/Defensive Programming; SDF/Development Methods)
+Coding practices: techniques, idioms/patterns, mechanisms for building quality programs (cross-reference {IAS/Defensive Programming}; {SDF/Development Methods})
 o Defensive coding practices
 o Secure coding practices
 o Using exception handling mechanisms to make programs more robust, fault-tolerant
@@ -365,8 +365,8 @@ errors. [Usage]
 ==Topics
 Verification and validation concepts
 Inspections, reviews, audits
-Testing types, including human computer interface, usability, reliability, security, conformance to specification (cross-reference IAS/Secure Software Engineering)
-Testing fundamentals (cross-reference SDF/Development Methods)
+Testing types, including human computer interface, usability, reliability, security, conformance to specification (cross-reference {IAS/Secure Software Engineering})
+Testing fundamentals (cross-reference {SDF/Development Methods})
 o Unit, integration, validation, and system testing
 o Test plan creation and test case generation
 o Black-box and white-box testing techniques
@@ -432,7 +432,7 @@ Discuss the advantages and disadvantages of different types of software reuse. [
 ==Intro
 ==Topics
 Software reliability engineering concepts
-Software reliability, system reliability and failure behavior (cross-reference SF/Reliability Through Redundancy)
+Software reliability, system reliability and failure behavior (cross-reference {SF/Reliability Through Redundancy})
 Fault lifecycle concepts and techniques
 Software reliability models
 Software fault tolerance techniques and models

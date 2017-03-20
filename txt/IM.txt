@@ -74,7 +74,7 @@ Data modeling
 Conceptual models (e.g., entity-relationship, UML diagrams)
 Spreadsheet models
 Relational data models
-Object-oriented models (cross-reference PL/Object-Oriented Programming)
+Object-oriented models (cross-reference {PL/Object-Oriented Programming})
 Semi-structured data model (expressed using DTD or XML Schema, for example)
 
 ==Skills
@@ -197,10 +197,10 @@ o Distributed data storage
 o Distributed query processing
 o Distributed transaction model
 o Homogeneous and heterogeneous solutions
-o Client-server distributed databases (cross-reference SF/Computational Paradigms)
+o Client-server distributed databases (cross-reference {SF/Computational Paradigms})
 Parallel DBMS
 o Parallel DBMS architectures: shared memory, shared disk, shared nothing;
-o Speedup and scale-up, e.g., use of the MapReduce processing model (cross-reference CN/Processing, PD/Parallel Decomposition)
+o Speedup and scale-up, e.g., use of the MapReduce processing model (cross-reference {CN/Processing}, {PD/Parallel Decomposition})
 o Data replication and weak consistency models
 
 ==Skills
@@ -247,7 +247,7 @@ Associative and sequential patterns
 Data clustering
 Market basket analysis
 Data cleaning
-Data visualization (cross-reference GV/Visualization and CN/Interactive Visualization)
+Data visualization (cross-reference {GV/Visualization} and {CN/Interactive Visualization})
 
 ==Skills
 Compare and contrast different uses of data mining as evidenced in both research and application.

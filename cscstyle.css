@@ -91,11 +91,11 @@
     background-color: white;
     vertical-align: top;
     text-align: left; 
+    width: 200px;
 }
 
-.areatitle {
+.areaabbrev {
     background-color: #9999CC;
-    width: 70px;
     word-wrap: break-word;
     border-style: solid;
     border-width: 2px;
@@ -103,8 +103,42 @@
     border-radius: 5px;
 }
 
-.areaabbrev {
-    font-size: 60%;
+.areatitle {
+    font-size: 70%;
+    background-color: #9999CC;
+    margin-top: 1cm;
+}
+
+.areaintro {
+    position: fixed;
+    font-size: 75%;
+    background-color: #9999CC;
+    width: 600px;
+    word-wrap: break-word;
+    border-style: solid;
+    border-width: 2px;
+    border-color: Gray;
+    border-radius: 5px;
+    z-index:1000;
+    top: 100px;
+    left:800px;
+}
+
+.linkareaintro {
+    cursor:pointer;
+    font-size: 75%;   
+    background-color:  #6688FF;
+    border-style: solid;
+    border-color: Gray;
+    border-width: 1px;
+    color: white;
+    padding: 2px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 5px;
+    word-wrap: break-word;
 }
 
 .areacontentcol {
@@ -134,6 +168,19 @@
 }
 
 .unittitle:hover {background-color: Yellow}
+
+.unitintro {
+    background-color: LightYellow;
+    width: 800px;
+    word-wrap: break-word;
+    border-style: solid;
+    border-width: 2px;
+    border-color: Gray;
+    border-radius: 5px;
+    font-size: 75%
+}
+
+/* .unitintro:hover {background-color: Yellow} */
 
 .unitcontent {
     display: block;
@@ -278,6 +325,7 @@ td .topiccol {
     font-family: Serif;
     padding: 0 0 0;
     margin: 0 0 0;
+    width:500px;
 }
 
 
@@ -373,6 +421,10 @@ select {
     /* background-size: 15%; */
     /* background: url(http://www.stackoverflow.com/favicon.ico) 96% / 15% no-repeat #eee; */
     cursor:pointer;
+}
+
+.smallpadding {
+    width : 0.2cm;
 }
 
 .smallindent {
