@@ -2,6 +2,7 @@ var JSONCur = null;
 var JSCur = null;
 addressedLevels = ["No", "Yes"];
 masteryLevels = ["No", "Familiarity", "Usage", "Assessment"];
+displayOnlyConcerned = false;
 
 class JSSkill {
 
@@ -26,9 +27,15 @@ class JSSkill {
         return (this.theJSONSkill.mastery != "No");
     }
 
+    getSelectId()
+    {
+        return "select__" + this.id;
+    }
+    
     toHTML()
     {
         var txt = "";
+        
         //=== One column for the content
         txt += "<td class=\"skillcol\">\n"; 
         txt += "<div class=\"skill\">\n";
@@ -38,7 +45,7 @@ class JSSkill {
         
         //=== One column for the select
         txt += "<td class=\"skillselectcol \">\n";
-        txt += "<select align=\"right\" class=\"skill" + this.theJSONSkill.mastery.toLowerCase() + "\" id=\"select__" + this.id + "\">";
+        txt += "<select align=\"right\" class=\"skill" + this.theJSONSkill.mastery.toLowerCase() + "\" id=\"" + this.getSelectId() + "\">";
 
         for (var i = 0 ; i < masteryLevels.length ; i++) {
             var level = masteryLevels[i];
@@ -54,7 +61,7 @@ class JSSkill {
         txt += "</td>\n"; 
         return txt;
     }
-
+    
     toLaTeX()
     {
         var txt = "";
@@ -125,11 +132,16 @@ class JSTopic {
     getId() {
         return this.id;
     }
+
+    getSelectId()
+    {
+        return "select__" + this.getId();
+    }
     
     getSelect()
     {
         var txt = "";
-        txt += "<select id=\"select__" + this.id + "\" class=\"topic" + this.theJSONTopic.addressed.toLowerCase() + "\">";
+        txt += "<select id=\"" + this.getSelectId() + "\" class=\"topic" + this.theJSONTopic.addressed.toLowerCase() + "\">";
         for (var i = 0 ; i < addressedLevels.length ; i++) {
             var aLevel = addressedLevels[i];
             txt += "<option";
@@ -149,10 +161,10 @@ class JSTopic {
         return (this.theJSONTopic.addressed != "No");
     }
     
-    toHTML(displayOnlyConcerned = false)
+    toHTML()
     {
         var txt = "";
-
+        
         //=== One col for the content
         txt += "<td class=\"topiccol\">";
         txt += "<div class=\"topic\">\n";
@@ -185,7 +197,17 @@ class JSTopic {
         return txt;
     }
 
-
+    addEventListeners()
+    {
+        for (var subtopicRef in this.theJSSubTopics) {
+            var subtopic = this.theJSSubTopics[subtopicRef];
+            if (displayOnlyConcerned && (! subtopic.isConcerned()))
+                break;
+            else
+                document.getElementById(subtopic.getSelectId()).addEventListener("change", function() {selectChanged(this)});
+        }
+    }
+    
 
     toLaTeX()
     {
@@ -237,11 +259,16 @@ class JSSubTopic {
     {
         return (this.theJSONTopic.addressed != "No");
     }
+
+    getSelectId()
+    {
+        return "select__" + this.id;
+    }
     
     getSelect()
     {
         var txt = "";
-        txt += "<select id=\"select__" + this.id + "\" class=\"subtopic" + this.theJSONTopic.addressed.toLowerCase() + "\">";
+        txt += "<select id=\"" + this.getSelectId() + "\" class=\"subtopic" + this.theJSONTopic.addressed.toLowerCase() + "\">";
         for (var i = 0 ; i < addressedLevels.length ; i++) {
             var aLevel = addressedLevels[i];
             txt += "<option";
@@ -259,6 +286,7 @@ class JSSubTopic {
     toHTML()
     {
         var txt = "";
+
         txt += "<td class=\"subtopicpad\"></td>\n"; 
 
         //=== One column for the topic
@@ -288,7 +316,6 @@ class JSSubTopic {
         txt += this.theJSONTopic.addressed;
         return txt;
     }
-
 }
 
 
@@ -307,6 +334,7 @@ class JSUnit {
         this.concerned = false;
         this.nbTopicsConcerned = 0;
         this.nbSkillsConcerned = 0;
+        this.isContentVisible = false;
         
         for (var topicRef in this.theJSONUnit.topics) {
             var jsonTopic = this.theJSONUnit.topics[topicRef];
@@ -373,9 +401,10 @@ class JSUnit {
         return this.id;
     }
     
-    toHTML(displayOnlyConcerned = false)
+    toHTML()
     {
         var txt = "";
+
         txt += "<td>";
         txt += "<table>\n";
         
@@ -394,57 +423,58 @@ class JSUnit {
 
 
         //=== One line for the content
-        txt += "<tr class=\"unitcontent\" id=\"contentof" + this.id + "\">\n";
-
-        // one column empty
-        // txt += "<td class=\"smallindent\">\n"; 
-        // txt += "</td>\n";
-
-        //------------ one column for the topics in a table -------
-        txt += "<td class=\"topicscol\">\n"; 
-        txt += "<table id=\"topicsTable\">\n";
-        for (var topicRef in this.theJSTopics) {
-            var topic = this.theJSTopics[topicRef];
-            if (displayOnlyConcerned && (! topic.isConcerned())) {
-                continue;
-            }
-            txt += "<tr>\n"; 
-            txt += topic.toHTML(displayOnlyConcerned);
-            // txt += " " + topic.isConcerned();
-            txt += "</tr>\n"; 
-        }
-        txt += "</table>\n";
-        txt += "</td>\n";
-        //------------------- End of topics -------------------
-
-        //--------- empty column ----------
-        txt += "<td class=\"smallpadding\"></td>\n"; 
-
-        //-------- one column for the skills ---------------
-        txt += "<td class=\"skillscol\">\n"; 
-        
-        // Skills in a table, one row for each skill
-        txt += "<table>\n";
-        for (var skillRef in this.theJSSkills) {
-            var skill = this.theJSSkills[skillRef];
-            if (displayOnlyConcerned && (! skill.isConcerned())) {
-                continue;
-            } else {
+        if (this.isContentVisible) {
+            txt += "<tr class=\"unitcontent\" id=\"contentof" + this.id + "\">\n";
+            
+            // one column empty
+            // txt += "<td class=\"smallindent\">\n"; 
+            // txt += "</td>\n";
+            
+            //------------ one column for the topics in a table -------
+            txt += "<td class=\"topicscol\">\n"; 
+            txt += "<table id=\"topicsTable\">\n";
+            for (var topicRef in this.theJSTopics) {
+                var topic = this.theJSTopics[topicRef];
+                if (displayOnlyConcerned && (! topic.isConcerned())) {
+                    continue;
+                }
                 txt += "<tr>\n"; 
-                txt += skill.toHTML();
-                // txt += "->" + skill.mastery;
-                txt += "</tr>\n";
+                txt += topic.toHTML();
+                // txt += " " + topic.isConcerned();
+                txt += "</tr>\n"; 
             }
+            txt += "</table>\n";
+            txt += "</td>\n";
+            //------------------- End of topics -------------------
+            
+            //--------- empty column ----------
+            txt += "<td class=\"smallpadding\"></td>\n"; 
+            
+            //-------- one column for the skills ---------------
+            txt += "<td class=\"skillscol\">\n"; 
+            
+            // Skills in a table, one row for each skill
+            txt += "<table>\n";
+            for (var skillRef in this.theJSSkills) {
+                var skill = this.theJSSkills[skillRef];
+                if (displayOnlyConcerned && (! skill.isConcerned())) {
+                    continue;
+                } else {
+                    txt += "<tr>\n"; 
+                    txt += skill.toHTML();
+                    // txt += "->" + skill.mastery;
+                    txt += "</tr>\n";
+                }
+            }
+            txt += "</table>\n";
+            txt += "</td>\n"; 
+
+            //---------------- end of skills --------------
+            txt += "</tr>";
         }
-        txt += "</table>\n";
-        txt += "</td>\n"; 
-
-        //---------------- end of skills --------------
-        txt += "</tr>";
         txt += "</table>\n"; // End of content
-
         txt += "</td>";
-
+        
         return txt;
     }
 
@@ -469,6 +499,28 @@ class JSUnit {
         }
         return txt;
     }
+
+    addEventListeners()
+    {
+        for (var topicRef in this.theJSTopics) {
+            var topic = this.theJSTopics[topicRef];
+            if (displayOnlyConcerned && (! topic.isConcerned())) {
+                continue;
+            } else {
+                document.getElementById(topic.getSelectId()).addEventListener("change", function() {selectChanged(this)});
+                topic.addEventListeners(); 
+            }
+        }
+
+        for (var skillRef in this.theJSSkills) {
+            var skill = this.theJSSkills[skillRef];
+            if (displayOnlyConcerned && (! skill.isConcerned())) {
+                continue;
+            } else {
+                document.getElementById(skill.getSelectId()).addEventListener("change", function() {selectChanged(this)});
+            }
+        }
+    }
 }
 
 class JSArea {
@@ -482,6 +534,7 @@ class JSArea {
         this.theJSCurricula = curricula;
         this.concerned = false;
         this.nbUnitsConcerned = 0;
+        this.isContentVisible = false;
         
         for (var unitRef in this.theJSONArea.units) {
             var jsonUnit = this.theJSONArea.units[unitRef];
@@ -535,7 +588,7 @@ class JSArea {
         return "intro_" + this.id;
     }
 
-    toHTML(displayOnlyConcerned = false)
+    toHTML()
     {
         var txt = "";
 
@@ -551,27 +604,28 @@ class JSArea {
         // txt += "<div class=\"areaintro\" id=\"" + this.getIntroId() + "\">";
         // txt += this.theJSONArea.intro;
         // txt += "</div>";        
+        txt += "</td>\n";
 
-        txt += "</td>\n"; 
-
-        //=== One column for the area content
-        txt += "<td class=\"areacontentcol\">\n"; 
-        txt += "<div id=\"contentof" + this.id + "\">\n";
-        txt += "<table id=\"areaTable\">\n";
-
-        //-- one row for each unit
-        for (var unitRef in this.jsUnits) {
-            var unit = this.jsUnits[unitRef];
-            if (displayOnlyConcerned && (! unit.isConcerned()))
-                break;
-
-            txt += "<tr id=\"unitRow\">";
-            txt += unit.toHTML(displayOnlyConcerned);
-            txt += "</tr>";
+        if (this.isContentVisible) {    
+            //=== One column for the area content
+            txt += "<td class=\"areacontentcol\">\n"; 
+            txt += "<div id=\"contentof" + this.id + "\">\n";
+            txt += "<table id=\"areaTable\">\n";
+            
+            //-- one row for each unit
+            for (var unitRef in this.jsUnits) {
+                var unit = this.jsUnits[unitRef];
+                if (displayOnlyConcerned && (! unit.isConcerned()))
+                    break;
+                
+                txt += "<tr id=\"tr__" + unit.id + "\">";
+                txt += unit.toHTML();
+                txt += "</tr>";
+            }
+            txt += "</table>\n";
+            txt += "</div>\n";                
+            txt += "</td>\n";
         }
-        txt += "</table>\n";
-        txt += "</div>\n";                
-        txt += "</td>\n";        
         return txt;
     }
 
@@ -602,7 +656,23 @@ class JSArea {
             }
         }
         return txt;
-    }    
+    }
+
+    addEventListeners()
+    {
+        for (var unitRef in this.jsUnits) {
+            var unit = this.jsUnits[unitRef];
+            
+            if (displayOnlyConcerned && (! unit.isConcerned()))
+                continue;
+
+            document.getElementById(unit.getId()).addEventListener("click", function(){displayUnit(this)});
+            
+            if (unit.isContentVisible) {
+                unit.addEventListeners();
+            }
+        }
+    }
 }
 
 class JSCurricula
@@ -620,6 +690,42 @@ class JSCurricula
             if (jsa.isConcerned()) {
                 this.nbAreasConcerned++;
             }
+        }
+    }
+    
+    makeAreaVisible(areaElt)
+    {
+        var areaId = areaElt.id;
+        var trElt = document.getElementById("tr__" + areaElt.id);
+        var jsa = this.getArea(areaId);
+        if (jsa.isContentVisible == false) {
+            jsa.isContentVisible = true;
+            trElt.innerHTML = jsa.toHTML();
+            document.getElementById(areaId).addEventListener("click", function(){displayArea(this)});
+            jsa.addEventListeners();
+        } else {
+            jsa.isContentVisible = false;
+            trElt.innerHTML = jsa.toHTML();
+            document.getElementById(areaId).addEventListener("click", function(){displayArea(this)});
+        }
+    }
+    
+    makeUnitVisible(unitElt)
+    {
+        var splitted = unitElt.id.split("__");
+        var areaId = splitted[0];
+        var unitId = splitted[1];
+        var trElt = document.getElementById("tr__" + unitElt.id);
+        var jsu = this.getUnit(areaId, unitId);
+        if (jsu.isContentVisible == false) {
+            jsu.isContentVisible = true;
+            trElt.innerHTML = jsu.toHTML();
+            document.getElementById(unitElt.id).addEventListener("click", function(){displayUnit(this)});
+            jsu.addEventListeners();
+        } else {
+            jsu.isContentVisible = false;
+            trElt.innerHTML = jsu.toHTML();
+            document.getElementById(unitElt.id).addEventListener("click", function(){displayUnit(this)});            
         }
     }
     
@@ -652,7 +758,7 @@ class JSCurricula
         return null;
     }
 
-    toHTML(displayOnlyConcerned = false)
+    toHTML()
     {
         var txt = "";
 
@@ -662,8 +768,8 @@ class JSCurricula
             var jsa = this.jsAreas[areaRef];
             if (displayOnlyConcerned && (! jsa.isConcerned()))
                 break;
-            txt += "<tr id=\"areaRow\">\n";
-            txt += jsa.toHTML(displayOnlyConcerned);
+            txt += "<tr id=\"tr__" + jsa.id + "\">\n";
+            txt += jsa.toHTML();
             txt += "</tr>\n"; 
         }
         txt += "</table>\n";
@@ -700,6 +806,24 @@ class JSCurricula
         txt += "\\end{table}\n";
         return txt;
     }
+
+    addEventListeners()
+    {
+        for (var areaRef in this.jsAreas) {
+            var area = this.jsAreas[areaRef];
+            
+            if (displayOnlyConcerned && (! area.isConcerned()))
+                continue;
+            
+            var areaId = area.getId();
+            document.getElementById(areaId).addEventListener("click", function(){displayArea(this)});
+            var areaLinkIntroId = area.getLinkIntroId();
+            document.getElementById(areaLinkIntroId).addEventListener("click", function(){displayAreaIntro(this)});
+
+            if (area.isContentVisible)
+                area.addEventListeners();
+        }
+    }
 }
 
 String.prototype.replaceAll = function(search, replacement) {
@@ -710,7 +834,7 @@ String.prototype.replaceAll = function(search, replacement) {
 //======================================================================================
 //=============== printCSC() ===========================================================
 //======================================================================================
-window.printCSC = function(displayOnlyConcerned = false)
+window.printCSC = function()
 {    
     var fs = require('fs');
     var txt = "";
@@ -719,36 +843,11 @@ window.printCSC = function(displayOnlyConcerned = false)
         JSONCur = JSON.parse(fs.readFileSync('CSC-content.json').toString());
         JSCur = new JSCurricula(JSONCur);
     }
-    txt = JSCur.toHTML(displayOnlyConcerned);
+    txt = JSCur.toHTML();
         
     document.getElementById("theCSCPage").innerHTML = txt;
-   
-    var allSelects = document.getElementsByTagName("select");
-    for (var i=0; i < allSelects.length; i++)
-    {
-        allSelects[i].addEventListener("change", function() {selectChanged(this)});
-    }
-    
-    for (var areaRef in JSCur.jsAreas) {
-        var area = JSCur.jsAreas[areaRef];
-
-        if (displayOnlyConcerned && (! area.isConcerned()))
-            continue;
-        
-        var areaId = area.getId();
-        document.getElementById(areaId).addEventListener("click", function(){displayArea(this)});
-        var areaLinkIntroId = area.getLinkIntroId();
-        document.getElementById(areaLinkIntroId).addEventListener("click", function(){displayAreaIntro(this)});
-        
-        for (var unitRef in area.jsUnits) {
-            var unit = area.jsUnits[unitRef];
-            
-            if (displayOnlyConcerned && (! unit.isConcerned()))
-                continue;
-
-            document.getElementById(unit.getId()).addEventListener("click", function(){displayUnit(this)});
-        }
-    }
+       
+    JSCur.addEventListeners();
 
     document.getElementById("newCSC").addEventListener("change", function(){loadCSC(this.id)});
     document.getElementById("saveCSC").addEventListener("click", function(){saveCSC(this.id)});
@@ -757,7 +856,6 @@ window.printCSC = function(displayOnlyConcerned = false)
     document.getElementById("resetCSC").addEventListener("click", function(){resetCSC(this.id)});
     document.getElementById("latexExportCSC").addEventListener("click", function(){latexExportCSC(this.id)});
     document.getElementById("pdfExportCSC").addEventListener("click", function(){pdfExportCSC(this.id)});
-
 }
 
 function selectChanged(elt) {
@@ -800,23 +898,25 @@ function loadCSC() {
     fr.onload = function(e) {
         JSONCur = JSON.parse(e.target.result);
         JSCur = new JSCurricula(JSONCur);
-        printCSC(false);
+        printCSC();
     }
     var blob = file.slice(0, file.size-1);
     fr.readAsText(blob);
 }
 
 function GCCSC() {
-    printCSC(true);
+    displayOnlyConcerned = true;
+    printCSC();
 }
 
 function showCSC() {
-    printCSC(false);
+    displayOnlyConcerned = false;
+    printCSC();
 }
 
 function resetCSC() {
     JSCur = null;
-    printCSC(false);
+    printCSC();
 }
 
 function latexExportCSC(id) {
@@ -833,28 +933,12 @@ function pdfExportCSC() {
     
 }
 
-window.displayArea = function(area) {
-    var element = document.getElementById("contentof" + area.id);
-    var eStyle = element.currentStyle ?
-        element.currentStyle.display :
-        getComputedStyle(element, null).display;
-
-    if (eStyle === 'none')
-        document.getElementById("contentof" + area.id).style.display = 'inline';
-    else
-        document.getElementById("contentof" + area.id).style.display = "none";
+window.displayArea = function(areaElt) {
+    JSCur.makeAreaVisible(areaElt);
 }
 
-function displayUnit(unit) {
-    var element = document.getElementById("contentof" + unit.id);
-    var eStyle = element.currentStyle ?
-        element.currentStyle.display :
-        getComputedStyle(element, null).display;
-
-    if (eStyle === 'none')
-        document.getElementById("contentof" + unit.id).style.display = 'block';
-    else
-        document.getElementById("contentof" + unit.id).style.display = "none";
+function displayUnit(unitElt) {
+    JSCur.makeUnitVisible(unitElt);    
 }
 
 function displayAreaIntro(area) {

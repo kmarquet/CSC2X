@@ -101,13 +101,16 @@
     border-width: 2px;
     border-color: Gray;
     border-radius: 5px;
+    font-weight: 600;
 }
 
 .areatitle {
     font-size: 70%;
-    background-color: #9999CC;
+    /* background-color: #9999CC; */
     margin-top: 1cm;
+    font-weight: 400;
 }
+.areaabbrev:hover {background-color: #8888BB}
 
 .areaintro {
     position: fixed;
@@ -122,24 +125,18 @@
     z-index:1000;
     top: 100px;
     left:800px;
+    font-weight: 400;
 }
 
 .linkareaintro {
     cursor:pointer;
     font-size: 75%;   
-    background-color: #9999CC;
-    border-style: solid;
-    border-color: Gray;
-    border-width: 1px;
-    color: white;
-    padding: 2px 4px;
+    color: #9999CC;
     text-align: right;
-    text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    border-radius: 5px;
-    word-wrap: break-word;
     float:right;
+    font-weight: 400;
 }
 
 .areacontentcol {
@@ -160,19 +157,21 @@
 .unittitle {
     background-color: LightYellow;
     width: 620px;
-    line-height: 25px;
+    line-height: 30px;
     word-wrap: break-word;
     border-style: solid;
     border-width: 2px;
     border-color: Gray;
     border-radius: 5px;
+    font-weight: 600;
 }
 
 .unittitle:hover {background-color: Yellow}
 
 .unitintro {
     font-size: 70%;
-    line-height: 15px;                   
+    line-height: 12px;                   
+    font-weight: 400;
 }
 
 /* .unitintro:hover {background-color: Yellow} */
@@ -335,7 +334,7 @@ td .topiccol {
 }
 
 .topicyes {
-    background-color: LightCoral;
+    background-color: #4CAF50;
     text-color: black;
     background-size: 17%;
     content: 'yes';
@@ -356,7 +355,7 @@ td .topiccol {
 }
 
 .subtopicyes {
-    background-color: LightCoral;
+    background-color: #4CAF50;
     text-color: black;
     font-size: 80%;
     background-size: 15%;
@@ -377,7 +376,7 @@ td .topiccol {
 
 .skillfamiliarity {
     text-color: black;
-    background-color: #DF7F83;
+    background-color: #90F394;
     background-size: 9%;
     font-size:90%;
     content: 'familiarity';
@@ -386,7 +385,7 @@ td .topiccol {
 
 .skillusage {
     text-color: black;
-    background-color: #BF5D60;
+    background-color: #5DCF61;
     background-size: 9%;
     font-size:90%;
     content: 'usage';
@@ -395,7 +394,7 @@ td .topiccol {
 
 .skillassessment {
     text-color: black;
-    background-color: #9D3B3F;
+    background-color: #3B9E3A;
     background-size: 9%;
     font-size:90%;
     content: 'assessment';

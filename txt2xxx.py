@@ -97,9 +97,9 @@ class Topic:
 
         outlist.append(",\n           \"addressed\": \"");
         outlist.append(str(self.addressed));
-        outlist.append("\"\n");
+        outlist.append("\",\n");
 
-        outlist.append(",\n           \"xrefs\": \"" + self.xrefs + "\"");
+        outlist.append("           \"xrefs\": \"" + self.xrefs + "\"\n");
 
         outlist.append("         }");
         return outlist
@@ -366,15 +366,14 @@ for areafilename in os.listdir(options.areapath):
                 elif state == PState.ReadingTopics:
                     currentTopic = currentUnit.addTopic(sline)
                 elif state == PState.ReadingSkills:
-                    currentSkillContent += sline
                     if state == PState.ReadingSkills:
-                        endIndex = sline.find("[")
-                        if  endIndex >= 0:
-                            currentSkillContent += sline[0:endIndex]
+                        endI = sline.find("[")
+                        if  endI >= 0:
+                            currentSkillContent += sline[0:endI]
                             currentUnit.addSkill(currentSkillContent)
                             currentSkillContent = ""
                         else:
-                            currentSkillContent += sline
+                            currentSkillContent += sline + " "
                 else:
                     continue                
         areafile.close()
