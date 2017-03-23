@@ -946,18 +946,24 @@ function displayAreaIntro(area) {
     var areaId = area.id.substring(6);
     var newdiv = document.createElement('div');
     var jsarea = JSCur.getArea(areaId);
-    // var rect = area.getBoundingClientRect();
-    // var x = rect.top;
-    // var y = rect.left;
+    var rect = area.getBoundingClientRect();
+    var x = rect.top;
+    var y = rect.left;
 
     newdiv.setAttribute("class", "areaintro");
-    newdiv.setAttribute("id", "content_" + areaIntroId);
+    newdiv.setAttribute("id", "areaintro");
     // newdiv.style.top = x + 'px';
     // newdiv.style.left = y + 'px';
     
     newdiv.innerHTML += jsarea.theJSONArea.intro;
+    newdiv.innerHTML += "\n<br><b>Click to close\n</b><br>";
+
+    var introelt = document.getElementById("areaintro");
+    if (introelt)
+        document.body.removeChild(introelt);
 
     document.body.append(newdiv);
+    newdiv.addEventListener("click", function(){document.body.removeChild(document.getElementById("areaintro"))});
     
     //    document.body.appendChild(newdiv);
 
