@@ -7,12 +7,9 @@ class JSSkill {
 
     constructor(jsonSkill, unit) {
         this.theJSONSkill = jsonSkill;
-        this.content = jsonSkill.content;
         this.theJSUnit = unit;
-        this.skillNum = jsonSkill.num;
-        this.id = this.theJSUnit.getId() + "__skill__" + this.skillNum;
-        this.mastery = jsonSkill.mastery;
-        if (this.mastery != "No")
+        this.id = this.theJSUnit.getId() + "__skill__" + this.theJSONSkill.num;
+        if (this.theJSONSkill.mastery != "No")
             this.theJSUnit.setConcerned();
     }
 
@@ -21,13 +18,12 @@ class JSSkill {
         var selectElt = document.getElementById("select__" + this.id);
         selectElt.className = "skill" + value.toLowerCase();
         selectElt.selectedIndex = masteryLevels.indexOf(value);
-        this.mastery = value;
         this.theJSONSkill.mastery = value;
     }
     
     isConcerned()
     {
-        return (this.mastery != "No");
+        return (this.theJSONSkill.mastery != "No");
     }
 
     toHTML()
@@ -36,18 +32,18 @@ class JSSkill {
         //=== One column for the content
         txt += "<td class=\"skillcol\">\n"; 
         txt += "<div class=\"skill\">\n";
-        txt += this.content + "\n";
+        txt += this.theJSONSkill.content + "\n";
         txt += "</div>";
         txt += "</td>\n";
         
         //=== One column for the select
         txt += "<td class=\"skillselectcol \">\n";
-        txt += "<select align=\"right\" class=\"skill" + this.mastery.toLowerCase() + "\" id=\"select__" + this.id + "\">";
+        txt += "<select align=\"right\" class=\"skill" + this.theJSONSkill.mastery.toLowerCase() + "\" id=\"select__" + this.id + "\">";
 
         for (var i = 0 ; i < masteryLevels.length ; i++) {
             var level = masteryLevels[i];
             txt += "<option";
-            if (level == this.mastery) {
+            if (level == this.theJSONSkill.mastery) {
                 txt += " selected";
             }
             txt += " class=\"skill" + level.toLowerCase() + "\">";
@@ -63,9 +59,9 @@ class JSSkill {
     {
         var txt = "";
 
-        txt += this.content;
+        txt += this.theJSONSkill.content;
         txt += " & ";
-        txt += this.mastery;
+        txt += this.theJSONSkill.mastery;
         return txt;
     }
 }
@@ -74,12 +70,9 @@ class JSTopic {
     
     constructor(jsonTopic, unit) {
         this.theJSONTopic = jsonTopic;
-        this.content = jsonTopic.content;
         this.theJSUnit = unit;
-        this.topicNum = jsonTopic.num;
         this.id = this.theJSUnit.getId() + "__topic__" + this.theJSONTopic.num;
         this.theJSSubTopics = [];
-        this.addressed = this.theJSONTopic.addressed;
         this.nbSubTopicsConcerned = 0;
         
         for (var subTopicRef in this.theJSONTopic.subtopics) {
@@ -113,14 +106,13 @@ class JSTopic {
     
     setAddressed(value)
     {
-        if (this.addressed == value)
+        if (this.theJSONTopic.addressed == value)
             return;
         
         var selectElt = document.getElementById("select__" + this.id);
         selectElt.className = "topic" + value.toLowerCase();
         selectElt.selectedIndex = addressedLevels.indexOf(value);
         
-        this.addressed = value;
         this.theJSONTopic.addressed = value;
 
         if (value == "No") {
@@ -129,28 +121,19 @@ class JSTopic {
             }
         }
     }
-    
-    getContent() {
-        return this.content;
-    }
-    
+        
     getId() {
         return this.id;
-    }
-
-    isSub()
-    {
-        return false;
     }
     
     getSelect()
     {
         var txt = "";
-        txt += "<select id=\"select__" + this.id + "\" class=\"topic" + this.addressed.toLowerCase() + "\">";
+        txt += "<select id=\"select__" + this.id + "\" class=\"topic" + this.theJSONTopic.addressed.toLowerCase() + "\">";
         for (var i = 0 ; i < addressedLevels.length ; i++) {
             var aLevel = addressedLevels[i];
             txt += "<option";
-            if (this.addressed == aLevel) {
+            if (this.theJSONTopic.addressed == aLevel) {
                 txt += " selected";
             }
             txt += " class=\"topic" + aLevel.toLowerCase() + "\">";
@@ -163,7 +146,7 @@ class JSTopic {
 
     isConcerned()
     {
-        return (this.addressed != "No");
+        return (this.theJSONTopic.addressed != "No");
     }
     
     toHTML(displayOnlyConcerned = false)
@@ -173,7 +156,13 @@ class JSTopic {
         //=== One col for the content
         txt += "<td class=\"topiccol\">";
         txt += "<div class=\"topic\">\n";
-        txt += handleTopicContent(this.content) + "\n";
+        txt += this.theJSONTopic.content;
+        if (this.theJSONTopic.xrefs != "") {
+            txt += " <pre class=\"crossref\"> ";
+            txt += this.theJSONTopic.xrefs + "<br>";
+            txt += this.theJSONTopic.xrefs.replace("}{", "\">").replace("{", "<a href=\"#").replace("}", "</a>");
+            txt += ")</pre>";
+        }
         txt += "</div>";
         txt += "<table>\n";
         for (var subtopicRef in this.theJSSubTopics) {
@@ -195,12 +184,14 @@ class JSTopic {
         
         return txt;
     }
-    
+
+
+
     toLaTeX()
     {
         var txt = " & ";
         txt += "\\begin{minipage}[h]{7cm}";
-        txt += this.content;
+        txt += this.theJSONTopic.content;
         if (this.theJSSubTopics.length > 0) {
             txt += "\\\\";
             txt += "\\begin{tabular}{m{6.5cm} m{0.5cm}}\n";
@@ -214,7 +205,7 @@ class JSTopic {
             txt += "\\end{tabular}\n";
         }
         txt += "\\end{minipage}";
-        txt += " & " + this.addressed;
+        txt += " & " + this.theJSONTopic.addressed;
         return txt;
     }
 }
@@ -224,41 +215,37 @@ class JSSubTopic {
     constructor(jsonSubTopic, topic) {
         this.parentTopic = topic;
         this.theJSONTopic = jsonSubTopic;
-        this.content = jsonSubTopic.content;
         this.theJSUnit = null;
-        this.topicNum = jsonSubTopic.num;
         this.id = this.parentTopic.getId() + "__subtopic__" + this.theJSONTopic.num;
-        this.addressed = this.theJSONTopic.addressed;
-        if (this.addressed == "Yes")
-            this.parentTopic.setAddressed(this.addressed);
+        if (this.theJSONTopic.addressed == "Yes")
+            this.parentTopic.setAddressed(this.theJSONTopic.addressed);
     }
     
     setAddressed(value)
     {
-        if (this.addressed == value)
+        if (this.theJSONTopic.addressed == value)
             return;
         
         var selectElt = document.getElementById("select__" + this.id);
         selectElt.className = "subtopic" + value.toLowerCase();
         selectElt.selectedIndex = addressedLevels.indexOf(value);
 
-        this.addressed = value;
         this.theJSONTopic.addressed = value;
     }
 
     isConcerned()
     {
-        return (this.addressed != "No");
+        return (this.theJSONTopic.addressed != "No");
     }
     
     getSelect()
     {
         var txt = "";
-        txt += "<select id=\"select__" + this.id + "\" class=\"subtopic" + this.addressed.toLowerCase() + "\">";
+        txt += "<select id=\"select__" + this.id + "\" class=\"subtopic" + this.theJSONTopic.addressed.toLowerCase() + "\">";
         for (var i = 0 ; i < addressedLevels.length ; i++) {
             var aLevel = addressedLevels[i];
             txt += "<option";
-            if (this.addressed == aLevel) {
+            if (this.theJSONTopic.addressed == aLevel) {
                 txt += " selected";
             }
             txt += " class=\"subtopic" + aLevel.toLowerCase() + "\">";                
@@ -277,7 +264,12 @@ class JSSubTopic {
         //=== One column for the topic
         txt += "<td class=\"subtopiccol\">\n"; 
         txt += "<div class=\"subtopic\">\n";            
-        txt += handleTopicContent(this.content) + "\n";
+
+        if (this.theJSONTopic.xrefs != "") {
+            txt += " <pre class=\"crossref\">(cross-reference ";
+            txt += this.theJSONTopic.xrefs.replace("}{", "\">").replace("{", "<a href=\"#").replace("}", "</a>")
+            txt += ")</pre>";
+        }
         txt += "</div>\n";          
         txt += "</td>\n"; 
 
@@ -291,9 +283,9 @@ class JSSubTopic {
     toLaTeX()
     {
         var txt = " & ";
-        txt += this.content;
+        txt += this.theJSONTopic.content;
         txt += " & ";
-        txt += this.addressed;
+        txt += this.theJSONTopic.addressed;
         return txt;
     }
 
@@ -361,7 +353,7 @@ class JSUnit {
     setSkill(skillNum, value)
     {
         var aJSSkill = this.theJSSkills[skillNum];
-        if (aJSSkill.mastery != value) {
+        if (aJSSkill.theJSONSkill.mastery != value) {
             aJSSkill.setMastery(value);
             if (this.value == "No") {
                 this.nbSkillsConcerned++;
@@ -391,16 +383,15 @@ class JSUnit {
         txt += "<tr>";
         txt += "<div class=\"unittitle\" id=\"" + this.id + "\">";
         txt += this.title;
+        if (this.theJSONUnit.intro != "") {
+            txt += "\n<br>";
+            txt += "<div class=\"unitintro\">";
+            txt += this.theJSONUnit.intro;
+            txt += "</div>\n";
+        }
         txt += "</div>";
         txt += "</tr>";
 
-        if (this.theJSONUnit.intro != "") {
-            txt += "<tr>";
-            txt += "<div class=\"unitintro\" id=\"intro_" + this.id + "\">";
-            txt += this.theJSONUnit.intro;
-            txt += "</div>";
-            txt += "</tr>";
-        }
 
         //=== One line for the content
         txt += "<tr class=\"unitcontent\" id=\"contentof" + this.id + "\">\n";
@@ -555,7 +546,7 @@ class JSArea {
         txt += "<span class=\"areatitle\">" + this.title + "</span><br>\n";
         txt += "</div>";
         txt += "<div class=\"linkareaintro\" id=\""+ this.getLinkIntroId() + "\">";
-        txt += "See introduction notes";
+        txt += "About";
         txt += "</div>";
         // txt += "<div class=\"areaintro\" id=\"" + this.getIntroId() + "\">";
         // txt += this.theJSONArea.intro;
@@ -896,55 +887,6 @@ function displayAreaIntro(area) {
     // else
     //     element.style.display = "none";
 }
-
-
-function handleTopicContent(content)
-{
-    var regex = /(.*)\(cross[-\s]reference(.*)\)(.*)/i;
-    var match = regex.exec(content);
-    if (match != null) {
-        var res = "";
-        var i;
-        res += match[1] + " <pre class=\"crossref\">(cross-ref ";
-        res += handleXrefs(match[2]);
-        res += ")</pre>";
-        return res;
-    } else {
-        return content;
-    }
-}
-
-function handleXrefs(theRefs)
-{
-    var regexList = /([^]*),(\s.{2,4}\/[^]*)/i;
-    var regexEnd = /([^]{2,3})\/([^]*)/i;
-    var match;
-    var theRef;
-    var area;
-    var topic;
-    var res = "";
-    var refs = theRefs.trim();
-    
-    while (regexList.test(refs)) {
-        match = regexList.exec(refs);
-        theRef = match[1].trim();
-        refs = match[2].trim();
-        match = regexEnd.exec(theRef)
-        area = match[1].trim();
-        topic = match[2].trim();
-        res += "<a href=\"\#" + area + "__" + topic.replaceAll(" ", "_") + "\">" + area + "/" + topic + "</a>" + " and ";
-    }
-    match = regexEnd.exec(refs);
-    if (match != null) {
-        area = match[1].trim();
-        topic = match[2].trim();
-        res += "<a href=\"\#" + area + "__" + topic.replaceAll(" ", "_") + "\">" + area + "/" + topic + "</a>";
-    } else {
-        res += "BUG!!!" + refs + "!!!";
-    }
-    return res;
-}
-
 
 // TODO
 // - export to LaTeX

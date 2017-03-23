@@ -76,7 +76,7 @@ for separately in terms of the core hours.
 Build upon students’ familiarity with the notion of basic parallel execution—a concept addressed
 in Systems Fundamentals—to delve into the complicating issues that stem from this notion, such
 as race conditions and liveness.
-Cross-reference {SF/Computational Paradigms} and {SF/System Support for Parallelism}.
+cross-reference {SF/Computational Paradigms} and {SF/System Support for Parallelism}.
 
 ==Topics
 Multiple simultaneous computations
@@ -91,7 +91,7 @@ o Lack of liveness/progress (deadlock, starvation)
 
 ==Skills
 Distinguish using computational resources for a faster answer from managing efficient access to a shared
-resource. (Cross-reference {GV/Fundamental Concepts}, outcome 5.) [Familiarity]
+resource. (cross-reference {GV/Fundamental Concepts}, outcome 5.) [Familiarity]
 Distinguish multiple sufficient programming constructs for synchronization that may be inter-
 implementable but have complementary advantages. [Familiarity]
 Distinguish data races from higher level races. [Familiarity]
@@ -99,7 +99,7 @@ Distinguish data races from higher level races. [Familiarity]
 =====Parallel Decomposition
 ==Intro
 
-(Cross-reference {SF/System Support for Parallelism})
+cross-reference {SF/System Support for Parallelism}
 
 ==Topics
 Need for communication and coordination/synchronization
@@ -122,7 +122,7 @@ Write a program using actors and/or reactive processes. [Usage]
 =====Communication and Coordination
 ==Intro
 
-Cross-reference {OS/Concurrency}/mechanism implementation issues.
+cross-reference {OS/Concurrency}/mechanism implementation issues.
 
 ==Topics
 Shared Memory
@@ -170,7 +170,7 @@ Speed-up and scalability
 Naturally (embarrassingly) parallel algorithms
 Parallel algorithmic patterns (divide-and-conquer, map and reduce, master-workers, others)
 o Specific algorithms (e.g., parallel MergeSort)
-Parallel graph algorithms (e.g., parallel shortest path, parallel spanning tree) (cross-reference {AL/Algorithmic Strategies/Divide-and-conquer})
+Parallel graph algorithms (e.g., parallel shortest path, parallel spanning tree) (cross-reference {AL/Algorithmic Strategies}/Divide-and-conquer)
 Parallel matrix computations
 Producer-consumer and pipelined algorithms
 Examples of non-scalable parallel algorithms

@@ -134,7 +134,7 @@ instruction and data references. [Usage]
 =====Interfacing and Communication
 ==Intro
 
-Cross-reference Operating Systems (OS) Knowledge Area for a discussion of the operating
+cross-reference Operating Systems (OS) Knowledge Area for a discussion of the operating
 system view of input/output processing and management. The focus here is on the hardware
 mechanisms for supporting device interfacing and processor-to-processor communications.
 

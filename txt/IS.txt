@@ -40,7 +40,7 @@ Determine the characteristics of a given problem that an intelligent system must
 
 =====Basic Search Strategies
 ==Intro
-Cross-reference {AL/Basic Analysis}, {AL/Algorithmic Strategies}, {AL/Fundamental Data Structures and Algorithms}
+cross-reference {AL/Basic Analysis}, {AL/Algorithmic Strategies}, {AL/Fundamental Data Structures and Algorithms}
 
 ==Topics
 Problem spaces (states, goals and operators), problem solving by search
@@ -188,7 +188,7 @@ Explain how utility functions and probabilistic reasoning can be combined to mak
 
 =====Agents
 ==Intro
-Cross-reference {HCI/Collaboration and Communication}
+cross-reference {HCI/Collaboration and Communication}
 
 ==Topics
 Definitions of agents
@@ -218,7 +218,7 @@ Demonstrate using appropriate examples how multi-agent systems support agent int
 
 =====Natural Language Processing
 ==Intro
-Cross-reference {HCI/New Interactive Technologies}
+cross-reference {HCI/New Interactive Technologies}
 ==Topics
 Deterministic and stochastic grammars
 Parsing algorithms
@@ -233,7 +233,7 @@ Corpus-based methods
 N-grams and HMMs
 Smoothing and backoff
 Examples of use: POS tagging and morphology
-Information retrieval (Cross-reference {IM/Information Storage and Retrieval})
+Information retrieval (cross-reference {IM/Information Storage and Retrieval})
 o Vector space model (TF and IDF)
 o Precision and recall
 Information extraction
@@ -267,7 +267,7 @@ o EM
 o K-means
 o Self-organizing maps
 Semi-supervised learning
-Learning graphical models (Cross-reference {IS/Reasoning under Uncertainty})
+Learning graphical models (cross-reference {IS/Reasoning under Uncertainty})
 Performance evaluation (such as cross-validation, area under ROC curve)
 Learning theory
 The problem of overfitting, the curse of dimensionality

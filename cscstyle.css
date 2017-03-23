@@ -127,18 +127,19 @@
 .linkareaintro {
     cursor:pointer;
     font-size: 75%;   
-    background-color:  #6688FF;
+    background-color: #9999CC;
     border-style: solid;
     border-color: Gray;
     border-width: 1px;
     color: white;
     padding: 2px 4px;
-    text-align: center;
+    text-align: right;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
     border-radius: 5px;
     word-wrap: break-word;
+    float:right;
 }
 
 .areacontentcol {
@@ -158,7 +159,7 @@
 
 .unittitle {
     background-color: LightYellow;
-    width: 500px;
+    width: 620px;
     line-height: 25px;
     word-wrap: break-word;
     border-style: solid;
@@ -170,14 +171,8 @@
 .unittitle:hover {background-color: Yellow}
 
 .unitintro {
-    background-color: LightYellow;
-    width: 800px;
-    word-wrap: break-word;
-    border-style: solid;
-    border-width: 2px;
-    border-color: Gray;
-    border-radius: 5px;
-    font-size: 75%
+    font-size: 70%;
+    line-height: 15px;                   
 }
 
 /* .unitintro:hover {background-color: Yellow} */

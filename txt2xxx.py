@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.5
 import os
 import sys
+import re
 import codecs
 from subprocess import call
 from optparse import OptionParser
@@ -48,12 +49,28 @@ class SkillLevel(Enum):
 
 class Topic:
     def __init__(self, content, unit, num):
-        self.content = content
         self.unit = unit
         self.addressed = "No"
         self.subtopics = []
         self.num = num
-        
+        self.content = content.strip()
+        self.xrefs = ""
+
+        allcontent = self.content.split("cross-reference")
+        if len(allcontent) > 1:
+            print("CROSS  : " + str(len(allcontent)))
+            self.content = allcontent[0].strip()
+            crossrefs = allcontent[1]
+            matches = re.findall('{([A-Z]{2,3})/([ A-Za-z,;]*)}', crossrefs)
+            print("MATCHES : " + str(len(matches)))
+            for crossref in matches:
+                areaId = crossref[0]
+                unitTitle = crossref[1]
+                unitId = unitTitle.strip().replace(" ", "_")
+                crossrefs = crossrefs.replace("{" + areaId + "/" + unitTitle, "{" + areaId + "_" + unitId + "}{" + areaId + "/" + unitTitle)
+                print(crossrefs)
+            self.xrefs = crossrefs
+
     def toJson(self, ):
         outlist = []
         outlist.append("         { \"content\": ");
@@ -81,6 +98,8 @@ class Topic:
         outlist.append(",\n           \"addressed\": \"");
         outlist.append(str(self.addressed));
         outlist.append("\"\n");
+
+        outlist.append(",\n           \"xrefs\": \"" + self.xrefs + "\"");
 
         outlist.append("         }");
         return outlist
