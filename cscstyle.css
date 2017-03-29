@@ -29,6 +29,21 @@
 }
 
 .hidebutton {
+    background-color: #555555;
+    border-style: solid;
+    border-color: Black;
+    border-width: 3px;
+    color: white;
+    padding: 3px 7px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    width: 180px;
+    border-radius: 8px;
+}
+
+.showbutton {
     background-color: #BBBBBB;
     border-style: solid;
     border-color: Gray;
@@ -77,6 +92,7 @@
 
 .cscbutton:hover {background-color:  #5577EE}
 .hidebutton:hover {background-color: #AAAAAA}
+.showbutton:hover {background-color: #555555}
 .exportbutton:hover {background-color: #3e8e41}
 .resetbutton:hover {background-color: #9E3B3F}
 

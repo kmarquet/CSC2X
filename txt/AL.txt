@@ -76,8 +76,7 @@ Heuristics
 Reduction: transform-and-conquer
 
 ==Skills
-For each of the strategies (brute-force, greedy, divide-and-conquer, recursive backtracking, and dynamic
-programming), identify a practical example to which it would apply. [Familiarity]
+For each of the strategies (brute-force, greedy, divide-and-conquer, recursive backtracking, and dynamic programming), identify a practical example to which it would apply. [Familiarity]
 Use a greedy approach to solve an appropriate problem and determine if the greedy rule chosen leads to an
 optimal solution. [Assessment]
 Use a divide-and-conquer algorithm to solve an appropriate problem. [Usage]

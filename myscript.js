@@ -3,6 +3,7 @@ var JSCur = null;
 addressedLevels = ["No", "Yes"];
 masteryLevels = ["No", "Familiarity", "Usage", "Assessment"];
 displayOnlyConcerned = false;
+boardDisplayed = false;
 
 class JSSkill {
 
@@ -10,8 +11,6 @@ class JSSkill {
         this.theJSONSkill = jsonSkill;
         this.theJSUnit = unit;
         this.id = this.theJSUnit.getId() + "__skill__" + this.theJSONSkill.num;
-        if (this.theJSONSkill.mastery != "No")
-            this.theJSUnit.setConcerned();
     }
 
     setMastery(value)
@@ -180,7 +179,7 @@ class JSTopic {
         for (var subtopicRef in this.theJSSubTopics) {
             var subtopic = this.theJSSubTopics[subtopicRef];
             if (displayOnlyConcerned && (! subtopic.isConcerned()))
-                break;
+                continue;
             txt += "<tr class=\"subtopicscol\">\n";
             txt += subtopic.toHTML();
             txt += "</tr>";
@@ -201,10 +200,11 @@ class JSTopic {
     {
         for (var subtopicRef in this.theJSSubTopics) {
             var subtopic = this.theJSSubTopics[subtopicRef];
-            if (displayOnlyConcerned && (! subtopic.isConcerned()))
-                break;
-            else
+            if (displayOnlyConcerned && (! subtopic.isConcerned())) {
+                continue;
+            } else {
                 document.getElementById(subtopic.getSelectId()).addEventListener("change", function() {selectChanged(this)});
+            }
         }
     }
     
@@ -212,7 +212,8 @@ class JSTopic {
     toLaTeX()
     {
         var txt = " & ";
-        txt += "\\begin{minipage}[h]{7cm}";
+        var first = true;
+        txt += "\\begin{minipage}[h]{8cm}";
         txt += this.theJSONTopic.content;
         if (this.theJSSubTopics.length > 0) {
             txt += "\\\\";
@@ -220,8 +221,12 @@ class JSTopic {
             for (var topicRef in this.theJSSubTopics) {
                 var subtopic = this.theJSSubTopics[topicRef];
                 if (subtopic.isConcerned()) {
-                    txt += subtopic.toLaTeX();
-                    txt += "\\\\\\hline\n";
+                    if (! first) {
+                        txt += "\\\\\\hline\n";
+                        first = false;
+                    } else {
+                        txt += subtopic.toLaTeX();
+                    }
                 }
             }
             txt += "\\end{tabular}\n";
@@ -275,7 +280,7 @@ class JSSubTopic {
             if (this.theJSONTopic.addressed == aLevel) {
                 txt += " selected";
             }
-            txt += " class=\"subtopic" + aLevel.toLowerCase() + "\">";                
+            txt += " class=\"subtopic" + aLevel.toLowerCase() + "\">";
             txt += aLevel;
             txt += "</option>";
         }
@@ -310,7 +315,7 @@ class JSSubTopic {
 
     toLaTeX()
     {
-        var txt = " & ";
+        var txt = " ";
         txt += this.theJSONTopic.content;
         txt += " & ";
         txt += this.theJSONTopic.addressed;
@@ -331,7 +336,6 @@ class JSUnit {
         this.theJSONUnit = jsonUnit;
         this.theJSTopics = [];
         this.theJSSkills = [];
-        this.concerned = false;
         this.nbTopicsConcerned = 0;
         this.nbSkillsConcerned = 0;
         this.isContentVisible = false;
@@ -483,7 +487,7 @@ class JSUnit {
         var txt = " & ";
         var first = true;
         
-        txt += "\\multirow {" + this.nbTopicsConcerned + "}{*}{" + this.title + "}";
+        txt += "\\multirow {" + this.nbTopicsConcerned + "}{*}{\\begin{minipage}{4cm}" + this.title + "\\end{minipage}}";
         for (var topicRef in this.theJSTopics) {
             var topic = this.theJSTopics[topicRef];
             if (topic.isConcerned()) {
@@ -532,7 +536,6 @@ class JSArea {
         this.title = this.theJSONArea.title;
         this.id = this.theJSONArea.abbrev;
         this.theJSCurricula = curricula;
-        this.concerned = false;
         this.nbUnitsConcerned = 0;
         this.isContentVisible = false;
         
@@ -616,7 +619,7 @@ class JSArea {
             for (var unitRef in this.jsUnits) {
                 var unit = this.jsUnits[unitRef];
                 if (displayOnlyConcerned && (! unit.isConcerned()))
-                    break;
+                    continue;
                 
                 txt += "<tr id=\"tr__" + unit.id + "\">";
                 txt += unit.toHTML();
@@ -767,7 +770,7 @@ class JSCurricula
         for (var areaRef in this.jsAreas) {
             var jsa = this.jsAreas[areaRef];
             if (displayOnlyConcerned && (! jsa.isConcerned()))
-                break;
+                continue;
             txt += "<tr id=\"tr__" + jsa.id + "\">\n";
             txt += jsa.toHTML();
             txt += "</tr>\n"; 
@@ -780,12 +783,11 @@ class JSCurricula
     toLaTeX()
     {
         var txt = "";
-        var first;
-        
-        txt += "\\begin{table}\n";
+        var first = true;
 
+        txt += "\\begin{table}\n";
         txt += "\\begin{center}\n";
-        txt += "\\begin{tabular}{ >{\\bfseries\\large}l  >{\\bfseries}m{4cm}  m{7cm}  m{1cm} }\n";
+        txt += "\\begin{tabular}{ >{\\bfseries\\large}l  >{\\bfseries}m{4cm} | m{8cm} m{1cm} }\n";
         txt += "\n";
         txt += "Area & Unit & \\textbf{Topics} & \\textbf{Addressed ?}\n";
         txt += "\\\\\\hline\n";
@@ -831,31 +833,47 @@ String.prototype.replaceAll = function(search, replacement) {
     return target.split(search).join(replacement);
 }
 
+
 //======================================================================================
 //=============== printCSC() ===========================================================
 //======================================================================================
+
+readStringFromFileAtPath = function(pathOfFileToReadFrom)
+{
+    var request = new XMLHttpRequest();
+    request.open("GET", pathOfFileToReadFrom, false);
+    request.send(null);
+    var returnValue = request.responseText;
+    
+    return returnValue;
+}
+
 window.printCSC = function()
 {    
     var fs = require('fs');
     var txt = "";
 
+    if (! boardDisplayed) {
+        document.body.innerHTML = readStringFromFileAtPath("cscbody.html");
+        boardDisplayed = true;
+        document.getElementById("newCSC").addEventListener("change", function(){loadCSC(this.id)});
+        document.getElementById("saveCSC").addEventListener("click", function(){saveCSC(this.id)});
+        document.getElementById("GCCSC").addEventListener("click", function(){GCCSC(this.id)});
+        document.getElementById("resetCSC").addEventListener("click", function(){resetCSC(this.id)});
+        document.getElementById("latexExportCSC").addEventListener("click", function(){latexExportCSC(this.id)});
+        document.getElementById("pdfExportCSC").addEventListener("click", function(){pdfExportCSC(this.id)});
+    }
+    
     if (JSCur == null) {
         JSONCur = JSON.parse(fs.readFileSync('CSC-content.json').toString());
         JSCur = new JSCurricula(JSONCur);
     }
     txt = JSCur.toHTML();
-        
+
+    
     document.getElementById("theCSCPage").innerHTML = txt;
        
     JSCur.addEventListeners();
-
-    document.getElementById("newCSC").addEventListener("change", function(){loadCSC(this.id)});
-    document.getElementById("saveCSC").addEventListener("click", function(){saveCSC(this.id)});
-    document.getElementById("GCCSC").addEventListener("click", function(){GCCSC(this.id)});
-    document.getElementById("showCSC").addEventListener("click", function(){showCSC(this.id)});
-    document.getElementById("resetCSC").addEventListener("click", function(){resetCSC(this.id)});
-    document.getElementById("latexExportCSC").addEventListener("click", function(){latexExportCSC(this.id)});
-    document.getElementById("pdfExportCSC").addEventListener("click", function(){pdfExportCSC(this.id)});
 }
 
 function selectChanged(elt) {
@@ -884,7 +902,7 @@ function selectChanged(elt) {
 function saveCSC(id) {
 //    var dlElem = document.getElementById(id);
     var link = document.createElement('a');
-    var data = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSONCur));
+    var data = "data:application/json;charset=utf-8," + encodeURIComponent(JSON.stringify(JSONCur) + "\n");
     link.setAttribute("href", "data:" + data);
     link.setAttribute("download", "savedCSC.json");
     document.body.appendChild(link);
@@ -905,12 +923,15 @@ function loadCSC() {
 }
 
 function GCCSC() {
-    displayOnlyConcerned = true;
-    printCSC();
-}
+    var elt = document.getElementById("GCCSC");
 
-function showCSC() {
-    displayOnlyConcerned = false;
+    if (displayOnlyConcerned) {
+        displayOnlyConcerned = false;
+        elt.className = "showbutton"; 
+    } else {
+        displayOnlyConcerned = true;
+        elt.className = "hidebutton";
+    }
     printCSC();
 }
 
@@ -977,6 +998,8 @@ function displayAreaIntro(area) {
     // else
     //     element.style.display = "none";
 }
+
+
 
 // TODO
 // - export to LaTeX
