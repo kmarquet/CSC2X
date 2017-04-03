@@ -170,7 +170,6 @@ class JSTopic {
         txt += this.theJSONTopic.content;
         if (this.theJSONTopic.xrefs != "") {
             txt += " <pre class=\"crossref\"> ";
-            txt += this.theJSONTopic.xrefs + "<br>";
             txt += this.theJSONTopic.xrefs.replace("}{", "\">").replace("{", "<a href=\"#").replace("}", "</a>");
             txt += ")</pre>";
         }
@@ -917,6 +916,18 @@ function loadCSC() {
         JSONCur = JSON.parse(e.target.result);
         JSCur = new JSCurricula(JSONCur);
         printCSC();
+    }
+    var blob = file.slice(0, file.size-1);
+    fr.readAsText(blob);
+}
+
+function appendCSC() {
+    var file = document.getElementById("appendCSC").files[0];
+    var fr = new FileReader();
+    fr.onload = function(e) {
+        OtherJSONCur = JSON.parse(e.target.result);
+        OtherJSCur = new JSCurricula(JSONCur);
+        JSCur.appendCSC(OtherJSCur);
     }
     var blob = file.slice(0, file.size-1);
     fr.readAsText(blob);
