@@ -4,6 +4,7 @@ addressedLevels = ["No", "Yes"];
 masteryLevels = ["No", "Familiarity", "Usage", "Assessment"];
 displayOnlyConcerned = false;
 boardDisplayed = false;
+expand = false;
 
 class JSSkill {
 
@@ -337,7 +338,11 @@ class JSUnit {
         this.theJSSkills = [];
         this.nbTopicsConcerned = 0;
         this.nbSkillsConcerned = 0;
-        this.isContentVisible = false;
+
+        if (expand)
+            this.isContentVisible = true;            
+        else
+            this.isContentVisible = false;
         
         for (var topicRef in this.theJSONUnit.topics) {
             var jsonTopic = this.theJSONUnit.topics[topicRef];
@@ -536,7 +541,11 @@ class JSArea {
         this.id = this.theJSONArea.abbrev;
         this.theJSCurricula = curricula;
         this.nbUnitsConcerned = 0;
-        this.isContentVisible = false;
+
+        if (expand)
+            this.isContentVisible = true;
+        else
+            this.isContentVisible = false;
         
         for (var unitRef in this.theJSONArea.units) {
             var jsonUnit = this.theJSONArea.units[unitRef];
@@ -858,17 +867,20 @@ window.printCSC = function()
         document.getElementById("newCSC").addEventListener("change", function(){loadCSC(this.id)});
         document.getElementById("saveCSC").addEventListener("click", function(){saveCSC(this.id)});
         document.getElementById("GCCSC").addEventListener("click", function(){GCCSC(this.id)});
+        document.getElementById("expandCSC").addEventListener("click", function(){expandCSC(this.id)});
         document.getElementById("resetCSC").addEventListener("click", function(){resetCSC(this.id)});
         document.getElementById("latexExportCSC").addEventListener("click", function(){latexExportCSC(this.id)});
         document.getElementById("pdfExportCSC").addEventListener("click", function(){pdfExportCSC(this.id)});
     }
     
-    if (JSCur == null) {
+    if (JSONCur == null) {
         JSONCur = JSON.parse(fs.readFileSync('CSC-content.json').toString());
+    }
+    if (JSCur == null) {
         JSCur = new JSCurricula(JSONCur);
     }
+    
     txt = JSCur.toHTML();
-
     
     document.getElementById("theCSCPage").innerHTML = txt;
        
@@ -946,8 +958,22 @@ function GCCSC() {
     printCSC();
 }
 
-function resetCSC() {
+function expandCSC() {
+    var elt = document.getElementById("expandCSC");
+
+    if (expand) {
+        expand = false;
+        elt.className = "showbutton"; 
+    } else {
+        expand = true;
+        elt.className = "hidebutton";
+    }
     JSCur = null;
+    printCSC();
+}
+
+function resetCSC() {
+    JSONCur = null;
     printCSC();
 }
 
@@ -962,7 +988,26 @@ function latexExportCSC(id) {
 }
 
 function pdfExportCSC() {
+    var latexData = JSCur.toLaTeX();
+    var request = new XMLHttpRequest();
+    request.open("POST", "textopdf.php", true);
+    request.setRequestHeader("Content-type", "application/latex");
+    // request.responseType = "arraybuffer";
     
+    request.onreadystatechange = function() {
+        document.getElementById("theCSCPage").innerText = request.responseText;
+
+        // if (this.readyState == 4 && this.status == 200) {
+        //     var link = document.createElement('a');
+        //     var data = "data:application/x-pdf," + encodeURIComponent(JSCur.responseText);
+        //     link.setAttribute("href", "data:" + data);
+        //     link.setAttribute("download", "savedCSC.pdf");    
+        //     document.body.appendChild(link);
+        //     link.click();
+
+        // }
+    }
+    request.send(latexData);    
 }
 
 window.displayArea = function(areaElt) {

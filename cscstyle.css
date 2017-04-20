@@ -39,7 +39,7 @@
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    width: 180px;
+    width: 160px;
     border-radius: 8px;
 }
 
@@ -54,7 +54,7 @@
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    width: 180px;
+    width: 160px;
     border-radius: 8px;
 }
 
@@ -70,7 +70,7 @@
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
-    width: 250px;
+    width: 200px;
     border-radius: 8px;
 }
 
