@@ -58,7 +58,6 @@ class Topic:
 
         allcontent = self.content.split("cross-reference")
         if len(allcontent) > 1:
-            print("CROSS  : " + str(len(allcontent)))
             self.content = allcontent[0].strip()
             crossrefs = allcontent[1]
             matches = re.findall('{([A-Z]{2,3})/([ A-Za-z,;]*)}', crossrefs)
@@ -68,7 +67,6 @@ class Topic:
                 unitTitle = crossref[1]
                 unitId = unitTitle.strip().replace(" ", "_")
                 crossrefs = crossrefs.replace("{" + areaId + "/" + unitTitle, "{" + areaId + "_" + unitId + "}{" + areaId + "/" + unitTitle)
-                print(crossrefs)
             self.xrefs = crossrefs
 
     def toJson(self, ):
@@ -115,6 +113,18 @@ class Skill:
         self.unit = unit
         self.mastery = "No"
         self.num = num
+
+        allcontent = self.content.split("cross-reference")
+        if len(allcontent) > 1:
+            self.content = allcontent[0]
+            crossrefs = allcontent[1]
+            matches = re.findall('{([A-Z]{2,3})/([ A-Za-z,;]*)}', crossrefs)
+            for crossref in matches:
+                areaId = crossref[0]
+                unitTitle = crossref[1]
+                unitId = unitTitle.strip().replace(" ", "_")
+                crossrefs = crossrefs.replace("{" + areaId + "/" + unitTitle, "{" + areaId + "_" + unitId + "}{" + areaId + "/" + unitTitle)
+            self.content += "cross-reference " + crossrefs
         
     def toJson(self, ):
         outlist = []

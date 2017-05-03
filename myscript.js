@@ -6,19 +6,22 @@ displayOnlyConcerned = false;
 boardDisplayed = false;
 expand = false;
 
-class JSSkill {
 
+class JSSkill {
     constructor(jsonSkill, unit) {
         this.theJSONSkill = jsonSkill;
         this.theJSUnit = unit;
         this.id = this.theJSUnit.getId() + "__skill__" + this.theJSONSkill.num;
+	this.duplication = 0;
     }
 
     setMastery(value)
     {
         var selectElt = document.getElementById("select__" + this.id);
-        selectElt.className = "skill" + value.toLowerCase();
-        selectElt.selectedIndex = masteryLevels.indexOf(value);
+	if (selectElt != null) {
+            selectElt.className = "skill" + value.toLowerCase();
+            selectElt.selectedIndex = masteryLevels.indexOf(value);
+	}
         this.theJSONSkill.mastery = value;
     }
     
@@ -37,10 +40,18 @@ class JSSkill {
         var txt = "";
         
         //=== One column for the content
-        txt += "<td class=\"skillcol\">\n"; 
-        txt += "<div class=\"skill\">\n";
-        txt += this.theJSONSkill.content + "\n";
-        txt += "</div>";
+	if (this.duplication == 0) {
+            txt += "<td class=\"skillcol\">\n"; 
+	} else {
+	    txt += "<td class=\"skillcol duplicate\">\n"; 
+	}
+
+	txt += "<div class=\"skill\">\n" ;
+
+        // txt += this.theJSONSkill.content + "\n";
+        txt += this.theJSONSkill.content.replaceAll("}{", "\">").replaceAll("{", "<a href=\"#").replaceAll("}", "</a>");
+
+        txt += "\n</div>";
         txt += "</td>\n";
         
         //=== One column for the select
@@ -64,24 +75,34 @@ class JSSkill {
     
     toLaTeX()
     {
-        var txt = "";
-
+        var txt = " & ";
+        txt += "\\begin{minipage}[h]{8cm}";
         txt += this.theJSONSkill.content;
+        txt += "\\end{minipage}";
         txt += " & ";
-        txt += this.theJSONSkill.mastery;
+	txt += this.theJSONSkill.mastery;
+        return txt;
+    }
+
+    toLaTeX2()
+    {
+        var txt = "";
+        txt += "\\textmd{\\sffamily\\small " + this.theJSONSkill.mastery + "} ";
+        txt += this.theJSONSkill.content;
         return txt;
     }
 }
 
 class JSTopic {
-    
+
     constructor(jsonTopic, unit) {
         this.theJSONTopic = jsonTopic;
         this.theJSUnit = unit;
         this.id = this.theJSUnit.getId() + "__topic__" + this.theJSONTopic.num;
         this.theJSSubTopics = [];
         this.nbSubTopicsConcerned = 0;
-        
+        this.duplication = 0;
+
         for (var subTopicRef in this.theJSONTopic.subtopics) {
             var jsonSubTopic = this.theJSONTopic.subtopics[subTopicRef];
             var jsst = new JSSubTopic(jsonSubTopic, this);
@@ -117,9 +138,11 @@ class JSTopic {
             return;
         
         var selectElt = document.getElementById("select__" + this.id);
-        selectElt.className = "topic" + value.toLowerCase();
-        selectElt.selectedIndex = addressedLevels.indexOf(value);
-        
+	if (selectElt != null) {
+            selectElt.className = "topic" + value.toLowerCase();
+            selectElt.selectedIndex = addressedLevels.indexOf(value);
+        }
+	
         this.theJSONTopic.addressed = value;
 
         if (value == "No") {
@@ -166,13 +189,19 @@ class JSTopic {
         var txt = "";
         
         //=== One col for the content
-        txt += "<td class=\"topiccol\">";
-        txt += "<div class=\"topic\">\n";
+	if (this.duplication == 0) {
+            txt += "<td class=\"topiccol\">";
+	} else {
+            txt += "<td class=\"topiccol duplicate\">";
+	}
+
+	txt += "<div class=\"topic\">\n";
+
         txt += this.theJSONTopic.content;
         if (this.theJSONTopic.xrefs != "") {
-            txt += " <pre class=\"crossref\"> ";
-            txt += this.theJSONTopic.xrefs.replace("}{", "\">").replace("{", "<a href=\"#").replace("}", "</a>");
-            txt += ")</pre>";
+            txt += "<pre class=\"crossref\">cross-reference ";
+            txt += this.theJSONTopic.xrefs.replaceAll("}{", "\">").replaceAll("{", "<a href=\"#").replaceAll("}", "</a>");
+            txt += "</pre>";
         }
         txt += "</div>";
         txt += "<table>\n";
@@ -235,6 +264,26 @@ class JSTopic {
         txt += " & " + this.theJSONTopic.addressed;
         return txt;
     }
+
+    toLaTeX2()
+    {
+        var txt = "";
+        txt += this.theJSONTopic.content;
+        if (this.theJSSubTopics.length > 0) {
+            txt += "\\begin{itemize}\n";
+            for (var topicRef in this.theJSSubTopics) {
+                var subtopic = this.theJSSubTopics[topicRef];
+                if (subtopic.isConcerned()) {
+                    txt += "\\item ";
+                    txt += subtopic.toLaTeX2();
+                    txt += "\n";
+                }
+            }
+            txt += "\\end{itemize}\n";
+        }
+        return txt;
+    }
+
 }
 
 class JSSubTopic {
@@ -246,6 +295,7 @@ class JSSubTopic {
         this.id = this.parentTopic.getId() + "__subtopic__" + this.theJSONTopic.num;
         if (this.theJSONTopic.addressed == "Yes")
             this.parentTopic.setAddressed(this.theJSONTopic.addressed);
+	this.duplication = 0;
     }
     
     setAddressed(value)
@@ -254,9 +304,10 @@ class JSSubTopic {
             return;
         
         var selectElt = document.getElementById("select__" + this.id);
-        selectElt.className = "subtopic" + value.toLowerCase();
-        selectElt.selectedIndex = addressedLevels.indexOf(value);
-
+	if (selectElt != null) {
+            selectElt.className = "subtopic" + value.toLowerCase();
+            selectElt.selectedIndex = addressedLevels.indexOf(value);
+	}
         this.theJSONTopic.addressed = value;
     }
 
@@ -295,9 +346,16 @@ class JSSubTopic {
         txt += "<td class=\"subtopicpad\"></td>\n"; 
 
         //=== One column for the topic
-        txt += "<td class=\"subtopiccol\">\n"; 
-        txt += "<div class=\"subtopic\">\n";            
 
+	if (this.duplication == 0) {
+            txt += "<td class=\"subtopiccol\">\n"; 
+	} else {
+            txt += "<div class=\"subtopicol duplicate\">\n";
+	}
+	
+        txt += "<div class=\"subtopic\">\n";
+
+        txt += this.theJSONTopic.content;
         if (this.theJSONTopic.xrefs != "") {
             txt += " <pre class=\"crossref\">(cross-reference ";
             txt += this.theJSONTopic.xrefs.replace("}{", "\">").replace("{", "<a href=\"#").replace("}", "</a>")
@@ -315,10 +373,16 @@ class JSSubTopic {
 
     toLaTeX()
     {
-        var txt = " ";
+        var txt = "$\\rightarrow $";
         txt += this.theJSONTopic.content;
         txt += " & ";
         txt += this.theJSONTopic.addressed;
+        return txt;
+    }
+
+    toLaTeX2()
+    {
+        var txt = this.theJSONTopic.content;
         return txt;
     }
 }
@@ -491,7 +555,12 @@ class JSUnit {
         var txt = " & ";
         var first = true;
         
-        txt += "\\multirow {" + this.nbTopicsConcerned + "}{*}{\\begin{minipage}{4cm}" + this.title + "\\end{minipage}}";
+	    if (this.nbTopicsConcerned > 1) {
+            txt += "\\multirow {" + this.nbTopicsConcerned + "}{*}{\\begin{minipage}{4cm}" + this.title + "\\end{minipage}}";
+	    } else {
+            txt += "\\begin{minipage}{4cm}" + this.title + "\\end{minipage}";
+	    }
+	    
         for (var topicRef in this.theJSTopics) {
             var topic = this.theJSTopics[topicRef];
             if (topic.isConcerned()) {
@@ -508,6 +577,66 @@ class JSUnit {
         return txt;
     }
 
+    skillsToLaTeX()
+    {
+        var txt = " & ";
+        var first = true;
+
+	if (this.nbSkillsConcerned > 1)
+            txt += "\\multirow {" + this.nbSkillsConcerned + "}{*}{\\begin{minipage}{4cm}" + this.title + "\\end{minipage}}";
+	else
+            txt += "\\begin{minipage}{4cm}" + this.title + "\\end{minipage}";
+	
+        for (var skillRef in this.theJSSkills) {
+            var skill = this.theJSSkills[skillRef];
+            if (skill.isConcerned()) {
+                if (first) {
+                    first = false;
+                    txt += skill.toLaTeX();
+                } else {
+                    txt += "\n\\\\\\cline{3-4}\n";
+                    txt += " & ";
+                    txt += skill.toLaTeX();
+                }
+            }
+        }
+        return txt;
+    }
+
+    toLaTeX2() {
+        var txt = "";
+        txt += "\\textbf{\\large " + this.title + "}\n";
+        txt += "\\textbf{Topics addressed}\\\\\n";
+        txt += "\\begin{enumerate}\n";
+        for (var topicRef in this.theJSTopics) {
+            var topic = this.theJSTopics[topicRef];
+            if (topic.isConcerned()) {
+                txt += "\\item ";
+                txt += topic.toLaTeX2();
+                txt += "\n";
+            }
+        }
+        txt += "\\end{enumerate}\n";
+
+        txt += "\\textbf{Skills aimed:}";
+        if (this.nbSkillsConcerned == 0) {
+            txt += " None \\\\\n";
+        } else {            
+            txt += "\n\\begin{enumerate}\n";
+            for (var skillRef in this.theJSSkills) {
+                var skill = this.theJSSkills[skillRef];
+                if (skill.isConcerned()) {
+                    txt += "\\item ";
+                    txt += skill.toLaTeX2();
+                    txt += "\n";
+                }
+            }
+            txt += "\\end{enumerate}\n";
+        }
+        
+        return txt;
+    }
+    
     addEventListeners()
     {
         for (var topicRef in this.theJSTopics) {
@@ -652,7 +781,11 @@ class JSArea {
         }
         
         //=== One column for the area title
-        txt += "\\multirow{" + nbTopicsTotal + "}{*}{" + this.abbrev + "}";        
+	if (nbTopicsTotal > 1) {
+            txt += "\\multirow{" + nbTopicsTotal + "}{*}{" + this.abbrev + "}";        
+	} else {
+            txt += this.abbrev;        
+	}
         //-- one row for each unit
         for (var unitRef in this.jsUnits) {
             var unit = this.jsUnits[unitRef];
@@ -661,7 +794,7 @@ class JSArea {
                     txt += unit.topicsToLaTeX();
                     first = false;
                 } else {
-                    txt += "\n\\\\\\cline{3-4}\n";
+                    txt += "\n\\\\\\cline{2-4}\n";
                     txt += unit.topicsToLaTeX();
                 }
             }
@@ -669,6 +802,56 @@ class JSArea {
         return txt;
     }
 
+    skillsToLaTeX()
+    {
+        var txt = "";
+        var nbSkillsTotal = 0;
+        var first = true;
+        
+        for (var unitRef in this.jsUnits) {
+            var unit = this.jsUnits[unitRef];
+            nbSkillsTotal += unit.nbSkillsConcerned;
+        }
+        
+        //=== One column for the area title
+	if (nbSkillsTotal == 0) {
+	    return txt;
+	} else if (nbSkillsTotal > 1) {
+            txt += "\\multirow{" + nbSkillsTotal + "}{*}{" + this.abbrev + "}";
+	} else {
+	    txt += this.abbrev;
+	}
+	//-- one row for each unit
+        for (var unitRef in this.jsUnits) {
+            var unit = this.jsUnits[unitRef];
+            if (unit.isConcerned()) {
+                if (first) {
+                    txt += unit.skillsToLaTeX();
+                    first = false;
+                } else {
+                    txt += "\n\\\\\\cline{2-4}\n";
+                    txt += unit.skillsToLaTeX();
+                }
+            }
+        }
+        return txt;
+    }
+
+    toLaTeX2()
+    {
+        var txt = "";
+        txt += "\\textbf{\\Large " + this.title + "}\n";
+        txt += "\\begin{itemize}\n";           
+        for (var unitRef in this.jsUnits) {
+            var unit = this.jsUnits[unitRef];
+            if (unit.isConcerned()) {
+                txt += "\\item " + unit.toLaTeX2();
+            }
+        }
+        txt += "\\end{itemize}\n";    
+        return txt;
+    }
+    
     addEventListeners()
     {
         for (var unitRef in this.jsUnits) {
@@ -793,11 +976,20 @@ class JSCurricula
         var txt = "";
         var first = true;
 
+        txt += "\\documentclass[a4paper, article, 10pt, left=10mm, top=10mm]{article}\n"
+
+        txt += "\\usepackage{tabularx}\n";
+        txt += "\\usepackage{multicol}\n";
+        txt += "\\usepackage{multirow}\n";
+        txt += "\\usepackage[margin=0.5in]{geometry}\n";
+        txt += "\\begin{document}\n";
+        
         txt += "\\begin{table}\n";
         txt += "\\begin{center}\n";
-        txt += "\\begin{tabular}{ >{\\bfseries\\large}l  >{\\bfseries}m{4cm} | m{8cm} m{1cm} }\n";
+        txt += "\\begin{tabular}{>{\\bfseries\\large}l | >{\\bfseries}m{4cm} | m{8cm} c |}\n";
         txt += "\n";
-        txt += "Area & Unit & \\textbf{Topics} & \\textbf{Addressed ?}\n";
+        txt += "\\hline\n";
+        txt += "Area & Unit & \\textbf{Topics} & \\textbf{Addressed}\n";
         txt += "\\\\\\hline\n";
 
         for (var areaRef in this.jsAreas) {
@@ -807,13 +999,57 @@ class JSCurricula
                     txt += jsa.topicsToLaTeX();
                     first = false;
                 } else {
-                    txt += "\\\\\\hline";
+                    txt += "\\\\\\hline\n";
                     txt += jsa.topicsToLaTeX();                    
                 }
             }
         }
-        txt += "\\end{tabular}\n\\end{center}\n"
+        txt += "\n\\\\\\hline\n\\end{tabular}\n\\end{center}\n"
         txt += "\\end{table}\n";
+
+
+        txt += "\\begin{table}\n";
+        txt += "\\begin{center}\n";
+        txt += "\\begin{tabular}{| >{\\bfseries\\large}l  >{\\bfseries}m{4cm} | m{8cm} c |}\n";
+        txt += "\n";
+        txt += "Area & Unit & \\textbf{Skill} & \\textbf{Mastery}\n";
+        txt += "\\\\\\hline\n";
+
+        for (var areaRef in this.jsAreas) {
+            var jsa = this.jsAreas[areaRef];
+            if (jsa.isConcerned()) {
+                if (first) {
+                    txt += jsa.skillsToLaTeX();
+                    first = false;
+                } else {
+                    txt += "\\\\\\hline\n";
+                    txt += jsa.skillsToLaTeX();                    
+                }
+            }
+        }
+        txt += "\\\\\\hline\\end{tabular}\n\\end{center}\n"
+        txt += "\\end{table}\n";
+        txt += "\\end{document}\n";
+        
+	    return txt;
+    }
+
+    toLaTeX2()
+    {
+        var txt = "";
+        txt += "\\documentclass[a4paper, article, 10pt]{article}\n"
+        txt += "\\usepackage[margin=0.5in]{geometry}\n";
+        txt += "\\begin{document}\n";
+
+        txt += "\\begin{itemize}\n";           
+        for (var areaRef in this.jsAreas) {
+            var jsa = this.jsAreas[areaRef];
+            if (jsa.isConcerned()) {
+                txt += "\\item " + jsa.toLaTeX2();
+            }
+        }
+        txt += "\\end{itemize}\n";    
+        txt += "\\end{document}\n";
         return txt;
     }
 
@@ -833,6 +1069,69 @@ class JSCurricula
             if (area.isContentVisible)
                 area.addEventListeners();
         }
+    }
+
+
+    appendCSC(otherCSC) {
+
+	var otherAreaNumber = otherCSC.jsAreas.length;
+	var thisAreaNumber = this.jsAreas.length;
+	
+	if (otherAreaNumber != thisAreaNumber) {
+	    return false;
+	}
+	
+	for (var a = 0 ; a < otherAreaNumber ; a++ ) {
+	    var otherArea = otherCSC.jsAreas[a];
+	    var thisArea = this.jsAreas[a];
+	    if (! otherArea.isConcerned()) {
+		continue;
+	    }
+	    
+	    for (var u = 0 ; u < otherArea.jsUnits.length ; u++ ) {
+		var otherUnit = otherArea.jsUnits[u];
+		var thisUnit = thisArea.jsUnits[u];
+		if (! otherUnit.isConcerned()) {
+		    continue;		    
+		}
+
+		for (var t = 0 ; t < otherUnit.theJSTopics.length ; t++ ) {
+		    var otherTopic = otherUnit.theJSTopics[t];
+		    var thisTopic = thisUnit.theJSTopics[t];
+		    if (! otherTopic.isConcerned()) {
+			continue;		    
+		    } else if (! thisTopic.isConcerned()) {
+			thisTopic.setAddressed(otherTopic.theJSONTopic.addressed);
+		    } else if(thisTopic.isConcerned()) {
+			thisTopic.duplication++;
+		    }
+		    
+		    for (var st = 0 ; st < otherTopic.theJSSubTopics.length ; st++ ) {
+			var otherSubTopic = otherTopic.theJSSubTopics[st];
+			var thisSubTopic = thisTopic.theJSSubTopics[st];
+			if (! otherSubTopic.isConcerned()) {
+			    continue;		    
+			} else if (! thisSubTopic.isConcerned()) {
+			    thisSubTopic.setAddressed(otherSubTopic.theJSONTopic.addressed);
+			} else {
+			    thisSubTopic.duplication++;
+			}
+		    }
+		}
+
+		for (var s = 0 ; s < otherUnit.theJSSkills.length ; s++ ) {
+		    var otherSkill = otherUnit.theJSSkills[s];
+		    var thisSkill = thisUnit.theJSSkills[s];
+		    if (otherSkill.isConcerned() && ! thisSkill.isConcerned()) {
+			thisSkill.setMastery(otherSkill.theJSONSkill.mastery);
+		    } else if(otherSkill.isConcerned() && thisSkill.isConcerned()) {
+			thisSkill.duplication++;
+		    }
+		}
+	    }
+	}
+	
+	return true;
     }
 }
 
@@ -858,9 +1157,8 @@ readStringFromFileAtPath = function(pathOfFileToReadFrom)
 
 window.printCSC = function()
 {    
-    var fs = require('fs');
     var txt = "";
-
+    
     if (! boardDisplayed) {
         document.body.innerHTML = readStringFromFileAtPath("cscbody.html");
         boardDisplayed = true;
@@ -870,20 +1168,34 @@ window.printCSC = function()
         document.getElementById("expandCSC").addEventListener("click", function(){expandCSC(this.id)});
         document.getElementById("resetCSC").addEventListener("click", function(){resetCSC(this.id)});
         document.getElementById("latexExportCSC").addEventListener("click", function(){latexExportCSC(this.id)});
-        document.getElementById("pdfExportCSC").addEventListener("click", function(){pdfExportCSC(this.id)});
+        document.getElementById("latexExportCSC2").addEventListener("click", function(){latexExportCSC2(this.id)});
+        document.getElementById("appendCSC").addEventListener("change", function(){appendCSC(this.id)});
     }
     
     if (JSONCur == null) {
-        JSONCur = JSON.parse(fs.readFileSync('CSC-content.json').toString());
+        var request = new XMLHttpRequest();
+        request.open("GET", "CSC.json", true);
+        request.setRequestHeader("Content-type", "application/json");
+        request.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                JSONCur = JSON.parse(this.responseText);
+                displayCSC();
+            }
+        }
+        request.send();
+        
+        //JSONCur = fs.readFileSync('CSC-content.json').toString();
+    } else {
+        displayCSC();
     }
+}
+
+function displayCSC() {
     if (JSCur == null) {
         JSCur = new JSCurricula(JSONCur);
     }
-    
     txt = JSCur.toHTML();
-    
     document.getElementById("theCSCPage").innerHTML = txt;
-       
     JSCur.addEventListeners();
 }
 
@@ -938,8 +1250,9 @@ function appendCSC() {
     var fr = new FileReader();
     fr.onload = function(e) {
         OtherJSONCur = JSON.parse(e.target.result);
-        OtherJSCur = new JSCurricula(JSONCur);
+        OtherJSCur = new JSCurricula(OtherJSONCur);
         JSCur.appendCSC(OtherJSCur);
+	printCSC();
     }
     var blob = file.slice(0, file.size-1);
     fr.readAsText(blob);
@@ -973,6 +1286,7 @@ function expandCSC() {
 }
 
 function resetCSC() {
+    JSCur = null;
     JSONCur = null;
     printCSC();
 }
@@ -987,27 +1301,103 @@ function latexExportCSC(id) {
     link.click();
 }
 
+function latexExportCSC2(id) {
+    // var dlElem = document.getElementById(id);
+    var link = document.createElement('a');
+    var data = "data:application/x-latex;charset=utf-8," + encodeURIComponent(JSCur.toLaTeX2());
+    link.setAttribute("href", "data:" + data);
+    link.setAttribute("download", "savedCSC.tex");    
+    document.body.appendChild(link);
+    link.click();
+}
+
 function pdfExportCSC() {
     var latexData = JSCur.toLaTeX();
-    var request = new XMLHttpRequest();
-    request.open("POST", "textopdf.php", true);
-    request.setRequestHeader("Content-type", "application/latex");
-    // request.responseType = "arraybuffer";
     
-    request.onreadystatechange = function() {
-        document.getElementById("theCSCPage").innerText = request.responseText;
+    //**** Solution 1 => ne peut marcher dans un browser => exécute une commande pdflatex***** /
+    // var pdfstream = require("latex")([
+    //     "\\documentclass{article}",
+    //     "\\begin{document}",
+    //     "hello world",
+    //     "\\end{document}"
+    // ]).pipe(process.stdout);
 
-        // if (this.readyState == 4 && this.status == 200) {
-        //     var link = document.createElement('a');
-        //     var data = "data:application/x-pdf," + encodeURIComponent(JSCur.responseText);
-        //     link.setAttribute("href", "data:" + data);
-        //     link.setAttribute("download", "savedCSC.pdf");    
-        //     document.body.appendChild(link);
-        //     link.click();
+    // var pdfcontent = '';
+    // pdfstream.on('data', function(chunk) {
+    //     pdfcontent += chunk;
+    // });
+    // pdfstream.on('end', function() {
+    //     var link = document.createElement('a');
+    //     var data = "data:application/pdf," + encodeURIComponent(request.responseText);
+    //     link.setAttribute("href", "data:" + data);
+    //     link.setAttribute("download", "CSC.pdf");            
+    //     document.body.appendChild(link);
+    //     link.click();
+    // });
 
-        // }
-    }
-    request.send(latexData);    
+    //**** Solution 2 => ne peut marcher dans un browser ****/
+    // var file = "./tmp.tex";
+    // var fs = require('browserify-fs');
+    // fs.writeFile(file, latexData, function (err) {
+    //     if (err) {
+    //         document.getElementById("theCSCPage").innerHTML = "ERROR !\n";       
+    //     } else {
+    // 	    document.getElementById("theCSCPage").innerHTML = "launch xelatex !\n";       
+    //         var pdfLatex = require("child_process").exec("xelatex", [ "./tmp.tex" ]);
+    //         pdfLatex.stdout.on("end", function (data) {
+    // 		document.getElementById("theCSCPage").innerHTML += "<br>FINI !\n";       
+    // 	    });
+    //     }
+    // });
+    
+    //**** Solution 3 => idem que 1) et 2) ****/
+   
+    // const latex = require('node-latex')
+    // const fs = require('fs')
+    
+    // const input = fs.createReadStream('input.tex')
+    // const output = fs.createWriteStream('output.pdf')
+    
+    // latex(input).pipe(output);
+    
+    // 'use strict';
+
+    /********** Juste un essai => idem ***********/
+    // const
+    // spawn = require( 'child_process' ).spawn,
+    // ls = spawn( 'ls', [ '-lh', '/usr' ] );
+    
+    // ls.stdout.on( 'data', data => {
+    //     console.log( `stdout: ${data}` );
+    // });
+    
+    // ls.stderr.on( 'data', data => {
+    //     console.log( `stderr: ${data}` );
+    // });
+    
+    // ls.on( 'close', code => {
+    //     console.log( `child process exited with code ${code}` );
+    // });
+
+    /********** If I had a dedicated server, I would do like below  *******/
+    /*** mais nécessite un serveur sur lequel je peux installer et exécuter ce que je veux ***/
+    
+    // var request = new XMLHttpRequest();
+    // request.open("POST", "textopdf.php", true);
+    // request.setRequestHeader("Content-type", "application/x-latex;charset=utf-8");
+    // request.onreadystatechange = function() {
+    //     if (this.readyState == 3 && this.status == 200) {
+    //         document.getElementById("theCSCPage").innerText = this.responseText;
+            
+    //     // var link = document.createElement('a');
+    //     // var data = "data:text/plain; charset=UTF-8," + encodeURIComponent(request.responseText);
+    //     // link.setAttribute("href", "data:" + data);
+    //     // link.setAttribute("download", "CSC.txt");            
+    //     // document.body.appendChild(link);
+    //     // link.click();
+    //     // }
+    // }
+    // request.send(latexData);
 }
 
 window.displayArea = function(areaElt) {

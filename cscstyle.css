@@ -1,3 +1,10 @@
+option:hover,
+option:focus,
+option:active,
+option:checked {
+  background: linear-gradient(Gray, Gray);
+}
+
 .cscbutton {
     background-color:  #6688FF;
     border-style: solid;
@@ -86,8 +93,6 @@
     opacity: 0;
     cursor: pointer;
 }
-
-
 
 
 .cscbutton:hover {background-color:  #5577EE}
@@ -329,13 +334,14 @@ td .topiccol {
 
 
 .crossref {
-    font-size:80%;
+    font-size:70%;
     background: #AFCFFF;
     border: #AFCFFF;
     font-family: Serif;
     padding: 0 0 0;
     margin: 0 0 0;
-    width:500px;
+    display: inline;
+    white-space: pre-wrap;
 }
 
 
@@ -446,4 +452,8 @@ select {
 }
 .verticalspace {
     height : 2cm;
+}
+
+td .duplicate {
+    background-color: #FF0000;
 }
